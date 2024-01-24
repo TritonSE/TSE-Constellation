@@ -16,10 +16,16 @@ To develop components for the TSE Design System, first install development depen
 $ npm install
 ```
 
+Build the library with:
+
+```sh
+$ npm run build
+```
+
 Start the development server with:
 
 ```sh
-$ npm run dev -- --open
+$ npm run dev
 ```
 
 Open [localhost:5173](http://localhost:5173) to view the development site.

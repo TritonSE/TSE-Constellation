@@ -76,10 +76,15 @@ export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
   const cssColors = Object.entries(activeTheme.colors).map(([type, value]) => (`  --color-${type}: ${value};`)).join('\n');
   const cssFonts = Object.entries(activeTheme.fonts).map(([type, value]) => (`  --font-${type}: ${value};`)).join('\n');
 
-  const css = `
+  document.head.innerHTML += `<style>
 :root {
 ${cssColors}
 ${cssFonts}
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 html {
   font-family: var(--font-text);
@@ -90,10 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 span, p, a, button, input {
   font-family: var(--font-text);
 }
-    `;
+    </style>`;
 
-  return <>
-    <style>{ css }</style>
-    {children}
-  </>;
+  return children;
 }

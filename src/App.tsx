@@ -1,5 +1,4 @@
 import { Button, Label, Input, ThemeProvider } from '../';
-import './App.css';
 
 function App() {
   return (
