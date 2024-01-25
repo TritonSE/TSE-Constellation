@@ -4,21 +4,50 @@
  */
 
 import { PropsWithChildren } from 'react';
+import './styles.module.css';
 
 type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
 type HEX = `#${string}`;
 type Color = RGB | RGBA | HEX;
 export interface ThemeColors {
-  primary: Color;
-  secondary: Color;
+  /** Primary colors */
+  primary_light: Color;
+  primary_dark: Color;
+  
+  /** Secondary colors */
+  secondary_accent_1: Color;
+  secondary_accent_2: Color;
+
+  secondary_highlight_1: Color;
+  secondary_highlight_2: Color;
+
+  /** Tertiary accent colors */
+  tertiary_accent_1: Color;
+  tertiary_accent_2: Color;
+  tertiary_accent_3: Color;
+
+  /** Functional colors */
+  background: Color;
+  surface: Color;
   success: Color;
-  warning: Color;
   error: Color;
+  disabled: Color;
+
+  /** Neutral colors */
+  white: Color;
+  gray_0: Color;
+  gray_1: Color;
+  gray_2: Color;
+  gray_3: Color;
+  gray_4: Color;
+  gray_5: Color;
+  gray_6: Color;
+  black: Color;
 }
 export interface ThemeFonts {
-  heading: string;
-  text: string;
+  primary: string;
+  secondary: string;
 }
 export interface Theme {
   colors: ThemeColors;
@@ -27,20 +56,39 @@ export interface Theme {
 export interface ThemeProviderProps {
   colors?: ThemeColors;
   fonts?: ThemeFonts;
+  fontInject?: string;
 }
 
 // Default theme specified by the design system Figma.
 export const defaultTheme: Theme = {
   colors: {
-    primary: '#00FFFF',
-    secondary: '#0000FF',
-    success: '#00FF00',
-    warning: '#FFFF00',
-    error: '#FF0000'
+    primary_light:         '#FCF6E5', // Light off-white
+    primary_dark:          '#0C2B35', // TSE dark blue
+    secondary_accent_1:    '#153641', // Lighter variant of primary
+    secondary_accent_2:    '#EEE8D7', // Off-white
+    secondary_highlight_1: '#DEBB01', // Gold
+    secondary_highlight_2: '#428BCD', // Baby blue
+    tertiary_accent_1:     '#CEDCDC', // Light gray
+    tertiary_accent_2:     '#96A1A1', // Medium gray
+    tertiary_accent_3:     '#697B82', // Dark gray
+    background:            '#F9F9F9', // Slight off-white
+    surface:               '#FFFFFF', // White
+    success:               '#3BB966', // Green
+    error:                 '#B93B3B', // Red
+    disabled:              '#D8D8D8', // Gray
+    white:                 '#FFFFFF',
+    gray_0:                '#F3F3F3',
+    gray_1:                '#EBEBEB',
+    gray_2:                '#D8D8D8',
+    gray_3:                '#B4B4B4',
+    gray_4:                '#909090',
+    gray_5:                '#6C6C6C',
+    gray_6:                '#484848',
+    black:                 '#000000'
   },
   fonts: {
-    heading: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
-    text: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif'
+    primary: '"Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
+    secondary: '"IBM Plex Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif'
   },
 };
 
@@ -60,7 +108,9 @@ export function useTheme(): Theme {
  * using the `defaultTheme` object.
  */
 export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
-  const { fonts, colors, children } = props;
+  if (document.body.dataset.tseInitialized === 'true') return props.children;
+
+  const { fonts, fontInject, colors, children } = props;
   activeTheme = {
       colors: {
         ...defaultTheme.colors,
@@ -73,29 +123,18 @@ export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
     };
 
   // Generate CSS variables from JS objects
-  const cssColors = Object.entries(activeTheme.colors).map(([type, value]) => (`  --color-${type}: ${value};`)).join('\n');
-  const cssFonts = Object.entries(activeTheme.fonts).map(([type, value]) => (`  --font-${type}: ${value};`)).join('\n');
+  const cssColors = Object.entries(activeTheme.colors).map(([type, value]) => (`  --color-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
+  const cssFonts = Object.entries(activeTheme.fonts).map(([type, value]) => (`  --font-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
 
-  document.head.innerHTML += `<style>
+  document.head.innerHTML += `${fontInject ?? '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik|IBM+Plex+Mono">'}
+<style>
 :root {
 ${cssColors}
 ${cssFonts}
+}
+</style>`;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-html {
-  font-family: var(--font-text);
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-}
-span, p, a, button, input {
-  font-family: var(--font-text);
-}
-    </style>`;
+  document.body.dataset.tseInitialized = 'true';
 
   return children;
 }
