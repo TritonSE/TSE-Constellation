@@ -38,13 +38,13 @@ Components are split up into atoms, molecules, and organisms.  When adding a new
 To access theme data from within a component, do the following:
 
 ```jsx
-import { useTheme } from '../../ThemeProvider';
+import { useTheme } from '../../assets/ThemeProvider';
 
 export function MyAtom() {
     const { colors, fonts } = useTheme();
 
-    // colors.primary
-    // fonts.text
+    // colors.primary_dark
+    // fonts.primary
     // ...
 }
 ```

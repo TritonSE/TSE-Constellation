@@ -3,7 +3,7 @@
  */
 
 /** THEMING */
-export { ThemeProvider } from './ThemeProvider';
+export { ThemeProvider } from './assets/ThemeProvider';
 
 /** ATOMS */
 export { Button } from './atoms/Button';

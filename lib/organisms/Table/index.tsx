@@ -1,4 +1,4 @@
-import { useTheme } from '../../ThemeProvider';
+import { useTheme } from '../../assets/ThemeProvider';
 import styles from './styles.module.css';
 
 export function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
