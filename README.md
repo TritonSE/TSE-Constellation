@@ -1,6 +1,6 @@
-# TSE Design System
+# TSE Constellation
 
-The TSE Design System is a unified set of components aiming to give TSE projects a cohesive look and feel.
+TSE Constellation is a unified set of components aiming to give TSE projects a cohesive look and feel.
 
 It is implemeneted as a [React](https://react.dev) component library written using [TypeScript](https://typescriptlang.org) and built using [Vite](https://vitejs.dev).
 

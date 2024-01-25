@@ -1,9 +1,9 @@
 {
-  "name": "tse-design-system",
+  "name": "tse-constellation",
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "main": "dist/tse-design-system.js",
+  "main": "dist/tse-constellation.js",
   "types": "dist/main.d.ts",
   "files": [
     "dist"
