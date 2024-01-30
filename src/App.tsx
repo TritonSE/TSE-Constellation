@@ -1,5 +1,5 @@
 import { Button, Label, Input, ThemeProvider } from '../';
-import { IconTest } from './IconTest/IconTest';
+import { IconTest } from './IconTest';
 
 function App() {
   return (
