@@ -21,15 +21,15 @@ export const IconTest = () => {
       { iconName: 'ic_arrowback', props: { stroke: 'red' } },
       {
         iconName: 'ic_return',
-        props: { stroke: 'red', width: 48, height: 48 },
+        props: { stroke: 'red', size: 48 },
       },
       {
         iconName: 'ic_pending',
-        props: { fill: 'green', stroke: 'gray', width: 48, height: 48 },
+        props: { fill: 'green', stroke: 'gray', size: 48 },
       },
       {
         iconName: 'ic_show',
-        props: { stroke: 'red', width: 48, height: 48 },
+        props: { stroke: 'red', size: 48 },
       },
       {
         iconName: 'ic_gift',

@@ -76,11 +76,8 @@ export interface IconProps {
   // Name of the icon to use, should be one of the available strings in IconName
   name: IconName;
 
-  // Width of the icon, in pixels (defaults to SVG asset's width)
-  width?: number;
-
-  // Height of the icon, in pixels (defaults to SVG asset's height)
-  height?: number;
+  // Size of the icon (both width and height), in pixels. Defaults to 24
+  size?: number;
 
   // Stroke color, i.e. color of lines/paths within the SVG.
   // Defaults to theme primary dark color
@@ -98,7 +95,7 @@ export interface IconProps {
 }
 
 export function Icon(props: IconProps) {
-  const { name, width, height, stroke, fill, className, style } = props;
+  const { name, size, stroke, fill, className, style } = props;
   const { colors } = useTheme();
 
   // Ref to icon SVG imported as a React component
@@ -131,25 +128,12 @@ export function Icon(props: IconProps) {
   const { current } = importedIconRef;
   const ImportedIcon = current!;
 
-  // Props for width and height. If they are not provided to this component, we must NOT
-  // use them (using undefined doesn't work) so we don't override SVG file width & height
-  const dimensionProps: {
-    width?: number;
-    height?: number;
-  } = {};
-  if (width !== undefined) {
-    dimensionProps.width = width;
-  }
-  if (width !== undefined) {
-    dimensionProps.height = height;
-  }
-
   return (
     <ImportedIcon
       className={`${className ?? ''} ${styles.icon}`}
       stroke={stroke ?? colors.primary_dark}
       fill={fill ?? colors.primary_light}
-      {...dimensionProps}
+      {...(size === undefined ? {} : { width: size, height: size })}
       style={style}
     />
   );
