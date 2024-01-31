@@ -1,0 +1,24 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 24px;
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.label {
+  font-size: 1rem;
+}
+
+.scroll {
+  height: 30rem;
+  padding-right: 2rem;
+  overflow: auto;
+}
