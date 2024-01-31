@@ -10,7 +10,7 @@ This section is still a TODO until we publish our first version of the library.
 
 ## Development
 
-To develop components for the TSE Design System, first install development dependencies with:
+To develop components for TSE Constellation, first install development dependencies with:
 
 ```sh
 $ npm install

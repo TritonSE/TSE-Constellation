@@ -3,9 +3,9 @@ import styles from './styles.module.css';
 import { IconName, IconNames, IconProps } from '../../lib/atoms/Icon';
 
 export const IconTest = () => {
-  const renderRow = (iconName: IconName, props?: Omit<IconProps, 'name'>) => {
+  const renderRow = (iconName: IconName, props?: Omit<IconProps, 'name'>, index: number) => {
     return (
-      <div className={styles.row} key={iconName}>
+      <div className={styles.row} key={`${iconName}_${index}`}>
         {<Icon {...props} name={iconName} />}
         <p className={styles.label}>{iconName}</p>
       </div>
@@ -40,7 +40,9 @@ export const IconTest = () => {
   return (
     <div className={styles.column}>
       <h1>Icons!</h1>
-      {iconsToTest.map(({ iconName, props }) => renderRow(iconName, props))}
+      <div className={styles.scroll}>
+        {iconsToTest.map(({ iconName, props }, i) => renderRow(iconName, props, i))}
+      </div>
     </div>
   );
 };

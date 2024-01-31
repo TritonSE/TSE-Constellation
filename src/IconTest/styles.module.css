@@ -16,3 +16,9 @@
 .label {
   font-size: 1rem;
 }
+
+.scroll {
+  height: 30rem;
+  padding-right: 2rem;
+  overflow: auto;
+}
