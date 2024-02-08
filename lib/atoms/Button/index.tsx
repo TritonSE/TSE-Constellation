@@ -1,17 +1,37 @@
-import { useTheme } from '../../assets/ThemeProvider';
-import styles from './styles.module.css';
+/**
+ * A Button component with different variants
+ */
 
-export function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  const { style, className, ...restProps } = props;
-  const { colors } = useTheme();
+import classNames from "classnames/bind";
+import styles from "./styles.module.css";
 
-  return <button
-    style={{
-      backgroundColor: colors.primary_dark,
-      color: colors.primary_light,
-      ...style
-    }}
-    className={`${className} ${styles.button}`}
-    {...restProps}
-  />;
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  // Button variant
+  variant?: "default" | "secondary" | "tag";
+  // Small button?
+  small?: boolean;
+  // Descriptive button?
+  destructive?: boolean;
+  // Disabled button?
+  disabled?: boolean;
+}
+
+// See https://github.com/JedWatson/classnames for usage
+const cx = classNames.bind(styles);
+
+export function Button(props: ButtonProps) {
+  const { className, variant, disabled, small, destructive, ...restProps } =
+    props;
+
+  return (
+    <button
+      className={cx(className, "button", variant, {
+        disabled,
+        destructive,
+        small,
+      })}
+      {...restProps}
+    />
+  );
 }
