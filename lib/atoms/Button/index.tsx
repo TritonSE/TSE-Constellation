@@ -29,7 +29,7 @@ export interface ButtonProps
 const cx = classNames.bind(styles);
 
 /**
- * A Button component with different variants
+ * A Button component with different variants.
  */
 export function Button(props: ButtonProps) {
   const { className, variant, disabled, small, destructive, ...restProps } =
