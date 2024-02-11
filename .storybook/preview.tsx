@@ -2,6 +2,7 @@ import React from "react";
 import type { Preview } from "@storybook/react";
 import DocumentationTemplate from "./DocumentationTemplate.mdx";
 import { ThemeProvider } from "../lib/assets/ThemeProvider";
+import { previewTheme } from "./theme";
 
 const preview: Preview = {
   parameters: {
@@ -14,6 +15,7 @@ const preview: Preview = {
       },
     },
     docs: {
+      theme: previewTheme,
       page: DocumentationTemplate,
     },
   },
