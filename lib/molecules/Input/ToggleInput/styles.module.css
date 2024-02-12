@@ -1,0 +1,100 @@
+:root {
+  --slider-color: black;
+  --slider-circle-size: 24px;
+}
+
+.toggleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 12px;
+}
+
+.optionTextContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionLabel {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0px;
+}
+
+.optionHint {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0px;
+}
+
+/* Credit to https://www.w3schools.com/howto/howto_css_switch.asp for all the CSS */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  height: 16px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.defaultSwitch {
+  width: 44px;
+}
+
+.compactSwitch {
+  width: 32px;
+}
+
+/* The "slider" element is the track that the circle slides along */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  background-color: white;
+  border: 2px solid var(--slider-color);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* The "slider:before" element is the circle that slides along the track */
+.slider:before {
+  position: absolute;
+  content: '';
+  height: var(--slider-circle-size);
+  width: var(--slider-circle-size);
+  left: -2px;
+  /* CSS math: bottom should be -4px when compact (16px) and -8px when not compact (24px*/
+  bottom: calc(4px - (var(--slider-circle-size)) / 2);
+  border: 2px solid var(--slider-color);
+  border-radius: 50%;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--slider-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--slider-color);
+}
+
+input:checked + .slider:before {
+  /* CSS math: should be 44 - 24 = 20px for non-compact, 32 - 16 = 16px for compact */
+  --translation-amount: calc(8px + (var(--slider-circle-size)) / 2);
+  -webkit-transform: translateX(var(--translation-amount));
+  -ms-transform: translateX(var(--translation-amount));
+  transform: translateX(var(--translation-amount));
+}

@@ -1,0 +1,70 @@
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.optionRow {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 12px;
+}
+
+.checkboxContainer {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  border-radius: 12px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox:checked:after {
+  content: ' ';
+
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  position: absolute;
+  top: 1.5px;
+  background: black;
+  left: 1.5px;
+  font-size: 32px;
+}
+
+.checkmarkIcon {
+  position: absolute;
+  left: 0px;
+  cursor: pointer;
+}
+
+.optionTextContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.optionLabel {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0px;
+}
+
+.optionHint {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0px;
+}
