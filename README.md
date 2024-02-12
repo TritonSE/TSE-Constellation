@@ -2,7 +2,7 @@
 
 TSE Constellation is a unified set of components aiming to give TSE projects a cohesive look and feel.
 
-It is implemeneted as a [React](https://react.dev) component library written using [TypeScript](https://typescriptlang.org) and built using [Vite](https://vitejs.dev).
+It is implemented as a [React](https://react.dev) component library written using [TypeScript](https://typescriptlang.org) and built using [Vite](https://vitejs.dev).
 
 ## Using in a Project
 
@@ -25,6 +25,16 @@ $ npm run dev
 This will automatically rebuild the library upon changes to the `lib/` directory.
 
 Open [localhost:5173](http://localhost:5173) to view the development site.
+
+Start Storybook with:
+
+```sh
+$ npm run storybook
+```
+
+Open [localhost:6006](http://localhost:6006) to view Storybook.
+
+Changes to stories will be automatically reflected in Storybook.
 
 ### Development Approach and Style Considerations
 
