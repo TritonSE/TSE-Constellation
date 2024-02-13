@@ -1,10 +1,9 @@
+import { useEffect, useState } from 'react';
+import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../CommonInput';
 import styles from './styles.module.css';
-import { useTheme } from '../../../assets/ThemeProvider';
-import CheckmarkIcon from '../../../assets/icons/checkmark.svg?react';
-import { useEffect, useState } from 'react';
 
-export interface CheckboxInputProps extends CommonInputProps {
+export interface RadioProps extends CommonInputProps {
   id: string;
   label: string;
   checked?: boolean;
@@ -14,7 +13,7 @@ export interface CheckboxInputProps extends CommonInputProps {
   onChange?: (newChecked: boolean) => unknown;
 }
 
-export function CheckboxInput(props: CheckboxInputProps) {
+export function Radio(props: RadioProps) {
   const { id, label, checked, errorText, caption, disabled, onChange } = props;
 
   const theme = useTheme();
@@ -39,12 +38,10 @@ export function CheckboxInput(props: CheckboxInputProps) {
             hovering ? theme.colors.secondary_highlight_1 : 'transparent'
           }`
         }}
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => setHovering(false)}
       >
         <input
           id={id}
-          type="checkbox"
+          type="radio"
           checked={internalChecked}
           className={styles.checkbox}
           style={{
@@ -60,14 +57,16 @@ export function CheckboxInput(props: CheckboxInputProps) {
             setInternalChecked(e.target.checked);
           }}
           disabled={disabled}
+          onMouseEnter={() => setHovering(true)}
+          onMouseLeave={() => setHovering(false)}
         />
-        <label
+        {/* <label
           htmlFor={id}
           className={styles.checkmarkIcon}
           style={internalChecked ? {} : { display: 'none' }}
         >
           <CheckmarkIcon />
-        </label>
+        </label> */}
       </div>
       <div className={styles.optionTextContainer}>
         <p className={styles.optionLabel}>{label}</p>

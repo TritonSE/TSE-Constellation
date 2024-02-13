@@ -10,8 +10,8 @@ export { Button } from './atoms/Button';
 export { Icon } from './atoms/Icon';
 
 /** MOLECULES */
-export { CheckboxInput } from './molecules/Input/CheckboxInput';
-export { DropdownInput } from './molecules/Input/DropdownInput';
-export { RadioInput } from './molecules/Input/RadioInput';
-export { TextInput } from './molecules/Input/TextInput';
-export { ToggleInput } from './molecules/Input/ToggleInput';
+export { Checkbox } from './molecules/Input/Checkbox';
+export { Dropdown } from './molecules/Input/Dropdown';
+export { Radio } from './molecules/Input/Radio';
+export { TextField } from './molecules/Input/TextField';
+export { Toggle } from './molecules/Input/Toggle';

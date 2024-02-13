@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { RadioInput } from '../../lib/main';
+import { Toggle } from '../../lib/main';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Molecules/RadioInput',
-  component: RadioInput,
+  title: 'Molecules/Toggle',
+  component: Toggle,
   args: {}
-} satisfies Meta<typeof RadioInput>;
+} satisfies Meta<typeof Toggle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -15,8 +15,8 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 
 /**
- * A default radio input
+ * A default toggle
  */
 export const Default: Story = {
-  args: { id: 'radio-1', label: 'Radio Example' }
+  args: { label: 'Toggle Example' }
 };

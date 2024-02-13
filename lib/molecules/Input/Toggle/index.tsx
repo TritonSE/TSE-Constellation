@@ -3,7 +3,7 @@ import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../CommonInput';
 import styles from './styles.module.css';
 
-export interface ToggleInputProps extends CommonInputProps {
+export interface ToggleProps extends CommonInputProps {
   // Whether it should be a compact input
   compact?: boolean;
 
@@ -14,7 +14,7 @@ export interface ToggleInputProps extends CommonInputProps {
   onChange: (newChecked: boolean) => unknown;
 }
 
-export function ToggleInput(props: ToggleInputProps) {
+export function Toggle(props: ToggleProps) {
   const { label, errorText, caption, disabled, compact, checked, onChange } =
     props;
 

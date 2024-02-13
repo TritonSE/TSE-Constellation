@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ToggleInput } from '../../lib/main';
+import { TextField } from '../../lib/main';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Molecules/ToggleInput',
-  component: ToggleInput,
+  title: 'Molecules/TextField',
+  component: TextField,
   args: {}
-} satisfies Meta<typeof ToggleInput>;
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -15,8 +15,8 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 
 /**
- * A default toggle input
+ * A default text field
  */
 export const Default: Story = {
-  args: { label: 'Toggle Input Example' }
+  args: { label: 'Text Field Example' }
 };

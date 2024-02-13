@@ -2,12 +2,12 @@ import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../CommonInput';
 import styles from './styles.module.css';
 
-export interface TextInputProps extends CommonInputProps {
+export interface TextFieldProps extends CommonInputProps {
   // Placeholder text
   placeholder?: string;
 }
 
-export function TextInput(props: TextInputProps) {
+export function TextField(props: TextFieldProps) {
   const { label, errorText, caption, disabled, placeholder } = props;
 
   const theme = useTheme();

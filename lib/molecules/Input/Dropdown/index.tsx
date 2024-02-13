@@ -4,23 +4,23 @@ import { CommonInputProps } from '../CommonInput';
 import styles from './styles.module.css';
 import { Icon } from '../../../main';
 
-export interface DropdownInputOption {
+export interface DropdownOption {
   label: string;
   value?: unknown;
 }
 
-export interface DropdownInputProps extends CommonInputProps {
+export interface DropdownProps extends CommonInputProps {
   // Placeholder text
   placeholder?: string;
 
-  options: DropdownInputOption[];
+  options: DropdownOption[];
 
   value?: unknown;
 
   onChange: (newValue: unknown) => unknown;
 }
 
-export function DropdownInput(props: DropdownInputProps) {
+export function Dropdown(props: DropdownProps) {
   const {
     label,
     placeholder,
@@ -45,7 +45,7 @@ export function DropdownInput(props: DropdownInputProps) {
     [selectedOption, placeholder, options]
   );
 
-  const getOptionValue = (option: DropdownInputOption) =>
+  const getOptionValue = (option: DropdownOption) =>
     option.value ?? option.label;
 
   return (

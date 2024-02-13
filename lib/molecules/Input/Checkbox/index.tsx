@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
-import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../CommonInput';
 import styles from './styles.module.css';
+import { useTheme } from '../../../assets/ThemeProvider';
+import CheckmarkIcon from '../../../assets/icons/checkmark.svg?react';
+import { useEffect, useState } from 'react';
 
-export interface RadioInputProps extends CommonInputProps {
+export interface CheckboxProps extends CommonInputProps {
   id: string;
   label: string;
   checked?: boolean;
@@ -13,7 +14,7 @@ export interface RadioInputProps extends CommonInputProps {
   onChange?: (newChecked: boolean) => unknown;
 }
 
-export function RadioInput(props: RadioInputProps) {
+export function Checkbox(props: CheckboxProps) {
   const { id, label, checked, errorText, caption, disabled, onChange } = props;
 
   const theme = useTheme();
@@ -38,10 +39,13 @@ export function RadioInput(props: RadioInputProps) {
             hovering ? theme.colors.secondary_highlight_1 : 'transparent'
           }`
         }}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
       >
         <input
           id={id}
-          type="radio"
+          name={id}
+          type="checkbox"
           checked={internalChecked}
           className={styles.checkbox}
           style={{
@@ -57,16 +61,14 @@ export function RadioInput(props: RadioInputProps) {
             setInternalChecked(e.target.checked);
           }}
           disabled={disabled}
-          onMouseEnter={() => setHovering(true)}
-          onMouseLeave={() => setHovering(false)}
         />
-        {/* <label
+        <label
           htmlFor={id}
           className={styles.checkmarkIcon}
           style={internalChecked ? {} : { display: 'none' }}
         >
           <CheckmarkIcon />
-        </label> */}
+        </label>
       </div>
       <div className={styles.optionTextContainer}>
         <p className={styles.optionLabel}>{label}</p>
