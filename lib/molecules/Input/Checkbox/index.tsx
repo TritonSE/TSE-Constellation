@@ -30,6 +30,21 @@ export function Checkbox(props: CheckboxProps) {
     }
   }, [checked]);
 
+  // Update our highlight color when theme changes
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--highlight-color',
+      theme.colors.secondary_highlight_1
+    );
+  }, [theme]);
+
+  // Color for main checkbox and border
+  const checkboxColor = disabled
+    ? theme.colors.disabled
+    : errorText
+    ? theme.colors.error
+    : theme.colors.primary_dark;
+
   return (
     <div className={styles.optionRow}>
       <div
@@ -49,12 +64,7 @@ export function Checkbox(props: CheckboxProps) {
           checked={internalChecked}
           className={styles.checkbox}
           style={{
-            border: `3px solid ${
-              errorText ? theme.colors.error : theme.colors.primary_dark
-            }`
-            // ...(internalChecked
-            //   ? { backgroundColor: theme.colors.primary_dark }
-            //   : {})
+            border: `3px solid ${checkboxColor}`
           }}
           onChange={(e) => {
             onChange?.(e.target.checked);
@@ -67,7 +77,11 @@ export function Checkbox(props: CheckboxProps) {
           className={styles.checkmarkIcon}
           style={internalChecked ? {} : { display: 'none' }}
         >
-          <CheckmarkIcon />
+          <CheckmarkIcon
+            width={24}
+            height={24}
+            style={{ fill: checkboxColor }}
+          />
         </label>
       </div>
       <div className={styles.optionTextContainer}>

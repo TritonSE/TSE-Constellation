@@ -1,3 +1,7 @@
+:root {
+  --highlight-color: #debb01;
+}
+
 .optionsContainer {
   display: flex;
   flex-direction: column;
@@ -13,14 +17,14 @@
 
 .checkboxContainer {
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 5px;
 }
 
 .checkbox {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -31,9 +35,21 @@
   cursor: pointer;
 }
 
+.checkbox:focus {
+  /* Disable default outline on checkbox when focused */
+  outline: none !important;
+}
+
+.checkboxContainer:focus-within {
+  /* Apply our highlight-colored border on checkbox when focused */
+  border: 2px solid var(--highlight-color) !important;
+  outline: none !important;
+}
+
 .checkmarkIcon {
   position: absolute;
-  left: 0px;
+  left: -2px;
+  top: -2px;
   cursor: pointer;
 }
 
