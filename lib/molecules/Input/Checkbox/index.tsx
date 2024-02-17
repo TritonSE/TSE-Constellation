@@ -1,7 +1,8 @@
 import { CommonInputProps } from '../CommonInput';
 import styles from './styles.module.css';
 import { useTheme } from '../../../assets/ThemeProvider';
-import CheckmarkIcon from '../../../assets/icons/checkmark.svg?react';
+import CheckboxCheckedIcon from '../../../assets/icons/checkbox_checked.svg?react';
+import CheckboxIndeterminantIcon from '../../../assets/icons/checkbox_indeterminant.svg?react';
 import { useEffect, useState } from 'react';
 
 export interface CheckboxProps extends CommonInputProps {
@@ -10,12 +11,22 @@ export interface CheckboxProps extends CommonInputProps {
   checked?: boolean;
   errorText?: string;
   disabled?: boolean;
+  indeterminant?: boolean;
 
   onChange?: (newChecked: boolean) => unknown;
 }
 
 export function Checkbox(props: CheckboxProps) {
-  const { id, label, checked, errorText, caption, disabled, onChange } = props;
+  const {
+    id,
+    label,
+    checked,
+    errorText,
+    caption,
+    disabled,
+    indeterminant,
+    onChange
+  } = props;
 
   const theme = useTheme();
 
@@ -77,11 +88,19 @@ export function Checkbox(props: CheckboxProps) {
           className={styles.checkmarkIcon}
           style={internalChecked ? {} : { display: 'none' }}
         >
-          <CheckmarkIcon
-            width={24}
-            height={24}
-            style={{ fill: checkboxColor }}
-          />
+          {indeterminant ? (
+            <CheckboxIndeterminantIcon
+              width={24}
+              height={24}
+              style={{ fill: checkboxColor }}
+            />
+          ) : (
+            <CheckboxCheckedIcon
+              width={24}
+              height={24}
+              style={{ fill: checkboxColor }}
+            />
+          )}
         </label>
       </div>
       <div className={styles.optionTextContainer}>
