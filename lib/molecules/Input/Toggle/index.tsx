@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../CommonInput';
+import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 
 export interface ToggleProps extends CommonInputProps {
@@ -15,8 +15,16 @@ export interface ToggleProps extends CommonInputProps {
 }
 
 export function Toggle(props: ToggleProps) {
-  const { label, errorText, caption, disabled, compact, checked, onChange } =
-    props;
+  const {
+    label,
+    errorText,
+    caption,
+    disabled,
+    name,
+    compact,
+    checked,
+    onChange
+  } = props;
 
   const theme = useTheme();
 
@@ -60,6 +68,7 @@ export function Toggle(props: ToggleProps) {
         }`}
       >
         <input
+          name={name}
           type="checkbox"
           checked={internalChecked}
           onChange={(e) => {

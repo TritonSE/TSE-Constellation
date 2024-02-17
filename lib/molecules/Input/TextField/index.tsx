@@ -1,5 +1,5 @@
 import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../CommonInput';
+import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 
 export interface TextFieldProps extends CommonInputProps {
@@ -8,7 +8,7 @@ export interface TextFieldProps extends CommonInputProps {
 }
 
 export function TextField(props: TextFieldProps) {
-  const { label, errorText, caption, disabled, placeholder } = props;
+  const { label, errorText, caption, disabled, name, placeholder } = props;
 
   const theme = useTheme();
 
@@ -16,6 +16,7 @@ export function TextField(props: TextFieldProps) {
     <div className={styles.inputContainer}>
       <label className={styles.label}>{label}</label>
       <input
+        name={name}
         className={styles.input}
         placeholder={placeholder}
         disabled={disabled}

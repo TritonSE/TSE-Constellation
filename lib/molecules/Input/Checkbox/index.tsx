@@ -1,4 +1,4 @@
-import { CommonInputProps } from '../CommonInput';
+import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { useTheme } from '../../../assets/ThemeProvider';
 import CheckboxCheckedIcon from '../../../assets/icons/checkbox_checked.svg?react';
@@ -24,6 +24,7 @@ export function Checkbox(props: CheckboxProps) {
     errorText,
     caption,
     disabled,
+    name,
     indeterminant,
     onChange
   } = props;
@@ -70,7 +71,7 @@ export function Checkbox(props: CheckboxProps) {
       >
         <input
           id={id}
-          name={id}
+          name={name}
           type="checkbox"
           checked={internalChecked}
           className={styles.checkbox}

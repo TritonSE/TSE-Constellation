@@ -10,4 +10,7 @@ export interface CommonInputProps {
 
   // Whether the input is disabled
   disabled?: boolean;
+
+  // Name to be applied to the input field, useful for forms
+  name?: string;
 }

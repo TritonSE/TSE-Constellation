@@ -1,32 +1,33 @@
 import { Key, useMemo, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../CommonInput';
+import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { Icon } from '../../../main';
 
-export interface DropdownOption {
+export interface DropdownOption<T> {
   label: string;
-  value?: unknown;
+  value?: T;
 }
 
-export interface DropdownProps extends CommonInputProps {
+export interface DropdownProps<T> extends CommonInputProps {
   // Placeholder text
   placeholder?: string;
 
-  options: DropdownOption[];
+  options: DropdownOption<T>[];
 
-  value?: unknown;
+  value?: T;
 
   onChange: (newValue: unknown) => unknown;
 }
 
-export function Dropdown(props: DropdownProps) {
+export function Dropdown<T>(props: DropdownProps<T>) {
   const {
     label,
     placeholder,
     errorText,
     caption,
     disabled,
+    name,
     options,
     value,
     onChange
@@ -45,7 +46,7 @@ export function Dropdown(props: DropdownProps) {
     [selectedOption, placeholder, options]
   );
 
-  const getOptionValue = (option: DropdownOption) =>
+  const getOptionValue = (option: DropdownOption<T>) =>
     option.value ?? option.label;
 
   return (
@@ -84,7 +85,7 @@ export function Dropdown(props: DropdownProps) {
             <li
               key={getOptionValue(option) as Key}
               onClick={() => {
-                setSelectedOption(getOptionValue(option));
+                setSelectedOption(getOptionValue(option) as T);
                 onChange(getOptionValue(option));
                 setExpanded(false);
               }}
@@ -102,6 +103,12 @@ export function Dropdown(props: DropdownProps) {
       >
         {errorText ?? caption}
       </p>
+      {/** Display a hidden input element with the current value of the input.
+       * This enables developers to access the value of this field in a form
+       * by setting the "name" property. This is a bit hacky, but is necessary
+       * since the dropdown itself is not an input element.
+       */}
+      <input name={name} type="hidden" value={selectedOption as any} />
     </div>
   );
 }

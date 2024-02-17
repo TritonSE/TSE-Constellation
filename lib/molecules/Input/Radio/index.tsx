@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../CommonInput';
+import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 
 export interface RadioProps extends CommonInputProps {
@@ -14,7 +14,8 @@ export interface RadioProps extends CommonInputProps {
 }
 
 export function Radio(props: RadioProps) {
-  const { id, label, checked, errorText, caption, disabled, onChange } = props;
+  const { id, label, checked, errorText, caption, disabled, name, onChange } =
+    props;
 
   const theme = useTheme();
 
@@ -41,6 +42,7 @@ export function Radio(props: RadioProps) {
       >
         <input
           id={id}
+          name={name}
           type="radio"
           checked={internalChecked}
           className={styles.checkbox}
