@@ -1,8 +1,9 @@
-import { Key, useMemo, useState } from 'react';
+import { Key, useMemo, useRef, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { Icon } from '../../../main';
+import { Anchor } from '../../../internal/Anchor';
 
 export interface DropdownOption<T> {
   label: string;
@@ -35,7 +36,7 @@ export function Dropdown<T>(props: DropdownProps<T>) {
 
   const theme = useTheme();
 
-  const [selectedOption, setSelectedOption] = useState(value);
+  const [selectedOption, setSelectedOption] = useState(value ?? ('' as T));
   const [expanded, setExpanded] = useState(false);
 
   const selectedLabel = useMemo(
@@ -49,13 +50,20 @@ export function Dropdown<T>(props: DropdownProps<T>) {
   const getOptionValue = (option: DropdownOption<T>) =>
     option.value ?? option.label;
 
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
   return (
     <div className={styles.inputContainer}>
       <label className={styles.text}>{label}</label>
       <div
         className={styles.inputBox}
         style={{ border: `1px solid ${theme.colors.gray_2}` }}
-        onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
+        onClick={(e) => {
+          // Stop event propagation so it doesn't trigger Anchor component closing
+          e.stopPropagation();
+          setExpanded((prevExpanded) => !prevExpanded);
+        }}
+        ref={dropdownRef}
       >
         <p
           className={styles.text}
@@ -73,30 +81,38 @@ export function Dropdown<T>(props: DropdownProps<T>) {
         />
       </div>
 
-      {expanded ? (
-        <ul
-          className={styles.list}
-          style={{
-            border: `1px solid ${theme.colors.gray_2}`,
-            borderTopWidth: 0
-          }}
-        >
-          {options.map((option) => (
-            <li
-              key={getOptionValue(option) as Key}
-              onClick={() => {
-                setSelectedOption(getOptionValue(option) as T);
-                onChange(getOptionValue(option));
-                setExpanded(false);
-              }}
-            >
-              <div className={styles.optionContainer}>
-                <p className={styles.text}>{option.label}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      <Anchor
+        open={expanded}
+        onClose={() => setExpanded(false)}
+        anchorElement={dropdownRef.current!}
+        placement="bottom"
+      >
+        <div className={styles.listContainer}>
+          <ul
+            className={styles.list}
+            style={{
+              border: `1px solid ${theme.colors.gray_2}`,
+              borderTopWidth: 0
+            }}
+          >
+            {options.map((option) => (
+              <li
+                key={getOptionValue(option) as Key}
+                onClick={() => {
+                  setSelectedOption(getOptionValue(option) as T);
+                  onChange(getOptionValue(option));
+                  setExpanded(false);
+                }}
+              >
+                <div className={styles.optionContainer}>
+                  <p className={styles.text}>{option.label}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Anchor>
+
       <p
         className={styles.caption}
         style={errorText ? { color: theme.colors.error } : {}}

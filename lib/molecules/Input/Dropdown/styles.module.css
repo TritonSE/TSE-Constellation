@@ -22,6 +22,13 @@
   width: 320px;
 }
 
+.listContainer {
+  position: fixed;
+  z-index: 1500;
+  width: 288px;
+  transform: translateX(-50%);
+}
+
 .list {
   list-style: none;
   padding: 0px;
