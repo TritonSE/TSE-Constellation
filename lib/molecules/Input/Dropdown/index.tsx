@@ -47,6 +47,14 @@ export function Dropdown<T>(props: DropdownProps<T>) {
     [selectedOption, placeholder, options]
   );
 
+  // Update our highlight color when theme changes
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--highlight-color',
+      theme.colors.secondary_highlight_1
+    );
+  }, [theme]);
+
   const getOptionValue = (option: DropdownOption<T>) =>
     option.value ?? option.label;
 
@@ -99,6 +107,7 @@ export function Dropdown<T>(props: DropdownProps<T>) {
         }
         onClick={handleInputClick}
         ref={dropdownRef}
+        tabIndex={0}
       >
         <p
           className={styles.text}

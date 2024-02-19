@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
@@ -12,6 +13,14 @@ export function TextField(props: TextFieldProps) {
 
   const theme = useTheme();
 
+  // Update our highlight color when theme changes
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--highlight-color',
+      theme.colors.secondary_highlight_1
+    );
+  }, [theme]);
+
   return (
     <div className={styles.inputContainer}>
       <label className={styles.label}>{label}</label>
@@ -20,6 +29,9 @@ export function TextField(props: TextFieldProps) {
         className={styles.input}
         placeholder={placeholder}
         disabled={disabled}
+        style={{
+          border: `1px solid ${theme.colors.gray_2}`
+        }}
       ></input>
       <p
         className={styles.caption}

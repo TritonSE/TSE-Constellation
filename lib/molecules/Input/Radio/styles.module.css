@@ -1,3 +1,7 @@
+:root {
+  --highlight-color: #debb01;
+}
+
 .optionsContainer {
   display: flex;
   flex-direction: column;
@@ -29,6 +33,17 @@
   display: inline-block;
   position: relative;
   cursor: pointer;
+}
+
+.checkbox:focus {
+  /* Disable default outline on checkbox when focused */
+  outline: none !important;
+}
+
+.checkboxContainer:focus-within {
+  /* Apply our highlight-colored border on checkbox when focused */
+  border: 2px solid var(--highlight-color) !important;
+  outline: none !important;
 }
 
 .checkbox:checked:after {

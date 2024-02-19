@@ -1,3 +1,7 @@
+:root {
+  --highlight-color: #debb01;
+}
+
 .inputContainer {
   display: flex;
   flex-direction: column;
@@ -11,6 +15,13 @@
 
 .input {
   padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.input:focus {
+  /* Apply our highlight-colored border on text field when focused */
+  border: 1px solid var(--highlight-color) !important;
+  outline: none !important;
 }
 
 .caption {

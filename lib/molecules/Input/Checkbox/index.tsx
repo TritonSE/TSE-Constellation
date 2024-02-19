@@ -33,7 +33,6 @@ export function Checkbox(props: CheckboxProps) {
 
   // Internal state for whether checkbox is checked
   const [internalChecked, setInternalChecked] = useState(checked ?? false);
-  const [hovering, setHovering] = useState(false);
 
   // Update our internal state when "checked" prop changes
   useEffect(() => {
@@ -62,12 +61,8 @@ export function Checkbox(props: CheckboxProps) {
       <div
         className={styles.checkboxContainer}
         style={{
-          border: `2px solid ${
-            hovering ? theme.colors.secondary_highlight_1 : 'transparent'
-          }`
+          border: `2px solid transparent`
         }}
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => setHovering(false)}
       >
         <input
           id={id}

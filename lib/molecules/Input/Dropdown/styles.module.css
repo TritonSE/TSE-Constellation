@@ -1,4 +1,5 @@
 :root {
+  --highlight-color: #debb01;
   --hover-background-color: #ebebeb;
 }
 
@@ -24,6 +25,12 @@
   border-radius: 4px;
   cursor: pointer;
   width: 320px;
+}
+
+.inputBox:focus {
+  /* Apply our highlight-colored border on input when focused */
+  border: 1px solid var(--highlight-color) !important;
+  outline: none !important;
 }
 
 .listContainer {

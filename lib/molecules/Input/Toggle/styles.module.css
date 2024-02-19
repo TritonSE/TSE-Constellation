@@ -1,6 +1,7 @@
 :root {
   --slider-color: black;
   --slider-circle-size: 24px;
+  --highlight-color: #debb01;
 }
 
 .toggleRow {
@@ -81,6 +82,11 @@
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+}
+
+input:focus + .slider:before {
+  /* Apply our highlight-colored border on toggle when focused */
+  outline: 2px solid var(--highlight-color) !important;
 }
 
 input:checked + .slider {

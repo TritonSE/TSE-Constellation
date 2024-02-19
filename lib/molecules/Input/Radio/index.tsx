@@ -21,7 +21,6 @@ export function Radio(props: RadioProps) {
 
   // Internal state for whether checkbox is checked
   const [internalChecked, setInternalChecked] = useState(checked ?? false);
-  const [hovering, setHovering] = useState(false);
 
   // Update our internal state when "checked" prop changes
   useEffect(() => {
@@ -30,14 +29,20 @@ export function Radio(props: RadioProps) {
     }
   }, [checked]);
 
+  // Update our highlight color when theme changes
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--highlight-color',
+      theme.colors.secondary_highlight_1
+    );
+  }, [theme]);
+
   return (
     <div className={styles.optionRow}>
       <div
         className={styles.checkboxContainer}
         style={{
-          border: `2px solid ${
-            hovering ? theme.colors.secondary_highlight_1 : 'transparent'
-          }`
+          border: `2px solid transparent`
         }}
       >
         <input
@@ -50,25 +55,13 @@ export function Radio(props: RadioProps) {
             border: `3px solid ${
               errorText ? theme.colors.error : theme.colors.primary_dark
             }`
-            // ...(internalChecked
-            //   ? { backgroundColor: theme.colors.primary_dark }
-            //   : {})
           }}
           onChange={(e) => {
             onChange?.(e.target.checked);
             setInternalChecked(e.target.checked);
           }}
           disabled={disabled}
-          onMouseEnter={() => setHovering(true)}
-          onMouseLeave={() => setHovering(false)}
         />
-        {/* <label
-          htmlFor={id}
-          className={styles.checkmarkIcon}
-          style={internalChecked ? {} : { display: 'none' }}
-        >
-          <CheckmarkIcon />
-        </label> */}
       </div>
       <div className={styles.optionTextContainer}>
         <p className={styles.optionLabel}>{label}</p>
