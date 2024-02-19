@@ -3,7 +3,6 @@ import styles from './styles.module.css';
 import { useTheme } from '../../../assets/ThemeProvider';
 import CheckboxCheckedIcon from '../../../assets/icons/checkbox_checked.svg?react';
 import CheckboxIndeterminantIcon from '../../../assets/icons/checkbox_indeterminant.svg?react';
-import { useEffect } from 'react';
 import { RowInput } from '../common/RowInput';
 import { useInputControls } from '../../../internal/hooks/useInputControls';
 
@@ -57,14 +56,6 @@ export function Checkbox(props: CheckboxProps) {
     disabled,
     onChange
   });
-
-  // Update our highlight color when theme changes
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--highlight-color',
-      theme.colors.secondary_highlight_1
-    );
-  }, [theme]);
 
   // Color for main checkbox and border
   const checkboxColor = disabled

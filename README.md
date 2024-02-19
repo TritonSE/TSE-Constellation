@@ -65,8 +65,8 @@ To access theme configuration from `styles.module.css`, use CSS variables:
 
 ```css
 span.my_custom_atom {
-    background-color: var(--color-primary-dark);
-    font-family: var(--font-primary);
+    background-color: var(--tse-constellation-color-primary-dark);
+    font-family: var(--tse-constellation-font-primary);
 }
 ```
 

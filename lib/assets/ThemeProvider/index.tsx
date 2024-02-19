@@ -123,8 +123,8 @@ export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
     };
 
   // Generate CSS variables from JS objects
-  const cssColors = Object.entries(activeTheme.colors).map(([type, value]) => (`  --color-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
-  const cssFonts = Object.entries(activeTheme.fonts).map(([type, value]) => (`  --font-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
+  const cssColors = Object.entries(activeTheme.colors).map(([type, value]) => (`  --tse-constellation-color-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
+  const cssFonts = Object.entries(activeTheme.fonts).map(([type, value]) => (`  --tse-constellation-font-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
 
   document.head.innerHTML += `${fontInject ?? '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik|IBM+Plex+Mono">'}
 <style>

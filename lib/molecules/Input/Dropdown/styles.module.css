@@ -1,5 +1,4 @@
 :root {
-  --highlight-color: #debb01;
   --hover-background-color: #ebebeb;
 }
 
@@ -24,7 +23,7 @@
 
 .inputBox:focus {
   /* Apply our highlight-colored border on input when focused */
-  border: 1px solid var(--highlight-color) !important;
+  border: 1px solid var(--tse-constellation-color-secondary-highlight-1) !important;
   outline: none !important;
 }
 
@@ -48,5 +47,5 @@
 }
 
 .optionContainer:hover {
-  background-color: var(--hover-background-color);
+  background-color: var(--tse-constellation-color-gray-1);
 }

@@ -1,4 +1,4 @@
-import { Key, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { Key, MouseEvent, useMemo, useRef, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
@@ -85,14 +85,6 @@ export function Dropdown<T>(props: DropdownProps<T>) {
     [selectedOption, placeholder, options]
   );
 
-  // Update our highlight color when theme changes
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--highlight-color',
-      theme.colors.secondary_highlight_1
-    );
-  }, [theme]);
-
   // Callback fired when the dropdown component itself is clicked
   const handleInputClick = (e: MouseEvent) => {
     if (disabled) {
@@ -110,14 +102,6 @@ export function Dropdown<T>(props: DropdownProps<T>) {
 
     setExpanded(false);
   };
-
-  // Update our hover backgorund color when theme changes
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--hover-background-color',
-      theme.colors.gray_1
-    );
-  }, [theme]);
 
   return (
     <>

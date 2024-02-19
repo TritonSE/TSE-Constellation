@@ -51,10 +51,6 @@ export function Toggle(props: ToggleProps) {
       '--slider-circle-size',
       compact ? '16px' : '24px'
     );
-    document.documentElement.style.setProperty(
-      '--highlight-color',
-      theme.colors.secondary_highlight_1
-    );
   }, [compact, theme, disabled]);
 
   const { internalValue: internalChecked, handleChange } = useInputControls({

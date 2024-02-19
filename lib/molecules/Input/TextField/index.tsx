@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
@@ -46,14 +45,6 @@ export function TextField(props: TextFieldProps) {
     disabled,
     onChange
   });
-
-  // Update our highlight color when theme changes
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--highlight-color',
-      theme.colors.secondary_highlight_1
-    );
-  }, [theme]);
 
   return (
     <ColumnInput

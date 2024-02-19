@@ -9,8 +9,8 @@ function App() {
           width: "100vw",
           textAlign: "center",
           padding: "10rem 0",
-          color: "var(--color-primary-light)",
-          background: "var(--color-primary-dark)",
+          color: "var(--tse-constellation-color-primary-light)",
+          background: "var(--tse-constellation-color-primary-dark)",
         }}
       >
         <img src="/bulb.png" alt="TSE Logo" width={64} height={64} />

@@ -1,7 +1,6 @@
 :root {
   --slider-color: black;
   --slider-circle-size: 24px;
-  --highlight-color: #debb01;
 }
 
 /* Credit to https://www.w3schools.com/howto/howto_css_switch.asp for all the CSS */
@@ -63,7 +62,7 @@
 
 input:focus + .slider:before {
   /* Apply our highlight-colored border on toggle when focused */
-  outline: 2px solid var(--highlight-color) !important;
+  outline: 2px solid var(--tse-constellation-color-secondary-highlight-1) !important;
 }
 
 input:checked + .slider {
