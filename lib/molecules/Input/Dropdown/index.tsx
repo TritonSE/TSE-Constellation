@@ -1,4 +1,4 @@
-import { Key, MouseEvent, useMemo, useRef, useState } from 'react';
+import { Key, MouseEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
@@ -72,6 +72,14 @@ export function Dropdown<T>(props: DropdownProps<T>) {
     setExpanded(false);
   };
 
+  // Update our hover backgorund color when theme changes
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--hover-background-color',
+      theme.colors.gray_1
+    );
+  }, [theme]);
+
   return (
     <div className={styles.inputContainer}>
       <label className={styles.text}>{label}</label>
@@ -128,7 +136,17 @@ export function Dropdown<T>(props: DropdownProps<T>) {
                 onClick={() => handleOptionClick(option)}
               >
                 <div className={styles.optionContainer}>
-                  <p className={styles.text}>{option.label}</p>
+                  <p
+                    className={styles.text}
+                    style={
+                      // Selected option should have gold text in options menu
+                      getOptionValue(option) === selectedOption
+                        ? { color: theme.colors.secondary_highlight_1 }
+                        : {}
+                    }
+                  >
+                    {option.label}
+                  </p>
                 </div>
               </li>
             ))}
