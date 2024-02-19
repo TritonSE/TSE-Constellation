@@ -44,11 +44,11 @@ export function Toggle(props: ToggleProps) {
 
   useEffect(() => {
     document.documentElement.style.setProperty(
-      '--slider-color',
+      '--tse-constellation-slider-color',
       disabled ? theme.colors.disabled : theme.colors.primary_dark
     );
     document.documentElement.style.setProperty(
-      '--slider-circle-size',
+      '--tse-constellation-slider-circle-size',
       compact ? '16px' : '24px'
     );
   }, [compact, theme, disabled]);

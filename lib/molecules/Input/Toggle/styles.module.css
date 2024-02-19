@@ -1,6 +1,6 @@
 :root {
-  --slider-color: black;
-  --slider-circle-size: 24px;
+  --tse-constellation-slider-color: black;
+  --tse-constellation-slider-circle-size: 24px;
 }
 
 /* Credit to https://www.w3schools.com/howto/howto_css_switch.asp for all the CSS */
@@ -39,7 +39,7 @@
   bottom: 0;
   border-radius: 16px;
   background-color: white;
-  border: 2px solid var(--slider-color);
+  border: 2px solid var(--tse-constellation-slider-color);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -48,12 +48,12 @@
 .slider:before {
   position: absolute;
   content: '';
-  height: var(--slider-circle-size);
-  width: var(--slider-circle-size);
+  height: var(--tse-constellation-slider-circle-size);
+  width: var(--tse-constellation-slider-circle-size);
   left: -2px;
   /* CSS math: bottom should be -4px when compact (16px) and -8px when not compact (24px*/
-  bottom: calc(4px - (var(--slider-circle-size)) / 2);
-  border: 2px solid var(--slider-color);
+  bottom: calc(4px - (var(--tse-constellation-slider-circle-size)) / 2);
+  border: 2px solid var(--tse-constellation-slider-color);
   border-radius: 50%;
   background-color: white;
   -webkit-transition: 0.4s;
@@ -66,16 +66,18 @@ input:focus + .slider:before {
 }
 
 input:checked + .slider {
-  background-color: var(--slider-color);
+  background-color: var(--tse-constellation-slider-color);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--slider-color);
+  box-shadow: 0 0 1px var(--tse-constellation-slider-color);
 }
 
 input:checked + .slider:before {
   /* CSS math: should be 44 - 24 = 20px for non-compact, 32 - 16 = 16px for compact */
-  --translation-amount: calc(8px + (var(--slider-circle-size)) / 2);
+  --translation-amount: calc(
+    8px + (var(--tse-constellation-slider-circle-size)) / 2
+  );
   -webkit-transform: translateX(var(--translation-amount));
   -ms-transform: translateX(var(--translation-amount));
   transform: translateX(var(--translation-amount));
