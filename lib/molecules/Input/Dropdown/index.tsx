@@ -3,8 +3,9 @@ import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { Icon } from '../../../main';
-import { Anchor } from '../../../internal/Anchor';
+import { Anchor } from '../../../internal/components/Anchor';
 import { ColumnInput } from '../common/ColumnInput';
+import { useInputControls } from '../../../internal/hooks/useInputControls';
 
 /**
  * A single option in the list of options provided to the Dropdown component
@@ -59,7 +60,12 @@ export function Dropdown<T>(props: DropdownProps<T>) {
 
   const theme = useTheme();
 
-  const [selectedOption, setSelectedOption] = useState(value ?? ('' as T));
+  const { internalValue: selectedOption, handleChange } = useInputControls({
+    value: value,
+    disabled,
+    onChange
+  });
+
   const [expanded, setExpanded] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -100,14 +106,7 @@ export function Dropdown<T>(props: DropdownProps<T>) {
 
   // Callback fired when an option is clicked
   const handleOptionClick = (option: DropdownOption<T>) => {
-    if (disabled) {
-      return;
-    }
-
-    if (value === undefined) {
-      setSelectedOption(getOptionValue(option) as T);
-    }
-    onChange?.(getOptionValue(option) as T);
+    handleChange(getOptionValue(option) as T);
 
     setExpanded(false);
   };

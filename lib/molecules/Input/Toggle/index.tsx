@@ -1,8 +1,9 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { RowInput } from '../common/RowInput';
+import { useInputControls } from '../../../internal/hooks/useInputControls';
 
 export interface ToggleProps extends CommonInputProps {
   /**
@@ -56,22 +57,11 @@ export function Toggle(props: ToggleProps) {
     );
   }, [compact, theme, disabled]);
 
-  // Internal state for whether checkbox is checked
-  const [internalChecked, setInternalChecked] = useState(checked ?? false);
-
-  // Update our internal state when "checked" prop changes
-  useEffect(() => {
-    if (checked !== undefined) {
-      setInternalChecked(checked);
-    }
-  }, [checked]);
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (checked === undefined) {
-      setInternalChecked(e.target.checked);
-    }
-    onChange?.(e.target.checked);
-  };
+  const { internalValue: internalChecked, handleChange } = useInputControls({
+    value: checked,
+    disabled,
+    onChange
+  });
 
   return (
     <RowInput
@@ -86,7 +76,7 @@ export function Toggle(props: ToggleProps) {
             name={name}
             type="checkbox"
             checked={internalChecked}
-            onChange={handleInputChange}
+            onChange={(e) => handleChange(e.target.checked)}
             disabled={disabled}
           />
           <span

@@ -1,8 +1,9 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { ColumnInput } from '../common/ColumnInput';
+import { useInputControls } from '../../../internal/hooks/useInputControls';
 
 export interface TextFieldProps extends CommonInputProps {
   /**
@@ -40,14 +41,11 @@ export function TextField(props: TextFieldProps) {
 
   const theme = useTheme();
 
-  const [internalValue, setInternalValue] = useState(value ?? '');
-
-  // Update our internal value when the provided value prop changes
-  useEffect(() => {
-    if (value !== undefined) {
-      setInternalValue(value);
-    }
-  }, [value]);
+  const { internalValue, handleChange } = useInputControls({
+    value,
+    disabled,
+    onChange
+  });
 
   // Update our highlight color when theme changes
   useEffect(() => {
@@ -56,17 +54,6 @@ export function TextField(props: TextFieldProps) {
       theme.colors.secondary_highlight_1
     );
   }, [theme]);
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (disabled) {
-      return;
-    }
-
-    if (value === undefined) {
-      setInternalValue(e.target.value);
-    }
-    onChange?.(e.target.value);
-  };
 
   return (
     <ColumnInput
@@ -80,7 +67,7 @@ export function TextField(props: TextFieldProps) {
             border: `1px solid ${theme.colors.gray_2}`
           }}
           value={internalValue}
-          onChange={handleInputChange}
+          onChange={(e) => handleChange(e.target.value)}
         />
       }
       label={label}

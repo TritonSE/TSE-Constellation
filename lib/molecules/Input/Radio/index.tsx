@@ -1,8 +1,9 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { RowInput } from '../common/RowInput';
+import { useInputControls } from '../../../internal/hooks/useInputControls';
 
 export interface RadioProps extends CommonInputProps {
   /**
@@ -34,15 +35,11 @@ export function Radio(props: RadioProps) {
 
   const theme = useTheme();
 
-  // Internal state for whether checkbox is checked
-  const [internalChecked, setInternalChecked] = useState(checked ?? false);
-
-  // Update our internal state when "checked" prop changes
-  useEffect(() => {
-    if (checked !== undefined) {
-      setInternalChecked(checked);
-    }
-  }, [checked]);
+  const { internalValue: internalChecked, handleChange } = useInputControls({
+    value: checked,
+    disabled,
+    onChange
+  });
 
   // Update our highlight color when theme changes
   useEffect(() => {
@@ -51,17 +48,6 @@ export function Radio(props: RadioProps) {
       theme.colors.secondary_highlight_1
     );
   }, [theme]);
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (disabled) {
-      return;
-    }
-
-    if (checked === undefined) {
-      setInternalChecked(e.target.checked);
-    }
-    onChange?.(e.target.checked);
-  };
 
   return (
     <RowInput
@@ -84,7 +70,7 @@ export function Radio(props: RadioProps) {
                 errorText ? theme.colors.error : theme.colors.primary_dark
               }`
             }}
-            onChange={handleInputChange}
+            onChange={(e) => handleChange(e.target.checked)}
             disabled={disabled}
           />
         </div>
