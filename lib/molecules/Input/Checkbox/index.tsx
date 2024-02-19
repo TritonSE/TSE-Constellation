@@ -3,19 +3,38 @@ import styles from './styles.module.css';
 import { useTheme } from '../../../assets/ThemeProvider';
 import CheckboxCheckedIcon from '../../../assets/icons/checkbox_checked.svg?react';
 import CheckboxIndeterminantIcon from '../../../assets/icons/checkbox_indeterminant.svg?react';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 export interface CheckboxProps extends CommonInputProps {
+  /**
+   * ID for the checkbox input element. Must be unique in the document.
+   * Required in order to match the label with the input element.
+   */
   id: string;
-  label: string;
+
+  /**
+   * Whether the checkbox should be checked. If this prop is not provided, the
+   * component will maintain and update its internal checked state.
+   */
   checked?: boolean;
-  errorText?: string;
-  disabled?: boolean;
+
+  /**
+   * Whether to display an indeterminant icon when the checkbox is checked
+   * (a minus sign instead of a checkmark).
+   */
   indeterminant?: boolean;
 
+  /**
+   * Callback that fires when the checkbox's checked state is changed.
+   * @param newChecked whether the checkbox is checked after the change.
+   */
   onChange?: (newChecked: boolean) => unknown;
 }
 
+/**
+ * A checkbox input element, displays a single checkbox with a label. Can be
+ * either controlled (via the checked prop) or uncontrolled.
+ */
 export function Checkbox(props: CheckboxProps) {
   const {
     id,
@@ -56,6 +75,13 @@ export function Checkbox(props: CheckboxProps) {
     ? theme.colors.error
     : theme.colors.primary_dark;
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (checked === undefined) {
+      setInternalChecked(e.target.checked);
+    }
+    onChange?.(e.target.checked);
+  };
+
   return (
     <div className={styles.optionRow}>
       <div
@@ -73,10 +99,7 @@ export function Checkbox(props: CheckboxProps) {
           style={{
             border: `3px solid ${checkboxColor}`
           }}
-          onChange={(e) => {
-            onChange?.(e.target.checked);
-            setInternalChecked(e.target.checked);
-          }}
+          onChange={handleInputChange}
           disabled={disabled}
         />
         <label

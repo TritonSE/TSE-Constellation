@@ -5,22 +5,44 @@ import styles from './styles.module.css';
 import { Icon } from '../../../main';
 import { Anchor } from '../../../internal/Anchor';
 
+/**
+ * A single option in the list of options provided to the Dropdown component
+ */
 export interface DropdownOption<T> {
   label: string;
   value?: T;
 }
 
 export interface DropdownProps<T> extends CommonInputProps {
-  // Placeholder text
+  /**
+   * Placeholder text, to be displayed inside the input if no option is selected.
+   */
   placeholder?: string;
 
+  /**
+   * Array of options to display. Each must have a label that will be displayed,
+   * and optionally, a value (the label will be used as a value if no value is provided.
+   */
   options: DropdownOption<T>[];
 
+  /**
+   * The current value of the input field (i.e. value of the selected option). If
+   * this prop is not provided, the component will maintain an internal state
+   * for the selected value.
+   */
   value?: T;
 
-  onChange: (newValue: unknown) => unknown;
+  /**
+   * Callback fired when the selected option changes (i.e. the user selects an option)
+   * @param newValue the value of the option the user selected
+   */
+  onChange?: (newValue: T) => unknown;
 }
 
+/**
+ * A dropdown input element that enables the user to select an option from
+ * a dropdown menu of options. Can be either controlled (via the value prop) or uncontrolled.
+ */
 export function Dropdown<T>(props: DropdownProps<T>) {
   const {
     label,
@@ -39,11 +61,20 @@ export function Dropdown<T>(props: DropdownProps<T>) {
   const [selectedOption, setSelectedOption] = useState(value ?? ('' as T));
   const [expanded, setExpanded] = useState(false);
 
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  // Gets the value for the given option, using its value attribute if exists, else label
+  const getOptionValue = (option: DropdownOption<T>) =>
+    option.value ?? option.label;
+
+  /**
+   * The label to be displayed inside the input. Use the label of the selected
+   * option, if one exists, else the placeholder text.
+   */
   const selectedLabel = useMemo(
     () =>
-      options.find(
-        (option) => (option.value ?? option.label) === selectedOption
-      )?.label ?? placeholder,
+      options.find((option) => getOptionValue(option) === selectedOption)
+        ?.label ?? placeholder,
     [selectedOption, placeholder, options]
   );
 
@@ -55,11 +86,7 @@ export function Dropdown<T>(props: DropdownProps<T>) {
     );
   }, [theme]);
 
-  const getOptionValue = (option: DropdownOption<T>) =>
-    option.value ?? option.label;
-
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-
+  // Callback fired when the dropdown component itself is clicked
   const handleInputClick = (e: MouseEvent) => {
     if (disabled) {
       return;
@@ -70,13 +97,17 @@ export function Dropdown<T>(props: DropdownProps<T>) {
     setExpanded((prevExpanded) => !prevExpanded);
   };
 
+  // Callback fired when an option is clicked
   const handleOptionClick = (option: DropdownOption<T>) => {
     if (disabled) {
       return;
     }
 
-    setSelectedOption(getOptionValue(option) as T);
-    onChange(getOptionValue(option));
+    if (value === undefined) {
+      setSelectedOption(getOptionValue(option) as T);
+    }
+    onChange?.(getOptionValue(option) as T);
+
     setExpanded(false);
   };
 

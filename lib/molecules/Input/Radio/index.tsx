@@ -1,18 +1,32 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 
 export interface RadioProps extends CommonInputProps {
+  /**
+   * ID for the radio input element. Must be unique in the document.
+   * Required in order to match the label with the input element.
+   */
   id: string;
-  label: string;
-  checked?: boolean;
-  errorText?: string;
-  disabled?: boolean;
 
+  /**
+   * Whether the radio circle should be checked. If this prop is not provided, the
+   * component will maintain and update its internal checked state.
+   */
+  checked?: boolean;
+
+  /**
+   * Callback that fires when the radio inputs's checked state is changed.
+   * @param newChecked whether the radio input is checked after the change.
+   */
   onChange?: (newChecked: boolean) => unknown;
 }
 
+/**
+ * A radio input element, displays a single radio circle with a label. Can be
+ * either controlled (via the checked prop) or uncontrolled.
+ */
 export function Radio(props: RadioProps) {
   const { id, label, checked, errorText, caption, disabled, name, onChange } =
     props;
@@ -37,6 +51,17 @@ export function Radio(props: RadioProps) {
     );
   }, [theme]);
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (disabled) {
+      return;
+    }
+
+    if (checked === undefined) {
+      setInternalChecked(e.target.checked);
+    }
+    onChange?.(e.target.checked);
+  };
+
   return (
     <div className={styles.optionRow}>
       <div
@@ -56,10 +81,7 @@ export function Radio(props: RadioProps) {
               errorText ? theme.colors.error : theme.colors.primary_dark
             }`
           }}
-          onChange={(e) => {
-            onChange?.(e.target.checked);
-            setInternalChecked(e.target.checked);
-          }}
+          onChange={handleInputChange}
           disabled={disabled}
         />
       </div>

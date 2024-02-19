@@ -1,19 +1,31 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 
 export interface ToggleProps extends CommonInputProps {
-  // Whether it should be a compact input
+  /**
+   * Whether the toggle should be compact (smaller)
+   */
   compact?: boolean;
 
-  // Whether the input is toggled on
+  /**
+   * Whether the input is currently toggled on. If this prop is not provided,
+   * the component will maintain its internal state for whether it is toggled.
+   */
   checked?: boolean;
 
-  // Callback fired when input is toggled between off and on
-  onChange: (newChecked: boolean) => unknown;
+  /**
+   * Callback fired when the input is toggled on/off
+   * @param newChecked Whether the input is now checked
+   */
+  onChange?: (newChecked: boolean) => unknown;
 }
 
+/**
+ * A toggle input element, displays a switch that can be toggled on and off.
+ * Can be either controlled (via the checked prop) or uncontrolled.
+ */
 export function Toggle(props: ToggleProps) {
   const {
     label,
@@ -53,6 +65,13 @@ export function Toggle(props: ToggleProps) {
     }
   }, [checked]);
 
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (checked === undefined) {
+      setInternalChecked(e.target.checked);
+    }
+    onChange?.(e.target.checked);
+  };
+
   return (
     <div className={styles.toggleRow}>
       <div className={styles.optionTextContainer}>
@@ -75,10 +94,7 @@ export function Toggle(props: ToggleProps) {
           name={name}
           type="checkbox"
           checked={internalChecked}
-          onChange={(e) => {
-            onChange?.(e.target.checked);
-            setInternalChecked(e.target.checked);
-          }}
+          onChange={handleInputChange}
           disabled={disabled}
         />
         <span
