@@ -2,19 +2,6 @@
   --highlight-color: #debb01;
 }
 
-.optionsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.optionRow {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  gap: 12px;
-}
-
 .checkboxContainer {
   position: relative;
   width: 20px;
@@ -51,23 +38,4 @@
   left: -2px;
   top: -2px;
   cursor: pointer;
-}
-
-.optionTextContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.optionLabel {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0px;
-}
-
-.optionHint {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  margin: 0px;
 }

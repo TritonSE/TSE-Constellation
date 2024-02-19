@@ -3,11 +3,6 @@
   --hover-background-color: #ebebeb;
 }
 
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-}
-
 .text {
   font-size: 16px;
   font-weight: 400;
@@ -54,11 +49,4 @@
 
 .optionContainer:hover {
   background-color: var(--hover-background-color);
-}
-
-.caption {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  margin: 0px;
 }

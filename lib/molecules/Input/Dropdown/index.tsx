@@ -4,6 +4,7 @@ import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { Icon } from '../../../main';
 import { Anchor } from '../../../internal/Anchor';
+import { ColumnInput } from '../common/ColumnInput';
 
 /**
  * A single option in the list of options provided to the Dropdown component
@@ -120,41 +121,49 @@ export function Dropdown<T>(props: DropdownProps<T>) {
   }, [theme]);
 
   return (
-    <div className={styles.inputContainer}>
-      <label className={styles.text}>{label}</label>
-      <div
-        className={styles.inputBox}
-        style={
-          disabled
-            ? {
-                // Disabled styles copied from browser defaults for disabled input element
-                border: '1px solid rgba(118, 118, 118, 0.3)',
-                backgroundColor: 'rgba(239, 239, 239, 0.3)',
-                color: 'rgb(84, 84, 84)'
+    <>
+      <ColumnInput
+        inputElement={
+          <div
+            className={styles.inputBox}
+            style={
+              disabled
+                ? {
+                    // Disabled styles copied from browser defaults for disabled input element
+                    border: '1px solid rgba(118, 118, 118, 0.3)',
+                    backgroundColor: 'rgba(239, 239, 239, 0.3)',
+                    color: 'rgb(84, 84, 84)'
+                  }
+                : {
+                    border: `1px solid ${theme.colors.gray_2}`
+                  }
+            }
+            onClick={handleInputClick}
+            ref={dropdownRef}
+            tabIndex={0}
+          >
+            <p
+              className={styles.text}
+              style={
+                selectedLabel === placeholder
+                  ? { color: theme.colors.gray_3 }
+                  : {}
               }
-            : {
-                border: `1px solid ${theme.colors.gray_2}`
-              }
+            >
+              {selectedLabel}
+            </p>
+            <Icon
+              name={expanded ? 'ic_caretfill_up' : 'ic_caretfill_down'}
+              fill={theme.colors.gray_2}
+              stroke="none"
+              size={14}
+            />
+          </div>
         }
-        onClick={handleInputClick}
-        ref={dropdownRef}
-        tabIndex={0}
-      >
-        <p
-          className={styles.text}
-          style={
-            selectedLabel === placeholder ? { color: theme.colors.gray_3 } : {}
-          }
-        >
-          {selectedLabel}
-        </p>
-        <Icon
-          name={expanded ? 'ic_caretfill_up' : 'ic_caretfill_down'}
-          fill={theme.colors.gray_2}
-          stroke="none"
-          size={14}
-        />
-      </div>
+        label={label}
+        errorText={errorText}
+        caption={caption}
+      />
 
       <Anchor
         open={expanded}
@@ -193,19 +202,12 @@ export function Dropdown<T>(props: DropdownProps<T>) {
           </ul>
         </div>
       </Anchor>
-
-      <p
-        className={styles.caption}
-        style={errorText ? { color: theme.colors.error } : {}}
-      >
-        {errorText ?? caption}
-      </p>
       {/** Display a hidden input element with the current value of the input.
        * This enables developers to access the value of this field in a form
        * by setting the "name" property. This is a bit hacky, but is necessary
        * since the dropdown itself is not an input element.
        */}
       <input name={name} type="hidden" value={selectedOption as any} />
-    </div>
+    </>
   );
 }

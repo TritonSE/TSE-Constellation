@@ -2,17 +2,6 @@
   --highlight-color: #debb01;
 }
 
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.label {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-
 .input {
   padding: 6px 12px;
   border-radius: 4px;
@@ -22,11 +11,4 @@
   /* Apply our highlight-colored border on text field when focused */
   border: 1px solid var(--highlight-color) !important;
   outline: none !important;
-}
-
-.caption {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  margin: 0px;
 }

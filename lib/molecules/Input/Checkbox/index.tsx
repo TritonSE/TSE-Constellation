@@ -4,6 +4,7 @@ import { useTheme } from '../../../assets/ThemeProvider';
 import CheckboxCheckedIcon from '../../../assets/icons/checkbox_checked.svg?react';
 import CheckboxIndeterminantIcon from '../../../assets/icons/checkbox_indeterminant.svg?react';
 import { ChangeEvent, useEffect, useState } from 'react';
+import { RowInput } from '../common/RowInput';
 
 export interface CheckboxProps extends CommonInputProps {
   /**
@@ -83,56 +84,51 @@ export function Checkbox(props: CheckboxProps) {
   };
 
   return (
-    <div className={styles.optionRow}>
-      <div
-        className={styles.checkboxContainer}
-        style={{
-          border: `2px solid transparent`
-        }}
-      >
-        <input
-          id={id}
-          name={name}
-          type="checkbox"
-          checked={internalChecked}
-          className={styles.checkbox}
+    <RowInput
+      inputFirst
+      inputElement={
+        <div
+          className={styles.checkboxContainer}
           style={{
-            border: `3px solid ${checkboxColor}`
-          }}
-          onChange={handleInputChange}
-          disabled={disabled}
-        />
-        <label
-          htmlFor={id}
-          className={styles.checkmarkIcon}
-          style={internalChecked ? {} : { display: 'none' }}
-        >
-          {indeterminant ? (
-            <CheckboxIndeterminantIcon
-              width={24}
-              height={24}
-              style={{ fill: checkboxColor }}
-            />
-          ) : (
-            <CheckboxCheckedIcon
-              width={24}
-              height={24}
-              style={{ fill: checkboxColor }}
-            />
-          )}
-        </label>
-      </div>
-      <div className={styles.optionTextContainer}>
-        <p className={styles.optionLabel}>{label}</p>
-        <p
-          className={styles.optionHint}
-          style={{
-            color: errorText ? theme.colors.error : theme.colors.gray_5
+            border: `2px solid transparent`
           }}
         >
-          {errorText ?? caption}
-        </p>
-      </div>
-    </div>
+          <input
+            id={id}
+            name={name}
+            type="checkbox"
+            checked={internalChecked}
+            className={styles.checkbox}
+            style={{
+              border: `3px solid ${checkboxColor}`
+            }}
+            onChange={handleInputChange}
+            disabled={disabled}
+          />
+          <label
+            htmlFor={id}
+            className={styles.checkmarkIcon}
+            style={internalChecked ? {} : { display: 'none' }}
+          >
+            {indeterminant ? (
+              <CheckboxIndeterminantIcon
+                width={24}
+                height={24}
+                style={{ fill: checkboxColor }}
+              />
+            ) : (
+              <CheckboxCheckedIcon
+                width={24}
+                height={24}
+                style={{ fill: checkboxColor }}
+              />
+            )}
+          </label>
+        </div>
+      }
+      label={label}
+      errorText={errorText}
+      caption={caption}
+    />
   );
 }

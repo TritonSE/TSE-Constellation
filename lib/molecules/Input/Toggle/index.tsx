@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
+import { RowInput } from '../common/RowInput';
 
 export interface ToggleProps extends CommonInputProps {
   /**
@@ -73,36 +74,31 @@ export function Toggle(props: ToggleProps) {
   };
 
   return (
-    <div className={styles.toggleRow}>
-      <div className={styles.optionTextContainer}>
-        <p className={styles.optionLabel}>{label}</p>
-        <p
-          className={styles.optionHint}
-          style={{
-            color: errorText ? theme.colors.error : theme.colors.gray_5
-          }}
-        >
-          {errorText ?? caption}
-        </p>
-      </div>
-      <label
-        className={`${styles.switch} ${
-          compact ? styles.compactSwitch : styles.defaultSwitch
-        }`}
-      >
-        <input
-          name={name}
-          type="checkbox"
-          checked={internalChecked}
-          onChange={handleInputChange}
-          disabled={disabled}
-        />
-        <span
-          className={`${styles.slider} ${
-            compact ? styles.compactSlider : styles.defaultSlider
+    <RowInput
+      inputFirst={false}
+      inputElement={
+        <label
+          className={`${styles.switch} ${
+            compact ? styles.compactSwitch : styles.defaultSwitch
           }`}
-        ></span>
-      </label>
-    </div>
+        >
+          <input
+            name={name}
+            type="checkbox"
+            checked={internalChecked}
+            onChange={handleInputChange}
+            disabled={disabled}
+          />
+          <span
+            className={`${styles.slider} ${
+              compact ? styles.compactSlider : styles.defaultSlider
+            }`}
+          ></span>
+        </label>
+      }
+      label={label}
+      errorText={errorText}
+      caption={caption}
+    />
   );
 }

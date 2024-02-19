@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
+import { ColumnInput } from '../common/ColumnInput';
 
 export interface TextFieldProps extends CommonInputProps {
   /**
@@ -68,25 +69,23 @@ export function TextField(props: TextFieldProps) {
   };
 
   return (
-    <div className={styles.inputContainer}>
-      <label className={styles.label}>{label}</label>
-      <input
-        name={name}
-        className={styles.input}
-        placeholder={placeholder}
-        disabled={disabled}
-        style={{
-          border: `1px solid ${theme.colors.gray_2}`
-        }}
-        value={internalValue}
-        onChange={handleInputChange}
-      ></input>
-      <p
-        className={styles.caption}
-        style={errorText ? { color: theme.colors.error } : {}}
-      >
-        {errorText ?? caption}
-      </p>
-    </div>
+    <ColumnInput
+      inputElement={
+        <input
+          name={name}
+          className={styles.input}
+          placeholder={placeholder}
+          disabled={disabled}
+          style={{
+            border: `1px solid ${theme.colors.gray_2}`
+          }}
+          value={internalValue}
+          onChange={handleInputChange}
+        />
+      }
+      label={label}
+      errorText={errorText}
+      caption={caption}
+    />
   );
 }

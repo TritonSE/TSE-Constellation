@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import { useTheme } from '../../../assets/ThemeProvider';
 import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
+import { RowInput } from '../common/RowInput';
 
 export interface RadioProps extends CommonInputProps {
   /**
@@ -63,39 +64,34 @@ export function Radio(props: RadioProps) {
   };
 
   return (
-    <div className={styles.optionRow}>
-      <div
-        className={styles.checkboxContainer}
-        style={{
-          border: `2px solid transparent`
-        }}
-      >
-        <input
-          id={id}
-          name={name}
-          type="radio"
-          checked={internalChecked}
-          className={styles.checkbox}
+    <RowInput
+      inputFirst
+      inputElement={
+        <div
+          className={styles.checkboxContainer}
           style={{
-            border: `3px solid ${
-              errorText ? theme.colors.error : theme.colors.primary_dark
-            }`
-          }}
-          onChange={handleInputChange}
-          disabled={disabled}
-        />
-      </div>
-      <div className={styles.optionTextContainer}>
-        <p className={styles.optionLabel}>{label}</p>
-        <p
-          className={styles.optionHint}
-          style={{
-            color: errorText ? theme.colors.error : theme.colors.gray_5
+            border: `2px solid transparent`
           }}
         >
-          {errorText ?? caption}
-        </p>
-      </div>
-    </div>
+          <input
+            id={id}
+            name={name}
+            type="radio"
+            checked={internalChecked}
+            className={styles.checkbox}
+            style={{
+              border: `3px solid ${
+                errorText ? theme.colors.error : theme.colors.primary_dark
+              }`
+            }}
+            onChange={handleInputChange}
+            disabled={disabled}
+          />
+        </div>
+      }
+      label={label}
+      errorText={errorText}
+      caption={caption}
+    />
   );
 }

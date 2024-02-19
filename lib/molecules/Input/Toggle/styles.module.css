@@ -4,38 +4,15 @@
   --highlight-color: #debb01;
 }
 
-.toggleRow {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  gap: 12px;
-}
-
-.optionTextContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.optionLabel {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  margin: 0px;
-}
-
-.optionHint {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  margin: 0px;
-}
-
 /* Credit to https://www.w3schools.com/howto/howto_css_switch.asp for all the CSS */
 
 .switch {
   position: relative;
   display: inline-block;
   height: 16px;
+
+  /* Vertically center the switch in the row */
+  margin: auto;
 }
 
 /* Hide default HTML checkbox */
