@@ -7,7 +7,7 @@ const secondaryHighlight = "#DEBB01";
 export const managerTheme = create({
   base: "dark",
   brandTitle: "TSE Constellation",
-  brandImage: "/constellation.png",
+  brandImage: "./constellation.png",
 
   // Typography
   fontBase: '"Rubik"',

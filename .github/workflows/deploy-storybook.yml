@@ -32,8 +32,6 @@ jobs:
         run: npm ci
       - name: Build Storybook
         run: npm run build-storybook
-      - name: Postbuild Storybook
-        run: npm run postbuild-storybook
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

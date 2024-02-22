@@ -13,8 +13,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build --disable-telemetry",
-    "postbuild-storybook": "perl -i -p -e 's#<head>#<head>\n\t\t<base href='/TSE-Constellation/'>#' ./storybook-static/index.html"
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "react": "^18.2.0",
