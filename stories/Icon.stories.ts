@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Icon } from "../../lib/atoms/Icon";
+import { Icon } from "../lib/atoms/Icon";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -11,7 +11,7 @@ const meta = {
     size: { control: "number" },
     stroke: { control: "color" },
     fill: { control: "color" },
-  }
+  },
 } satisfies Meta<typeof Icon>;
 
 export default meta;
