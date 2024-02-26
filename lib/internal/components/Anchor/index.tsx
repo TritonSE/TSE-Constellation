@@ -46,27 +46,6 @@ export function Anchor(props: AnchorProps) {
     placement
   });
 
-  const handleDocumentClick = (e: MouseEvent) => {
-    // When the user clicks on something that's not our anchor, close the anchor
-    if (
-      open &&
-      refs.floating.current &&
-      !refs.floating.current.contains(e.target as Node)
-    ) {
-      // Stop event propagation in case it would trigger us re-opening (e.g. clicking an "open" button)
-      e.stopPropagation();
-      onClose();
-    }
-  };
-
-  // Click listeners to handle user clicking somewhere else, which should close the anchor.
-  useEffect(() => {
-    document.addEventListener('click', handleDocumentClick, {
-      passive: true
-    });
-    return () => document.removeEventListener('click', handleDocumentClick);
-  }, [open, refs.floating.current]);
-
   useEffect(() => {
     if (open && elements.reference && elements.floating) {
       return autoUpdate(elements.reference, elements.floating, update);
@@ -76,8 +55,10 @@ export function Anchor(props: AnchorProps) {
   return open
     ? // Use a React portal to render our children at the document root
       createPortal(
-        <div style={floatingStyles} ref={refs.setFloating}>
-          {children}
+        <div style={{ width: '100vw', height: '100vh' }} onClick={onClose}>
+          <div style={floatingStyles} ref={refs.setFloating}>
+            {children}
+          </div>
         </div>,
         document.body
       )

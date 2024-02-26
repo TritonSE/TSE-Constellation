@@ -15,3 +15,4 @@ export { Dropdown } from './molecules/Input/Dropdown';
 export { Radio } from './molecules/Input/Radio';
 export { TextField } from './molecules/Input/TextField';
 export { Toggle } from './molecules/Input/Toggle';
+export { Tooltip } from './molecules/Tooltip';
