@@ -1,0 +1,43 @@
+.checkboxContainer {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  border-radius: 12px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkbox:focus {
+  /* Disable default outline on checkbox when focused */
+  outline: none !important;
+}
+
+.checkboxContainer:focus-within {
+  /* Apply our highlight-colored border on checkbox when focused */
+  border: 2px solid var(--tse-constellation-color-secondary-highlight-1) !important;
+  outline: none !important;
+}
+
+.checkbox:checked:after {
+  content: ' ';
+
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  position: absolute;
+  top: 1.5px;
+  background: black;
+  left: 1.5px;
+  font-size: 32px;
+}

@@ -5,16 +5,16 @@
   --pressed-opacity: 92%;
   --hovered-opacity: 88%;
   /* Background color for hover/press */
-  --action-background: var(--color-primary-dark);
+  --action-background: var(--tse-constellation-color-primary-dark);
 
   cursor: pointer;
   outline: none;
   border: none;
   padding: 12px 24px;
-  color: var(--color-white);
+  color: var(--tse-constellation-color-white);
   background: color-mix(
     in srgb,
-    var(--color-primary-dark) var(--default-opacity),
+    var(--tse-constellation-color-primary-dark) var(--default-opacity),
     transparent
   );
   border-radius: 4px;
@@ -27,10 +27,10 @@
   }
 
   &.destructive {
-    --action-background: var(--color-error);
-    border: 1px solid var(--color-error);
-    background: var(--color-error);
-    color: var(--color-white);
+    --action-background: var(--tse-constellation-color-error);
+    border: 1px solid var(--tse-constellation-color-error);
+    background: var(--tse-constellation-color-error);
+    color: var(--tse-constellation-color-white);
   }
 
   &:hover {
@@ -50,8 +50,8 @@
   }
 
   &.disabled {
-    background: var(--color-disabled) !important;
-    color: var(--color-white) !important;
+    background: var(--tse-constellation-color-disabled) !important;
+    color: var(--tse-constellation-color-white) !important;
     cursor: initial;
     border: none;
     pointer-events: none;
@@ -63,14 +63,14 @@
   --pressed-opacity: 20%;
   --hovered-opacity: 22%;
 
-  color: var(--color-primary-dark);
-  border: 1px solid var(--color-primary-dark);
+  color: var(--tse-constellation-color-primary-dark);
+  border: 1px solid var(--tse-constellation-color-primary-dark);
   background: transparent;
 
   &.destructive {
-    --action-background: var(--color-error);
+    --action-background: var(--tse-constellation-color-error);
     background: inherit;
-    color: var(--color-error);
+    color: var(--tse-constellation-color-error);
   }
 }
 
@@ -82,7 +82,7 @@
   border-radius: 64px;
   padding: 8px 16px;
 
-  color: var(--color-primary-dark);
-  border: 1px solid var(--color-primary-dark);
+  color: var(--tse-constellation-color-primary-dark);
+  border: 1px solid var(--tse-constellation-color-primary-dark);
   background: transparent;
 }

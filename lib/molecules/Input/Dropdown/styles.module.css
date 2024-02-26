@@ -1,0 +1,47 @@
+.text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 320px;
+}
+
+.inputBox:focus {
+  /* Apply our highlight-colored border on input when focused */
+  border: 1px solid var(--tse-constellation-color-secondary-highlight-1) !important;
+  outline: none !important;
+}
+
+.listContainer {
+  position: fixed;
+  z-index: 1500;
+  width: 288px;
+  transform: translateX(-50%);
+}
+
+.list {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.optionContainer {
+  padding: 8px 16px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.optionContainer:hover {
+  background-color: var(--tse-constellation-color-gray-1);
+}

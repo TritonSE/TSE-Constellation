@@ -1,0 +1,10 @@
+.input {
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.input:focus {
+  /* Apply our highlight-colored border on text field when focused */
+  border: 1px solid var(--tse-constellation-color-secondary-highlight-1) !important;
+  outline: none !important;
+}

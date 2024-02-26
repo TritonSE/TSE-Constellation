@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.9",
     "classnames": "^2.5.1",
     "vite-plugin-svgr": "^4.2.0"
   },

@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 12px;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0px;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0px;
+}
