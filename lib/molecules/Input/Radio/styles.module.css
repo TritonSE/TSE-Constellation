@@ -1,3 +1,9 @@
+.root {
+  --tse-constellation-checkbox-color: var(
+    --tse-constellation-color-primary-dark
+  );
+}
+
 .checkboxContainer {
   position: relative;
   width: 24px;
@@ -37,7 +43,7 @@
   border-radius: 100%;
   position: absolute;
   top: 10%;
-  background: black;
+  background-color: var(--tse-constellation-checkbox-color);
   left: 10%;
   font-size: 32px;
 }
