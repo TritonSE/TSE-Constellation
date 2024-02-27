@@ -34,10 +34,10 @@
 
   width: 14px;
   height: 14px;
-  border-radius: 7px;
+  border-radius: 100%;
   position: absolute;
-  top: 1.5px;
+  top: 10%;
   background: black;
-  left: 1.5px;
+  left: 10%;
   font-size: 32px;
 }
