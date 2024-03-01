@@ -1,0 +1,11 @@
+.container {
+  width: 100%;
+  height: 8px;
+  background: var(--tse-constellation-color-gray-2);
+}
+
+.bar {
+  height: 8px;
+  background: var(--tse-constellation-color-primary-dark);
+  transition: width 500ms ease-in-out;
+}
