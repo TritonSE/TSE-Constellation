@@ -1,20 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { Anchor } from '../../internal/components/Anchor';
 import styles from './styles.module.css';
-import { Placement } from '@floating-ui/react';
+import { autoPlacement, Placement } from '@floating-ui/react';
 import { Icon } from '../../main';
 
 export interface TooltipProps {
-  /**
-   * Whether to place the tooltip on the bottom or top of its anchor element
-   */
-  verticalPlacement?: 'bottom' | 'top';
-
-  /**
-   * Whether to place the tooltip to the left, center, or right of its anchor element
-   */
-  horizontalPlacement?: 'left' | 'center' | 'right';
-
   /**
    * Element to anchor the tooltip to
    */
@@ -36,32 +26,47 @@ export interface TooltipProps {
   onClose: () => unknown;
 }
 
+/**
+ * A Tooltip component that displays a floating message anchored to another element
+ */
 export function Tooltip(props: TooltipProps) {
-  const {
-    verticalPlacement,
-    horizontalPlacement,
-    anchorElement,
-    contents,
-    open,
-    onClose
-  } = props;
+  const { anchorElement, contents, open, onClose } = props;
+  const [chosenPlacement, setChosenPlacement] = useState<Placement>();
 
-  let anchorPlacement = verticalPlacement ?? 'top';
-
-  const isBottom = verticalPlacement === 'bottom';
+  // Extract horizontal & vertical placement from placement chosen by autoPlacement middleware
+  const isBottom = chosenPlacement?.includes('bottom');
+  const horizontalPlacement = chosenPlacement?.includes('-start')
+    ? 'left'
+    : chosenPlacement?.includes('-end')
+    ? 'right'
+    : 'center';
 
   return (
     <Anchor
       open={open}
       onClose={onClose}
       anchorElement={anchorElement}
-      placement={anchorPlacement as Placement}
+      middleware={[
+        autoPlacement({
+          allowedPlacements: [
+            // These are the possible placements in the Figma designs
+            'top',
+            'top-start',
+            'top-end',
+            'bottom',
+            'bottom-start',
+            'bottom-end'
+          ]
+        })
+      ]}
+      onChangeChosenPlacement={setChosenPlacement}
     >
       <div
         className={styles.root}
         style={isBottom ? { marginTop: 12 } : { marginBottom: 12 }}
       >
         <p className={styles.text}>{contents}</p>
+        {/* Display different icon at different position depending on placement */}
         <Icon
           name={isBottom ? 'ic_caretfill_up' : 'ic_caretfill_down'}
           className={styles.arrowIcon}

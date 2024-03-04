@@ -3,6 +3,8 @@
   padding: 12px 15px;
   border-radius: 4px;
   background-color: var(--tse-constellation-color-primary-dark);
+  max-width: 225px;
+  overflow-wrap: anywhere;
 }
 
 .arrowIcon {
