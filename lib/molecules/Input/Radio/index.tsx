@@ -3,6 +3,7 @@ import { CommonInputProps } from '../common';
 import styles from './styles.module.css';
 import { RowInput } from '../common/RowInput';
 import { useInputControls } from '../../../internal/hooks/useInputControls';
+import { useEffect } from 'react';
 
 export interface RadioProps extends CommonInputProps {
   /**
@@ -40,6 +41,21 @@ export function Radio(props: RadioProps) {
     onChange
   });
 
+  // Color for main checkbox and border
+  const checkboxColor = disabled
+    ? theme.colors.disabled
+    : errorText
+    ? theme.colors.error
+    : theme.colors.primary_dark;
+
+  // Update CSS var when checkbox color changes
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--tse-constellation-checkbox-color',
+      checkboxColor
+    );
+  }, [checkboxColor]);
+
   return (
     <RowInput
       inputFirst
@@ -57,9 +73,7 @@ export function Radio(props: RadioProps) {
             checked={internalChecked}
             className={styles.checkbox}
             style={{
-              border: `3px solid ${
-                errorText ? theme.colors.error : theme.colors.primary_dark
-              }`
+              border: `3px solid ${checkboxColor}`
             }}
             onChange={(e) => handleChange(e.target.checked)}
             disabled={disabled}
