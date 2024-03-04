@@ -15,6 +15,7 @@
   border-radius: 4px;
   cursor: pointer;
   width: 320px;
+  background-color: var(--tse-constellation-color-surface);
 }
 
 .inputBox:focus {
@@ -40,6 +41,7 @@
   padding: 8px 16px;
   margin: 0;
   cursor: pointer;
+  background-color: var(--tse-constellation-color-surface);
 }
 
 .optionContainer:hover {
