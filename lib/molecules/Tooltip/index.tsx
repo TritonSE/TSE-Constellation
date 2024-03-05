@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { Anchor } from '../../internal/components/Anchor';
 import styles from './styles.module.css';
-import { autoPlacement, Placement } from '@floating-ui/react';
+import { autoPlacement, offset, Placement } from '@floating-ui/react';
 import { Icon } from '../../main';
 
 export interface TooltipProps {
@@ -57,7 +57,8 @@ export function Tooltip(props: TooltipProps) {
             'bottom-start',
             'bottom-end'
           ]
-        })
+        }),
+        offset(4)
       ]}
       onChangeChosenPlacement={setChosenPlacement}
     >
