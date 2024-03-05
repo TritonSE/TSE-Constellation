@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Tooltip } from '../../lib/molecules/Tooltip';
+import { Tooltip } from '../lib/main';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -18,8 +18,6 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    verticalPlacement: 'top',
-    horizontalPlacement: 'center',
     contents: "I'm a tooltip!",
     anchorElement: null,
     open: false,

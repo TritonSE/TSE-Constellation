@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Tooltip } from '../../lib/molecules/Tooltip';
+import { Tooltip } from '../lib/main';
 import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
