@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, ReactNode, useEffect } from "react";
 import styles from "./styles.module.css";
 import { createPortal } from "react-dom";
 
@@ -35,6 +35,14 @@ interface BaseModalProps {
  */
 export function BaseModal(props: BaseModalProps) {
   const { isOpen, onClose, children, rootClass, rootStyle } = props;
+
+  useEffect(() => {
+    // Disable scrolling when modal is open
+    document.documentElement.style.setProperty(
+      "overflow",
+      isOpen ? "hidden" : "unset"
+    );
+  }, [isOpen]);
 
   return isOpen
     ? createPortal(
