@@ -1,4 +1,21 @@
-.button {
-  padding: 1rem;
-  cursor: pointer;
+.root {
+  position: relative;
+  padding: 12px 15px;
+  border-radius: 4px;
+  background-color: var(--tse-constellation-color-primary-dark);
+  max-width: 225px;
+  overflow-wrap: anywhere;
+}
+
+.arrowIcon {
+  position: absolute;
+  fill: var(--tse-constellation-color-primary-dark);
+}
+
+.text {
+  color: var(--tse-constellation-color-primary-light);
+  font-size: 15px;
+  text-align: center;
+  line-height: 23px;
+  font-weight: 400;
 }

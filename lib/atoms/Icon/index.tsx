@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { CSSProperties, useState } from "react";
 import { useTheme } from "../../assets/ThemeProvider";
 import styles from "./styles.module.css";
@@ -115,6 +115,11 @@ export function Icon(props: IconProps) {
     Partial<IconProps>
   > | null>(null);
 
+  // Use a meaningless state to force component to update
+  // https://blog.logrocket.com/how-when-to-force-react-component-re-render/
+  const [, updateState] = useState<{}>({});
+  const forceUpdate = useCallback(() => updateState({}), []);
+
   // Whether we have loaded the SVG component yet
   const [loading, setLoading] = useState(true);
 
@@ -126,6 +131,8 @@ export function Icon(props: IconProps) {
     import(`../../assets/icons/${name}.svg?react`)
       .then((moduleObj) => {
         importedIconRef.current = moduleObj.default;
+        // Force component to re-render after icon changes
+        forceUpdate();
       })
       // Allow import errors to propogate rather than catching them
       .finally(() => setLoading(false));

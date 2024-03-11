@@ -1,4 +1,9 @@
-import { Placement, autoUpdate, useFloating } from '@floating-ui/react';
+import {
+  Middleware,
+  Placement,
+  autoUpdate,
+  useFloating
+} from '@floating-ui/react';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -22,7 +27,17 @@ export interface AnchorProps {
    * Placement for anchor; specifies which of the 4 sides of the anchorElement
    * it should be anchored to, and its alignment along that side.
    */
-  placement: Placement;
+  placement?: Placement;
+
+  /**
+   * Optional middleware function(s) to apply to floating styles
+   */
+  middleware?: Array<Middleware | null | undefined | false>;
+
+  /**
+   * Optional callback fired when chosen position changes
+   */
+  onChangeChosenPlacement?: (chosenPlacement: Placement) => unknown;
 
   /**
    * Children to be displayed inside the floating anchor.
@@ -36,36 +51,35 @@ export interface AnchorProps {
  * or a tooltip  above a text field.
  */
 export function Anchor(props: AnchorProps) {
-  const { open, onClose, anchorElement, placement, children } = props;
+  const {
+    open,
+    onClose,
+    anchorElement,
+    placement: desiredPlacement,
+    middleware,
+    onChangeChosenPlacement,
+    children
+  } = props;
 
-  const { refs, elements, floatingStyles, update } = useFloating({
+  const {
+    refs,
+    elements,
+    floatingStyles,
+    placement: chosenPlacement,
+    update
+  } = useFloating({
     elements: {
       reference: anchorElement
     },
     open,
-    placement
+    placement: desiredPlacement,
+    middleware
   });
 
-  const handleDocumentClick = (e: MouseEvent) => {
-    // When the user clicks on something that's not our anchor, close the anchor
-    if (
-      open &&
-      refs.floating.current &&
-      !refs.floating.current.contains(e.target as Node)
-    ) {
-      // Stop event propagation in case it would trigger us re-opening (e.g. clicking an "open" button)
-      e.stopPropagation();
-      onClose();
-    }
-  };
-
-  // Click listeners to handle user clicking somewhere else, which should close the anchor.
+  // Notify consumer via onChangeChosenPlacement whenever chosenPlacement changes
   useEffect(() => {
-    document.addEventListener('click', handleDocumentClick, {
-      passive: true
-    });
-    return () => document.removeEventListener('click', handleDocumentClick);
-  }, [open, refs.floating.current]);
+    onChangeChosenPlacement?.(chosenPlacement);
+  }, [chosenPlacement, onChangeChosenPlacement]);
 
   useEffect(() => {
     if (open && elements.reference && elements.floating) {
@@ -76,8 +90,10 @@ export function Anchor(props: AnchorProps) {
   return open
     ? // Use a React portal to render our children at the document root
       createPortal(
-        <div style={floatingStyles} ref={refs.setFloating}>
-          {children}
+        <div style={{ width: '100vw', height: '100vh' }} onClick={onClose}>
+          <div style={floatingStyles} ref={refs.setFloating}>
+            {children}
+          </div>
         </div>,
         document.body
       )
