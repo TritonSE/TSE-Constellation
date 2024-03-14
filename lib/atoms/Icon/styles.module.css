@@ -1,9 +1,3 @@
-.icon path {
-  /* Unset the fill and stroke here because the SVG files from Figma have hard-coded
-   * fills and strokes in their path elements. We want devs to be able to provide 
-   * custom fill and stroke colors and not have to manually go through the SVG files 
-   * and remove the fill="......" stroke="..."
-   */
-  fill: unset;
-  stroke: unset;
+.icon * {
+  stroke: none;
 }
