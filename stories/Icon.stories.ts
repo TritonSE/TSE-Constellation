@@ -9,9 +9,9 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     size: { control: "number" },
-    stroke: { control: "color" },
-    fill: { control: "color" },
-  },
+    foregroundColor: { control: "color" },
+    backgroundColor: { control: "color" }
+  }
 } satisfies Meta<typeof Icon>;
 
 export default meta;
@@ -24,8 +24,8 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    name: "ic_notification",
-  },
+    name: "ic_notification"
+  }
 };
 
 /**
@@ -34,28 +34,30 @@ export const Default: Story = {
 export const Size: Story = {
   args: {
     name: "ic_pending",
-    size: 100,
-  },
+    size: 100
+  }
 };
 
 /**
- * Icon with custom stroke color
+ * Success icon
  */
-export const Stroke: Story = {
+export const Success: Story = {
   args: {
-    name: "ic_return",
-    stroke: "red",
-  },
+    name: "ic_success",
+    foregroundColor: "green",
+    backgroundColor: "black"
+  }
 };
 
 /**
  * Icon with custom fill color
  */
-export const Fill: Story = {
+export const Error: Story = {
   args: {
-    name: "ic_pending",
-    fill: "green",
-  },
+    name: "ic_error",
+    foregroundColor: "white",
+    backgroundColor: "red"
+  }
 };
 
 /**
@@ -64,6 +66,6 @@ export const Fill: Story = {
 export const CustomStyle: Story = {
   args: {
     name: "ic_gift",
-    style: { width: 120, height: 120, marginTop: 50 },
-  },
+    style: { width: 120, height: 120, marginTop: 50 }
+  }
 };

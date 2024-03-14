@@ -86,8 +86,8 @@ export function Dialog(props: DialogProps) {
     <Icon
       name={iconName}
       size={iconSize}
-      fill={styleVersion === "styled" ? colors.white : mainColor}
-      stroke={styleVersion === "styled" ? mainColor : colors.white}
+      foregroundColor={styleVersion === "styled" ? mainColor : colors.white}
+      backgroundColor={styleVersion === "styled" ? colors.white : mainColor}
       style={styleVersion === "dramatic" ? { marginTop: 24 } : {}}
     />
   );
@@ -165,8 +165,8 @@ export function Dialog(props: DialogProps) {
             <button className={styles.closeButton} onClick={onClose}>
               <Icon
                 name="ic_close_large"
-                fill={colors.gray_3}
-                stroke={colors.gray_3}
+                foregroundColor={colors.gray_3}
+                backgroundColor={colors.gray_3}
               />
             </button>
           )}
