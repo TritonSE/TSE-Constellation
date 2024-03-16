@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
-import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../common';
-import styles from './styles.module.css';
-import { RowInput } from '../common/RowInput';
-import { useInputControls } from '../../../internal/hooks/useInputControls';
+import { useEffect } from "react";
 
-export interface ToggleProps extends CommonInputProps {
+import { useTheme } from "../../../assets/ThemeProvider";
+import { useInputControls } from "../../../internal/hooks/useInputControls";
+import { CommonInputProps } from "../common";
+import { RowInput } from "../common/RowInput";
+
+import styles from "./styles.module.css";
+
+export type ToggleProps = {
   /**
    * Whether the toggle should be compact (smaller)
    */
@@ -22,41 +24,32 @@ export interface ToggleProps extends CommonInputProps {
    * @param newChecked Whether the input is now checked
    */
   onChange?: (newChecked: boolean) => unknown;
-}
+} & CommonInputProps;
 
 /**
  * A toggle input element, displays a switch that can be toggled on and off.
  * Can be either controlled (via the checked prop) or uncontrolled.
  */
 export function Toggle(props: ToggleProps) {
-  const {
-    label,
-    errorText,
-    caption,
-    disabled,
-    name,
-    compact,
-    checked,
-    onChange
-  } = props;
+  const { label, errorText, caption, disabled, name, compact, checked, onChange } = props;
 
   const theme = useTheme();
 
   useEffect(() => {
     document.documentElement.style.setProperty(
-      '--tse-constellation-slider-color',
-      disabled ? theme.colors.disabled : theme.colors.primary_dark
+      "--tse-constellation-slider-color",
+      disabled ? theme.colors.disabled : theme.colors.primary_dark,
     );
     document.documentElement.style.setProperty(
-      '--tse-constellation-slider-circle-size',
-      compact ? '16px' : '24px'
+      "--tse-constellation-slider-circle-size",
+      compact ? "16px" : "24px",
     );
   }, [compact, theme, disabled]);
 
   const { internalValue: internalChecked, handleChange } = useInputControls({
     value: checked,
     disabled,
-    onChange
+    onChange,
   });
 
   return (
@@ -64,21 +57,19 @@ export function Toggle(props: ToggleProps) {
       inputFirst={false}
       inputElement={
         <label
-          className={`${styles.switch} ${
-            compact ? styles.compactSwitch : styles.defaultSwitch
-          }`}
+          className={`${styles.switch} ${compact ? styles.compactSwitch : styles.defaultSwitch}`}
         >
           <input
             name={name}
             type="checkbox"
             checked={internalChecked}
-            onChange={(e) => handleChange(e.target.checked)}
+            onChange={(e) => {
+              handleChange(e.target.checked);
+            }}
             disabled={disabled}
           />
           <span
-            className={`${styles.slider} ${
-              compact ? styles.compactSlider : styles.defaultSlider
-            }`}
+            className={`${styles.slider} ${compact ? styles.compactSlider : styles.defaultSlider}`}
           ></span>
         </label>
       }

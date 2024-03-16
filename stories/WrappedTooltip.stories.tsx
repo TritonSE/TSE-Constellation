@@ -1,14 +1,15 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
-import { Tooltip } from '../lib/main';
-import { useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
+import { Tooltip } from "../lib/main";
 
-interface WrappedTooltipProps {
+import type { Meta, StoryObj } from "@storybook/react";
+
+type WrappedTooltipProps = {
   contents: string;
   left: number;
   top: number;
-}
+};
 
 /**
  * A component that wraps the Tooltip component for easier Storybook visual testing.
@@ -23,27 +24,31 @@ const WrappedTooltip = (props: WrappedTooltipProps) => {
   return createPortal(
     <>
       <button
-        style={{ position: 'fixed', left: props.left, top: props.top }}
+        style={{ position: "fixed", left: props.left, top: props.top }}
         ref={buttonRef}
-        onClick={() => setIsOpen((prevIsOpen) => !prevIsOpen)}
+        onClick={() => {
+          setIsOpen((prevIsOpen) => !prevIsOpen);
+        }}
       >
         Click me to toggle tooltip!
       </button>
       <Tooltip
         contents={props.contents}
         open={isOpen}
-        onClose={() => setIsOpen(false)}
+        onClose={() => {
+          setIsOpen(false);
+        }}
         anchorElement={buttonRef.current!}
       />
     </>,
-    document.body
+    document.body,
   );
 };
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Molecules/WrappedTooltip',
-  component: WrappedTooltip
+  title: "Molecules/WrappedTooltip",
+  component: WrappedTooltip,
 } satisfies Meta<typeof WrappedTooltip>;
 
 export default meta;
@@ -58,6 +63,6 @@ export const Default: Story = {
   args: {
     contents: "I'm a tooltip!",
     left: 0,
-    top: 0
-  }
+    top: 0,
+  },
 };

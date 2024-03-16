@@ -8,10 +8,19 @@ html {
   font-family: var(--tse-constellation-font-secondary);
   background-color: var(--tse-constellation-color-white);
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--tse-constellation-font-primary);
 }
-span, p, a, button, input {
+span,
+p,
+a,
+button,
+input {
   font-family: var(--tse-constellation-font-secondary);
 }
 
@@ -191,7 +200,8 @@ textarea {
  */
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -201,7 +211,8 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
