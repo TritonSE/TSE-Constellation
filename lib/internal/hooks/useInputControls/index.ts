@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export interface UseInputControlsProps<T> {
+export type UseInputControlsProps<T> = {
   /**
    * The value provided to the input, to be used if provided.
    */
@@ -15,7 +15,7 @@ export interface UseInputControlsProps<T> {
    * Application developer facing callback fired when input value is changed.
    */
   onChange?: (newValue: T) => unknown;
-}
+};
 
 /**
  * Hook to manage input controls for our various input elements. Enables an input
@@ -49,6 +49,6 @@ export function useInputControls<T>(props: UseInputControlsProps<T>) {
 
   return {
     internalValue,
-    handleChange
+    handleChange,
   };
 }

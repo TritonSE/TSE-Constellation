@@ -1,5 +1,9 @@
 import styles from "./styles.module.css";
 
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
 export type ProgressBarProps = {
   /**
    * The percent progress of the bar, as a number between 0 and 100.
@@ -30,8 +34,4 @@ export function ProgressBar({ progress, width = "900px" }: ProgressBarProps) {
       />
     </div>
   );
-}
-
-function clamp(value: number, min: number, max: number) {
-  return Math.min(Math.max(value, min), max);
 }

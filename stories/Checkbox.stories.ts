@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Checkbox } from "../lib/main";
 
-import { Checkbox } from '../lib/main';
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Molecules/Checkbox',
+  title: "Molecules/Checkbox",
   component: Checkbox,
-  args: {}
+  args: {},
 } satisfies Meta<typeof Checkbox>;
 
 export default meta;
@@ -18,5 +18,5 @@ type Story = StoryObj<typeof meta>;
  * A default checkbox
  */
 export const Default: Story = {
-  args: { id: 'checkbox-1', label: 'Checkbox Example' }
+  args: { id: "checkbox-1", label: "Checkbox Example" },
 };

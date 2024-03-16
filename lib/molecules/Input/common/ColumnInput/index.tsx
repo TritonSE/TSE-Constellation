@@ -1,8 +1,10 @@
-import { ReactNode } from 'react';
-import { useTheme } from '../../../../assets/ThemeProvider';
-import styles from './styles.module.css';
+import { ReactNode } from "react";
 
-export interface ColumnInputProps {
+import { useTheme } from "../../../../assets/ThemeProvider";
+
+import styles from "./styles.module.css";
+
+export type ColumnInputProps = {
   /**
    * Element to display the input itself to be slotted in
    */
@@ -25,7 +27,7 @@ export interface ColumnInputProps {
    * Caption text (small hint/sub-text)
    */
   caption?: string;
-}
+};
 
 /**
  * A helper component for displaying an input component in a column,
@@ -40,10 +42,7 @@ export function ColumnInput(props: ColumnInputProps) {
     <div className={styles.root}>
       <label className={styles.label}>{label}</label>
       {inputElement}
-      <p
-        className={styles.caption}
-        style={errorText ? { color: theme.colors.error } : {}}
-      >
+      <p className={styles.caption} style={errorText ? { color: theme.colors.error } : {}}>
         {errorText ?? caption}
       </p>
     </div>

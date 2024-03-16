@@ -1,7 +1,5 @@
 .root {
-  --tse-constellation-checkbox-color: var(
-    --tse-constellation-color-primary-dark
-  );
+  --tse-constellation-checkbox-color: var(--tse-constellation-color-primary-dark);
 }
 
 .checkboxContainer {
@@ -36,7 +34,7 @@
 }
 
 .checkbox:checked:after {
-  content: ' ';
+  content: " ";
 
   width: 14px;
   height: 14px;

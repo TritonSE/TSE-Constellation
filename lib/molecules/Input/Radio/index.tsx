@@ -1,11 +1,13 @@
-import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../common';
-import styles from './styles.module.css';
-import { RowInput } from '../common/RowInput';
-import { useInputControls } from '../../../internal/hooks/useInputControls';
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-export interface RadioProps extends CommonInputProps {
+import { useTheme } from "../../../assets/ThemeProvider";
+import { useInputControls } from "../../../internal/hooks/useInputControls";
+import { CommonInputProps } from "../common";
+import { RowInput } from "../common/RowInput";
+
+import styles from "./styles.module.css";
+
+export type RadioProps = {
   /**
    * ID for the radio input element. Must be unique in the document.
    * Required in order to match the label with the input element.
@@ -23,37 +25,33 @@ export interface RadioProps extends CommonInputProps {
    * @param newChecked whether the radio input is checked after the change.
    */
   onChange?: (newChecked: boolean) => unknown;
-}
+} & CommonInputProps;
 
 /**
  * A radio input element, displays a single radio circle with a label. Can be
  * either controlled (via the checked prop) or uncontrolled.
  */
 export function Radio(props: RadioProps) {
-  const { id, label, checked, errorText, caption, disabled, name, onChange } =
-    props;
+  const { id, label, checked, errorText, caption, disabled, name, onChange } = props;
 
   const theme = useTheme();
 
   const { internalValue: internalChecked, handleChange } = useInputControls({
     value: checked,
     disabled,
-    onChange
+    onChange,
   });
 
   // Color for main checkbox and border
   const checkboxColor = disabled
     ? theme.colors.disabled
     : errorText
-    ? theme.colors.error
-    : theme.colors.primary_dark;
+      ? theme.colors.error
+      : theme.colors.primary_dark;
 
   // Update CSS var when checkbox color changes
   useEffect(() => {
-    document.documentElement.style.setProperty(
-      '--tse-constellation-checkbox-color',
-      checkboxColor
-    );
+    document.documentElement.style.setProperty("--tse-constellation-checkbox-color", checkboxColor);
   }, [checkboxColor]);
 
   return (
@@ -63,7 +61,7 @@ export function Radio(props: RadioProps) {
         <div
           className={styles.checkboxContainer}
           style={{
-            border: `2px solid transparent`
+            border: `2px solid transparent`,
           }}
         >
           <input
@@ -73,9 +71,11 @@ export function Radio(props: RadioProps) {
             checked={internalChecked}
             className={styles.checkbox}
             style={{
-              border: `3px solid ${checkboxColor}`
+              border: `3px solid ${checkboxColor}`,
             }}
-            onChange={(e) => handleChange(e.target.checked)}
+            onChange={(e) => {
+              handleChange(e.target.checked);
+            }}
             disabled={disabled}
           />
         </div>

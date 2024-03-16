@@ -1,10 +1,11 @@
-import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../common';
-import styles from './styles.module.css';
-import { ColumnInput } from '../common/ColumnInput';
-import { useInputControls } from '../../../internal/hooks/useInputControls';
+import { useTheme } from "../../../assets/ThemeProvider";
+import { useInputControls } from "../../../internal/hooks/useInputControls";
+import { CommonInputProps } from "../common";
+import { ColumnInput } from "../common/ColumnInput";
 
-export interface TextFieldProps extends CommonInputProps {
+import styles from "./styles.module.css";
+
+export type TextFieldProps = {
   /**
    * Placeholder text to display inside the text field if nothing has been typed.
    */
@@ -21,29 +22,20 @@ export interface TextFieldProps extends CommonInputProps {
    * @param newValue the new value of the entered text
    */
   onChange?: (newValue: string) => unknown;
-}
+} & CommonInputProps;
 
 /**
  * A text input element. Can be either controlled (via the value prop) or uncontrolled.
  */
 export function TextField(props: TextFieldProps) {
-  const {
-    label,
-    errorText,
-    caption,
-    disabled,
-    name,
-    placeholder,
-    value,
-    onChange
-  } = props;
+  const { label, errorText, caption, disabled, name, placeholder, value, onChange } = props;
 
   const theme = useTheme();
 
   const { internalValue, handleChange } = useInputControls({
     value,
     disabled,
-    onChange
+    onChange,
   });
 
   return (
@@ -55,10 +47,12 @@ export function TextField(props: TextFieldProps) {
           placeholder={placeholder}
           disabled={disabled}
           style={{
-            border: `1px solid ${theme.colors.gray_2}`
+            border: `1px solid ${theme.colors.gray_2}`,
           }}
           value={internalValue}
-          onChange={(e) => handleChange(e.target.value)}
+          onChange={(e) => {
+            handleChange(e.target.value);
+          }}
         />
       }
       label={label}

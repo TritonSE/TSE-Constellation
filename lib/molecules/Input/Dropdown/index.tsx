@@ -1,21 +1,23 @@
-import { Key, MouseEvent, useMemo, useRef, useState } from 'react';
-import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../common';
-import styles from './styles.module.css';
-import { Icon } from '../../../main';
-import { Anchor } from '../../../internal/components/Anchor';
-import { ColumnInput } from '../common/ColumnInput';
-import { useInputControls } from '../../../internal/hooks/useInputControls';
+import { Key, MouseEvent, useMemo, useRef, useState } from "react";
+
+import { useTheme } from "../../../assets/ThemeProvider";
+import { Anchor } from "../../../internal/components/Anchor";
+import { useInputControls } from "../../../internal/hooks/useInputControls";
+import { Icon } from "../../../main";
+import { CommonInputProps } from "../common";
+import { ColumnInput } from "../common/ColumnInput";
+
+import styles from "./styles.module.css";
 
 /**
  * A single option in the list of options provided to the Dropdown component
  */
-export interface DropdownOption<T> {
+export type DropdownOption<T> = {
   label: string;
   value?: T;
-}
+};
 
-export interface DropdownProps<T> extends CommonInputProps {
+export type DropdownProps<T> = {
   /**
    * Placeholder text, to be displayed inside the input if no option is selected.
    */
@@ -39,31 +41,22 @@ export interface DropdownProps<T> extends CommonInputProps {
    * @param newValue the value of the option the user selected
    */
   onChange?: (newValue: T) => unknown;
-}
+} & CommonInputProps;
 
 /**
  * A dropdown input element that enables the user to select an option from
  * a dropdown menu of options. Can be either controlled (via the value prop) or uncontrolled.
  */
 export function Dropdown<T>(props: DropdownProps<T>) {
-  const {
-    label,
-    placeholder,
-    errorText,
-    caption,
-    disabled,
-    name,
-    options,
-    value,
-    onChange
-  } = props;
+  const { label, placeholder, errorText, caption, disabled, name, options, value, onChange } =
+    props;
 
   const theme = useTheme();
 
   const { internalValue: selectedOption, handleChange } = useInputControls({
-    value: value,
+    value,
     disabled,
-    onChange
+    onChange,
   });
 
   const [expanded, setExpanded] = useState(false);
@@ -71,18 +64,15 @@ export function Dropdown<T>(props: DropdownProps<T>) {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // Gets the value for the given option, using its value attribute if exists, else label
-  const getOptionValue = (option: DropdownOption<T>) =>
-    option.value ?? option.label;
+  const getOptionValue = (option: DropdownOption<T>) => option.value ?? option.label;
 
   /**
    * The label to be displayed inside the input. Use the label of the selected
    * option, if one exists, else the placeholder text.
    */
   const selectedLabel = useMemo(
-    () =>
-      options.find((option) => getOptionValue(option) === selectedOption)
-        ?.label ?? placeholder,
-    [selectedOption, placeholder, options]
+    () => options.find((option) => getOptionValue(option) === selectedOption)?.label ?? placeholder,
+    [selectedOption, placeholder, options],
   );
 
   // Callback fired when the dropdown component itself is clicked
@@ -113,12 +103,12 @@ export function Dropdown<T>(props: DropdownProps<T>) {
               disabled
                 ? {
                     // Disabled styles copied from browser defaults for disabled input element
-                    border: '1px solid rgba(118, 118, 118, 0.3)',
-                    backgroundColor: 'rgba(239, 239, 239, 0.3)',
-                    color: 'rgb(84, 84, 84)'
+                    border: "1px solid rgba(118, 118, 118, 0.3)",
+                    backgroundColor: "rgba(239, 239, 239, 0.3)",
+                    color: "rgb(84, 84, 84)",
                   }
                 : {
-                    border: `1px solid ${theme.colors.gray_2}`
+                    border: `1px solid ${theme.colors.gray_2}`,
                   }
             }
             onClick={handleInputClick}
@@ -127,16 +117,12 @@ export function Dropdown<T>(props: DropdownProps<T>) {
           >
             <p
               className={styles.text}
-              style={
-                selectedLabel === placeholder
-                  ? { color: theme.colors.gray_3 }
-                  : {}
-              }
+              style={selectedLabel === placeholder ? { color: theme.colors.gray_3 } : {}}
             >
               {selectedLabel}
             </p>
             <Icon
-              name={expanded ? 'ic_caretfill_up' : 'ic_caretfill_down'}
+              name={expanded ? "ic_caretfill_up" : "ic_caretfill_down"}
               fill={theme.colors.gray_2}
               stroke="none"
               size={14}
@@ -150,7 +136,9 @@ export function Dropdown<T>(props: DropdownProps<T>) {
 
       <Anchor
         open={expanded}
-        onClose={() => setExpanded(false)}
+        onClose={() => {
+          setExpanded(false);
+        }}
         anchorElement={dropdownRef.current!}
         placement="bottom"
       >
@@ -159,13 +147,15 @@ export function Dropdown<T>(props: DropdownProps<T>) {
             className={styles.list}
             style={{
               border: `1px solid ${theme.colors.gray_2}`,
-              borderTopWidth: 0
+              borderTopWidth: 0,
             }}
           >
             {options.map((option) => (
               <li
                 key={getOptionValue(option) as Key}
-                onClick={() => handleOptionClick(option)}
+                onClick={() => {
+                  handleOptionClick(option);
+                }}
               >
                 <div className={styles.optionContainer}>
                   <p
@@ -190,7 +180,11 @@ export function Dropdown<T>(props: DropdownProps<T>) {
        * by setting the "name" property. This is a bit hacky, but is necessary
        * since the dropdown itself is not an input element.
        */}
-      <input name={name} type="hidden" value={selectedOption as any} />
+      <input
+        name={name}
+        type="hidden"
+        value={selectedOption as React.InputHTMLAttributes<HTMLInputElement>["value"]}
+      />
     </>
   );
 }

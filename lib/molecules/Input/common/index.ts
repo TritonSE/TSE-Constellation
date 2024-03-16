@@ -1,7 +1,7 @@
 /**
  * Props common to all input components
  */
-export interface CommonInputProps {
+export type CommonInputProps = {
   /**
    * Label to display for the input
    */
@@ -27,4 +27,4 @@ export interface CommonInputProps {
    * Name to be applied to the input field, useful for forms
    */
   name?: string;
-}
+};

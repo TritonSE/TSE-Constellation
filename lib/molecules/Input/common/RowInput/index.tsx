@@ -1,8 +1,10 @@
-import { ReactNode } from 'react';
-import { useTheme } from '../../../../assets/ThemeProvider';
-import styles from './styles.module.css';
+import { ReactNode } from "react";
 
-export interface RowInputProps {
+import { useTheme } from "../../../../assets/ThemeProvider";
+
+import styles from "./styles.module.css";
+
+export type RowInputProps = {
   /**
    * Whether to display the input itself at the beginning of the row, instead of the end.
    */
@@ -30,7 +32,7 @@ export interface RowInputProps {
    * Caption text (small hint/sub-text)
    */
   caption?: string;
-}
+};
 
 /**
  * A helper component for displaying an input component in a row,
@@ -49,7 +51,7 @@ export function RowInput(props: RowInputProps) {
         <p
           className={styles.caption}
           style={{
-            color: errorText ? theme.colors.error : theme.colors.gray_5
+            color: errorText ? theme.colors.error : theme.colors.gray_5,
           }}
         >
           {errorText ?? caption}

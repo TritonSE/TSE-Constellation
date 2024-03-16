@@ -1,8 +1,8 @@
 import classNames from "classnames/bind";
+
 import styles from "./styles.module.css";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export type ButtonProps = {
   /**
    * Which variant of the button to use?
    */
@@ -23,7 +23,7 @@ export interface ButtonProps
    * Button label text/content
    */
   children?: React.ReactNode;
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 // See https://github.com/JedWatson/classnames for usage
 const cx = classNames.bind(styles);
@@ -32,8 +32,7 @@ const cx = classNames.bind(styles);
  * A Button component with different variants.
  */
 export function Button(props: ButtonProps) {
-  const { className, variant, disabled, small, destructive, ...restProps } =
-    props;
+  const { className, variant, disabled, small, destructive, ...restProps } = props;
 
   return (
     <button
