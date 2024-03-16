@@ -3,8 +3,8 @@
  * Provides a simplified wrapper around React context hooks.
  */
 
-import { PropsWithChildren } from 'react';
-import './styles.module.css';
+import { PropsWithChildren } from "react";
+import "./styles.module.css";
 
 type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
@@ -14,7 +14,7 @@ export interface ThemeColors {
   /** Primary colors */
   primary_light: Color;
   primary_dark: Color;
-  
+
   /** Secondary colors */
   secondary_accent_1: Color;
   secondary_accent_2: Color;
@@ -87,8 +87,10 @@ export const defaultTheme: Theme = {
     black:                 '#000000'
   },
   fonts: {
-    primary: '"Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
-    secondary: '"IBM Plex Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif'
+    primary:
+      '"Rubik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
+    secondary:
+      '"IBM Plex Mono", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
   },
 };
 
@@ -103,30 +105,33 @@ export function useTheme(): Theme {
 /**
  * Wrapper for providing theme to an application, meant to be used
  * at the top level of an application.
- * 
+ *
  * Takes `colors` and `fonts` as props, adding in any missing fields
  * using the `defaultTheme` object.
  */
 export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
-  if (document.body.dataset.tseInitialized === 'true') return props.children;
+  if (document.body.dataset.tseInitialized === "true") return props.children;
 
   const { fonts, fontInject, colors, children } = props;
   activeTheme = {
-      colors: {
-        ...defaultTheme.colors,
-        ...colors
-      },
-      fonts: {
-        ...defaultTheme.fonts,
-        ...fonts
-      }
-    };
+    colors: {
+      ...defaultTheme.colors,
+      ...colors,
+    },
+    fonts: {
+      ...defaultTheme.fonts,
+      ...fonts,
+    },
+  };
 
   // Generate CSS variables from JS objects
   const cssColors = Object.entries(activeTheme.colors).map(([type, value]) => (`  --tse-constellation-color-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
   const cssFonts = Object.entries(activeTheme.fonts).map(([type, value]) => (`  --tse-constellation-font-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
 
-  document.head.innerHTML += `${fontInject ?? '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik|IBM+Plex+Mono">'}
+  document.head.innerHTML += `${
+    fontInject ??
+    '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">'
+  }
 <style>
 :root {
 ${cssColors}

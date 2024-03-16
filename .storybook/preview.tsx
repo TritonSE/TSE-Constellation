@@ -15,6 +15,7 @@ const preview: Preview = {
       },
     },
     docs: {
+      toc: true,
       theme: previewTheme,
       page: DocumentationTemplate,
     },

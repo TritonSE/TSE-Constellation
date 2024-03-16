@@ -1,4 +1,81 @@
-.button {
-  padding: 1rem;
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.hat {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.table {
+  border-collapse: collapse;
+}
+
+.table td,
+th {
+  padding: 12px;
+}
+
+.headerRow {
+  background: var(--tse-constellation-color-white);
+}
+
+.headerCell {
+  font-size: 18px;
+  color: var(--tse-constellation-color-black);
+  font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+.headerCell.sortable {
   cursor: pointer;
+}
+
+.sortToggleContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataRow:nth-child(odd) {
+  background: var(--tse-constellation-color-gray-0);
+}
+
+.dataRow:nth-child(even) {
+  background: var(--tse-constellation-color-gray-1);
+}
+
+.paginationContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.paginationContainer input[type="number"] {
+  width: 32px;
+  text-align: center;
+}
+
+.paginationContainer input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.paginationButton {
+  cursor: pointer;
+}
+
+.paginationButton.disabled {
+  cursor: unset;
+  pointer-events: none;
 }
