@@ -1,13 +1,8 @@
-import {
-  Middleware,
-  Placement,
-  autoUpdate,
-  useFloating
-} from '@floating-ui/react';
-import { useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import { Middleware, Placement, autoUpdate, useFloating } from "@floating-ui/react";
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
-export interface AnchorProps {
+export type AnchorProps = {
   /**
    * Whether the anchor is currently open (should be displayed).
    */
@@ -32,7 +27,7 @@ export interface AnchorProps {
   /**
    * Optional middleware function(s) to apply to floating styles
    */
-  middleware?: Array<Middleware | null | undefined | false>;
+  middleware?: (Middleware | null | undefined | false)[];
 
   /**
    * Optional callback fired when chosen position changes
@@ -43,7 +38,7 @@ export interface AnchorProps {
    * Children to be displayed inside the floating anchor.
    */
   children: React.ReactNode;
-}
+};
 
 /**
  * Internal component that anchors its children to float above the DOM near a
@@ -58,7 +53,7 @@ export function Anchor(props: AnchorProps) {
     placement: desiredPlacement,
     middleware,
     onChangeChosenPlacement,
-    children
+    children,
   } = props;
 
   const {
@@ -66,14 +61,14 @@ export function Anchor(props: AnchorProps) {
     elements,
     floatingStyles,
     placement: chosenPlacement,
-    update
+    update,
   } = useFloating({
     elements: {
-      reference: anchorElement
+      reference: anchorElement,
     },
     open,
     placement: desiredPlacement,
-    middleware
+    middleware,
   });
 
   // Notify consumer via onChangeChosenPlacement whenever chosenPlacement changes
@@ -90,12 +85,12 @@ export function Anchor(props: AnchorProps) {
   return open
     ? // Use a React portal to render our children at the document root
       createPortal(
-        <div style={{ width: '100vw', height: '100vh' }} onClick={onClose}>
+        <div style={{ width: "100vw", height: "100vh" }} onClick={onClose}>
           <div style={floatingStyles} ref={refs.setFloating}>
             {children}
           </div>
         </div>,
-        document.body
+        document.body,
       )
     : null;
 }

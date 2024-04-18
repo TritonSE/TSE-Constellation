@@ -7,15 +7,11 @@
  *  - https://tanstack.com/table/v8/docs/framework/react/examples/row-dnd
  */
 
-import classNames from "classnames";
-import { useTheme } from "../../assets/ThemeProvider";
-import styles from "./styles.module.css";
-
 import {
   ColumnDef,
   RowSelectionState,
-  TableOptions,
   Table as TTable,
+  TableOptions,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -23,9 +19,14 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Checkbox, Icon, TextField } from "../../main";
+import classNames from "classnames";
 import React from "react";
+
+import { useTheme } from "../../assets/ThemeProvider";
+import { Checkbox, Icon, TextField } from "../../main";
 import { TextFieldProps } from "../../molecules/Input/TextField";
+
+import styles from "./styles.module.css";
 
 export type TableProps<TData> = {
   /**
@@ -75,6 +76,10 @@ export type TableProps<TData> = {
    * Optional props to pass to the search `TextField` component.
    */
   searchFieldProps?: TextFieldProps;
+  /**
+   * Optional prop controlling whether page-altering state changes should reset pagination (i.e. return to page 1)
+   */
+  autoResetPageIndex?: boolean;
   /**
    * An optional custom component to render to the right of the search bar.
    */
@@ -144,10 +149,7 @@ export function Table<T>({
             enableMultiRowSelection ? (
               <Checkbox
                 id="select-all-checkbox"
-                checked={
-                  table.getIsAllPageRowsSelected() ||
-                  table.getIsSomePageRowsSelected()
-                }
+                checked={table.getIsAllPageRowsSelected() || table.getIsSomePageRowsSelected()}
                 indeterminate={table.getIsSomePageRowsSelected()}
                 onChange={table.toggleAllPageRowsSelected}
               />
@@ -187,8 +189,7 @@ export function Table<T>({
     ...otherProps,
   });
 
-  const [paginationDisplayValue, setPaginationDisplayValue] =
-    React.useState<string>();
+  const [paginationDisplayValue, setPaginationDisplayValue] = React.useState<string>();
 
   // Handle changes to the initialGlobalFilter prop
   React.useEffect(() => {
@@ -208,7 +209,7 @@ export function Table<T>({
       <div className={styles.hat}>
         {enableGlobalFiltering && (
           <TextField
-            value={table.getState().globalFilter}
+            value={table.getState().globalFilter as string}
             onChange={table.setGlobalFilter}
             {...searchFieldProps}
           />
@@ -227,14 +228,13 @@ export function Table<T>({
                     className={cx(styles.headerCell, {
                       [styles.sortable]: header.column.getCanSort(),
                     })}
-                    onClick={() => header.column.toggleSorting()}
+                    onClick={() => {
+                      header.column.toggleSorting();
+                    }}
                   >
                     {header.isPlaceholder
                       ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                      : flexRender(header.column.columnDef.header, header.getContext())}
                     {/* Column Sort Handle */}
                     {header.column.getCanSort() && (
                       <div className={styles.sortToggleContainer}>
@@ -271,9 +271,7 @@ export function Table<T>({
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id} className={styles.dataRow}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
+                <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
               ))}
             </tr>
           ))}
@@ -290,9 +288,7 @@ export function Table<T>({
           >
             <Icon
               name="ic_caretleft"
-              fill={
-                table.getCanPreviousPage() ? colors.primary_dark : colors.gray_3
-              }
+              fill={table.getCanPreviousPage() ? colors.primary_dark : colors.gray_3}
               stroke="transparent"
             />
           </div>
@@ -315,9 +311,7 @@ export function Table<T>({
           >
             <Icon
               name="ic_caretright"
-              fill={
-                table.getCanNextPage() ? colors.primary_dark : colors.gray_3
-              }
+              fill={table.getCanNextPage() ? colors.primary_dark : colors.gray_3}
               stroke="transparent"
             />
           </div>

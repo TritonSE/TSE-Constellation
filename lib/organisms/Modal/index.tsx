@@ -1,10 +1,12 @@
 import { ReactNode } from "react";
-import { useTheme } from "../../assets/ThemeProvider";
-import styles from "./styles.module.css";
-import { Icon } from "../../main";
-import { BaseModal } from "../../internal/components/BaseModal";
 
-export interface ModalProps {
+import { useTheme } from "../../assets/ThemeProvider";
+import { BaseModal } from "../../internal/components/BaseModal";
+import { Icon } from "../../main";
+
+import styles from "./styles.module.css";
+
+export type ModalProps = {
   /**
    * Icon to be displayed at top left (optional)
    */
@@ -45,7 +47,7 @@ export interface ModalProps {
    * Whether to display dividers between the modal sections
    */
   withDividers: boolean;
-}
+};
 
 /**
  * A modal component that displays a pop-up message and, optionally,
@@ -60,7 +62,7 @@ export function Modal(props: ModalProps) {
     onClose,
     primaryActionComponent,
     secondaryActionComponent,
-    withDividers
+    withDividers,
   } = props;
   const { colors } = useTheme();
 
@@ -70,11 +72,7 @@ export function Modal(props: ModalProps) {
         {icon ?? null}
         <h2 className={styles.title}>{title}</h2>
         <button className={styles.closeButton} onClick={onClose}>
-          <Icon
-            name="ic_close_large"
-            fill={colors.gray_3}
-            stroke={colors.gray_3}
-          />
+          <Icon name="ic_close_large" fill={colors.gray_3} stroke={colors.gray_3} />
         </button>
       </div>
       <p
@@ -84,16 +82,16 @@ export function Modal(props: ModalProps) {
             ? {
                 borderTop: `1px solid ${colors.gray_1}`,
                 borderBottom: `1px solid ${colors.gray_1}`,
-                padding: "16px 24px"
+                padding: "16px 24px",
               }
             : {
-                padding: "0 24px"
+                padding: "0 24px",
               }
         }
       >
         {content}
       </p>
-      {primaryActionComponent || secondaryActionComponent ? (
+      {primaryActionComponent ?? secondaryActionComponent ? (
         <div className={styles.actionsContainer}>
           {secondaryActionComponent ?? <div />}
           {primaryActionComponent ?? <div />}

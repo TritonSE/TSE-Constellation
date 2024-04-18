@@ -1,7 +1,8 @@
 import { ReactNode, useState } from "react";
+
 import { Modal } from "../../lib/main";
 
-export interface WrappedModalProps {
+export type WrappedModalProps = {
   /**
    * Icon to be displayed at top left (optional)
    */
@@ -31,7 +32,7 @@ export interface WrappedModalProps {
    * Whether to display dividers between the modal sections
    */
   withDividers: boolean;
-}
+};
 
 /**
  * A wrapper around the Modal component that displays a button that can
@@ -42,11 +43,19 @@ export function WrappedModal(props: WrappedModalProps) {
 
   return (
     <>
-      <button onClick={() => setModalOpen(true)}>Open</button>
+      <button
+        onClick={() => {
+          setModalOpen(true);
+        }}
+      >
+        Open
+      </button>
       <Modal
         {...props}
         isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
+        onClose={() => {
+          setModalOpen(false);
+        }}
       />
     </>
   );

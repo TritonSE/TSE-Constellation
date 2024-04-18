@@ -1,13 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Button, Icon } from "../lib/main";
+
 import { WrappedModal } from "./wrappedComponents/WrappedModal";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Organisms/WrappedModal",
   component: WrappedModal,
-  args: {}
+  args: {},
 } satisfies Meta<typeof WrappedModal>;
 
 export default meta;
@@ -23,11 +24,9 @@ export const Default: Story = {
     title: "Title",
     content: "content placeholder",
     primaryActionComponent: <Button>Primary Action</Button>,
-    secondaryActionComponent: (
-      <Button variant="secondary">Secondary Action</Button>
-    ),
-    withDividers: true
-  }
+    secondaryActionComponent: <Button variant="secondary">Secondary Action</Button>,
+    withDividers: true,
+  },
 };
 
 /**
@@ -39,11 +38,9 @@ export const IconModal: Story = {
     title: "Title",
     content: "content placeholder",
     primaryActionComponent: <Button>Primary Action</Button>,
-    secondaryActionComponent: (
-      <Button variant="secondary">Secondary Action</Button>
-    ),
-    withDividers: true
-  }
+    secondaryActionComponent: <Button variant="secondary">Secondary Action</Button>,
+    withDividers: true,
+  },
 };
 
 /**
@@ -53,8 +50,8 @@ export const NoActionsModal: Story = {
   args: {
     title: "Title",
     content: "content placeholder",
-    withDividers: true
-  }
+    withDividers: true,
+  },
 };
 
 /**
@@ -64,6 +61,6 @@ export const NoDividersModal: Story = {
   args: {
     title: "Title",
     content: "content placeholder",
-    withDividers: false
-  }
+    withDividers: false,
+  },
 };

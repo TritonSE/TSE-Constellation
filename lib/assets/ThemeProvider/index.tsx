@@ -10,7 +10,7 @@ type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
 type HEX = `#${string}`;
 type Color = RGB | RGBA | HEX;
-export interface ThemeColors {
+export type ThemeColors = {
   /** Primary colors */
   primary_light: Color;
   primary_dark: Color;
@@ -44,47 +44,47 @@ export interface ThemeColors {
   gray_5: Color;
   gray_6: Color;
   black: Color;
-}
-export interface ThemeFonts {
+};
+export type ThemeFonts = {
   primary: string;
   secondary: string;
-}
-export interface Theme {
+};
+export type Theme = {
   colors: ThemeColors;
   fonts: ThemeFonts;
-}
-export interface ThemeProviderProps {
+};
+export type ThemeProviderProps = {
   colors?: ThemeColors;
   fonts?: ThemeFonts;
   fontInject?: string;
-}
+};
 
 // Default theme specified by the design system Figma.
 export const defaultTheme: Theme = {
   colors: {
-    primary_light:         '#FCF6E5', // Light off-white
-    primary_dark:          '#0C2B35', // TSE dark blue
-    secondary_accent_1:    '#153641', // Lighter variant of primary
-    secondary_accent_2:    '#EEE8D7', // Off-white
-    secondary_highlight_1: '#DEBB01', // Gold
-    secondary_highlight_2: '#428BCD', // Baby blue
-    tertiary_accent_1:     '#CEDCDC', // Light gray
-    tertiary_accent_2:     '#96A1A1', // Medium gray
-    tertiary_accent_3:     '#697B82', // Dark gray
-    background:            '#F9F9F9', // Slight off-white
-    surface:               '#FFFFFF', // White
-    success:               '#3BB966', // Green
-    error:                 '#B93B3B', // Red
-    disabled:              '#D8D8D8', // Gray
-    white:                 '#FFFFFF',
-    gray_0:                '#F3F3F3',
-    gray_1:                '#EBEBEB',
-    gray_2:                '#D8D8D8',
-    gray_3:                '#B4B4B4',
-    gray_4:                '#909090',
-    gray_5:                '#6C6C6C',
-    gray_6:                '#484848',
-    black:                 '#000000'
+    primary_light: "#FCF6E5", // Light off-white
+    primary_dark: "#0C2B35", // TSE dark blue
+    secondary_accent_1: "#153641", // Lighter variant of primary
+    secondary_accent_2: "#EEE8D7", // Off-white
+    secondary_highlight_1: "#DEBB01", // Gold
+    secondary_highlight_2: "#428BCD", // Baby blue
+    tertiary_accent_1: "#CEDCDC", // Light gray
+    tertiary_accent_2: "#96A1A1", // Medium gray
+    tertiary_accent_3: "#697B82", // Dark gray
+    background: "#F9F9F9", // Slight off-white
+    surface: "#FFFFFF", // White
+    success: "#3BB966", // Green
+    error: "#B93B3B", // Red
+    disabled: "#D8D8D8", // Gray
+    white: "#FFFFFF",
+    gray_0: "#F3F3F3",
+    gray_1: "#EBEBEB",
+    gray_2: "#D8D8D8",
+    gray_3: "#B4B4B4",
+    gray_4: "#909090",
+    gray_5: "#6C6C6C",
+    gray_6: "#484848",
+    black: "#000000",
   },
   fonts: {
     primary:
@@ -125,8 +125,12 @@ export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
   };
 
   // Generate CSS variables from JS objects
-  const cssColors = Object.entries(activeTheme.colors).map(([type, value]) => (`  --tse-constellation-color-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
-  const cssFonts = Object.entries(activeTheme.fonts).map(([type, value]) => (`  --tse-constellation-font-${type.replace(/_/g, '-')}: ${value};`)).join('\n');
+  const cssColors = Object.entries(activeTheme.colors)
+    .map(([type, value]) => `  --tse-constellation-color-${type.replace(/_/g, "-")}: ${value};`)
+    .join("\n");
+  const cssFonts = Object.entries(activeTheme.fonts)
+    .map(([type, value]) => `  --tse-constellation-font-${type.replace(/_/g, "-")}: ${value};`)
+    .join("\n");
 
   document.head.innerHTML += `${
     fontInject ??
@@ -139,7 +143,7 @@ ${cssFonts}
 }
 </style>`;
 
-  document.body.dataset.tseInitialized = 'true';
+  document.body.dataset.tseInitialized = "true";
 
   return children;
 }

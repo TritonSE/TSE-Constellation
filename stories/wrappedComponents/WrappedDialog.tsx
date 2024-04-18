@@ -1,7 +1,8 @@
-import { Dialog } from "../../lib/organisms/Dialog";
 import { ReactNode, useState } from "react";
 
-export interface WrappedDialogProps {
+import { Dialog } from "../../lib/organisms/Dialog";
+
+export type WrappedDialogProps = {
   /**
    * The variant of dialog (determines color theme & icon)
    */
@@ -31,7 +32,7 @@ export interface WrappedDialogProps {
    * Component to display as cancel action (only for error and info dialogs)
    */
   cancelComponent?: ReactNode;
-}
+};
 
 /**
  * A wrapper around the Dialog component that displays a button that can
@@ -42,11 +43,19 @@ export function WrappedDialog(props: WrappedDialogProps) {
 
   return (
     <>
-      <button onClick={() => setDialogOpen(true)}>Open</button>
+      <button
+        onClick={() => {
+          setDialogOpen(true);
+        }}
+      >
+        Open
+      </button>
       <Dialog
         {...props}
         isOpen={dialogOpen}
-        onClose={() => setDialogOpen(false)}
+        onClose={() => {
+          setDialogOpen(false);
+        }}
       />
     </>
   );

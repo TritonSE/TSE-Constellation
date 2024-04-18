@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import { Tooltip } from "../lib/main";
 
-import { Tooltip } from '../lib/main';
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'Molecules/Tooltip',
-  component: Tooltip
+  title: "Molecules/Tooltip",
+  component: Tooltip,
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;
@@ -21,6 +21,8 @@ export const Default: Story = {
     contents: "I'm a tooltip!",
     anchorElement: null,
     open: false,
-    onClose: () => {}
-  }
+    onClose: () => {
+      /* Placeholder function */
+    },
+  },
 };

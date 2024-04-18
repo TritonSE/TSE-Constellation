@@ -1,12 +1,14 @@
-import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "../lib/main";
+
 import { WrappedDialog } from "./wrappedComponents/WrappedDialog";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Organisms/WrappedDialog",
   component: WrappedDialog,
-  args: {}
+  args: {},
 } satisfies Meta<typeof WrappedDialog>;
 
 export default meta;
@@ -23,8 +25,8 @@ export const Default: Story = {
     content: "content placeholder",
     variant: "success",
     styleVersion: "styled",
-    actionComponent: <Button style={{ textWrap: "nowrap" }}>Done</Button>
-  }
+    actionComponent: <Button style={{ textWrap: "nowrap" }}>Done</Button>,
+  },
 };
 
 /**
@@ -36,8 +38,8 @@ export const SuccessMinimal: Story = {
     content: "Some content message...",
     variant: "success",
     styleVersion: "minimal",
-    actionComponent: <Button style={{ textWrap: "nowrap" }}>Done</Button>
-  }
+    actionComponent: <Button style={{ textWrap: "nowrap" }}>Done</Button>,
+  },
 };
 
 /**
@@ -49,8 +51,8 @@ export const SuccessStyled: Story = {
     content: "Some content message...",
     variant: "success",
     styleVersion: "styled",
-    actionComponent: <Button style={{ textWrap: "nowrap" }}>Done</Button>
-  }
+    actionComponent: <Button style={{ textWrap: "nowrap" }}>Done</Button>,
+  },
 };
 
 /**
@@ -62,10 +64,8 @@ export const SuccessDramatic: Story = {
     content: "Some content message...",
     variant: "success",
     styleVersion: "dramatic",
-    actionComponent: (
-      <Button style={{ width: "100%", textWrap: "nowrap" }}>Done</Button>
-    )
-  }
+    actionComponent: <Button style={{ width: "100%", textWrap: "nowrap" }}>Done</Button>,
+  },
 };
 
 /**
@@ -76,8 +76,8 @@ export const SuccessInline: Story = {
     title: "Mission Complete",
     content: "Auto action after X seconds",
     variant: "success",
-    styleVersion: "inline"
-  }
+    styleVersion: "inline",
+  },
 };
 
 /**
@@ -94,8 +94,8 @@ export const ErrorMinimal: Story = {
       <Button variant="secondary" style={{ textWrap: "nowrap" }}>
         Cancel
       </Button>
-    )
-  }
+    ),
+  },
 };
 
 /**
@@ -112,8 +112,8 @@ export const ErrorStyled: Story = {
       <Button variant="secondary" style={{ textWrap: "nowrap" }}>
         Cancel
       </Button>
-    )
-  }
+    ),
+  },
 };
 
 /**
@@ -125,15 +125,13 @@ export const ErrorDramatic: Story = {
     content: "Error message...",
     variant: "error",
     styleVersion: "dramatic",
-    actionComponent: (
-      <Button style={{ width: "100%", textWrap: "nowrap" }}>Try Again</Button>
-    ),
+    actionComponent: <Button style={{ width: "100%", textWrap: "nowrap" }}>Try Again</Button>,
     cancelComponent: (
       <Button variant="secondary" style={{ width: "100%", textWrap: "nowrap" }}>
         Cancel
       </Button>
-    )
-  }
+    ),
+  },
 };
 
 /**
@@ -144,8 +142,8 @@ export const ErrorInline: Story = {
     title: "Error Name",
     content: "Error message...",
     variant: "error",
-    styleVersion: "inline"
-  }
+    styleVersion: "inline",
+  },
 };
 
 /**
@@ -157,15 +155,13 @@ export const InfoMinimal: Story = {
     content: "Some content message...Are you sure?",
     variant: "info",
     styleVersion: "minimal",
-    actionComponent: (
-      <Button style={{ textWrap: "nowrap" }}>Yes, Continue</Button>
-    ),
+    actionComponent: <Button style={{ textWrap: "nowrap" }}>Yes, Continue</Button>,
     cancelComponent: (
       <Button variant="secondary" style={{ textWrap: "nowrap" }}>
         No, Cancel
       </Button>
-    )
-  }
+    ),
+  },
 };
 
 /**
@@ -177,15 +173,13 @@ export const InfoStyled: Story = {
     content: "Some content message...Are you sure?",
     variant: "info",
     styleVersion: "styled",
-    actionComponent: (
-      <Button style={{ textWrap: "nowrap" }}>Yes, Continue</Button>
-    ),
+    actionComponent: <Button style={{ textWrap: "nowrap" }}>Yes, Continue</Button>,
     cancelComponent: (
       <Button variant="secondary" style={{ textWrap: "nowrap" }}>
         No, Cancel
       </Button>
-    )
-  }
+    ),
+  },
 };
 
 /**
@@ -197,17 +191,13 @@ export const InfoDramatic: Story = {
     content: "Some content message...Are you sure?",
     variant: "info",
     styleVersion: "dramatic",
-    actionComponent: (
-      <Button style={{ width: "100%", textWrap: "nowrap" }}>
-        Yes, Continue
-      </Button>
-    ),
+    actionComponent: <Button style={{ width: "100%", textWrap: "nowrap" }}>Yes, Continue</Button>,
     cancelComponent: (
       <Button variant="secondary" style={{ width: "100%", textWrap: "nowrap" }}>
         No, Cancel
       </Button>
-    )
-  }
+    ),
+  },
 };
 
 /**
@@ -219,6 +209,6 @@ export const InfoInline: Story = {
     content: "Some content message...",
     variant: "info",
     styleVersion: "inline",
-    actionComponent: <Button style={{ textWrap: "nowrap" }}>Action</Button>
-  }
+    actionComponent: <Button style={{ textWrap: "nowrap" }}>Action</Button>,
+  },
 };

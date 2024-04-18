@@ -1,8 +1,9 @@
 import { CSSProperties, ReactNode, useEffect } from "react";
-import styles from "./styles.module.css";
 import { createPortal } from "react-dom";
 
-interface BaseModalProps {
+import styles from "./styles.module.css";
+
+type BaseModalProps = {
   /**
    * Whether the modal is currently open
    */
@@ -27,7 +28,7 @@ interface BaseModalProps {
    * Styles to apply to root element inside modal
    */
   rootStyle?: CSSProperties;
-}
+};
 
 /**
  * Internal, primitive base modal component used by user-facing modal components
@@ -38,10 +39,7 @@ export function BaseModal(props: BaseModalProps) {
 
   useEffect(() => {
     // Disable scrolling when modal is open
-    document.documentElement.style.setProperty(
-      "overflow",
-      isOpen ? "hidden" : "unset"
-    );
+    document.documentElement.style.setProperty("overflow", isOpen ? "hidden" : "unset");
   }, [isOpen]);
 
   return isOpen
@@ -50,12 +48,14 @@ export function BaseModal(props: BaseModalProps) {
           <div
             className={`${styles.root} ${rootClass}`}
             style={rootStyle}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
           >
             {children}
           </div>
         </div>,
-        document.body
+        document.body,
       )
     : null;
 }

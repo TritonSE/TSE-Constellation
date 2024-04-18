@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Icon } from "../lib/atoms/Icon";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -10,8 +10,8 @@ const meta = {
   argTypes: {
     size: { control: "number" },
     foregroundColor: { control: "color" },
-    backgroundColor: { control: "color" }
-  }
+    backgroundColor: { control: "color" },
+  },
 } satisfies Meta<typeof Icon>;
 
 export default meta;
@@ -24,8 +24,8 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    name: "ic_notification"
-  }
+    name: "ic_notification",
+  },
 };
 
 /**
@@ -34,8 +34,8 @@ export const Default: Story = {
 export const Size: Story = {
   args: {
     name: "ic_pending",
-    size: 100
-  }
+    size: 100,
+  },
 };
 
 /**
@@ -45,8 +45,8 @@ export const Success: Story = {
   args: {
     name: "ic_success",
     foregroundColor: "green",
-    backgroundColor: "black"
-  }
+    backgroundColor: "black",
+  },
 };
 
 /**
@@ -56,8 +56,8 @@ export const Error: Story = {
   args: {
     name: "ic_error",
     foregroundColor: "white",
-    backgroundColor: "red"
-  }
+    backgroundColor: "red",
+  },
 };
 
 /**
@@ -66,6 +66,6 @@ export const Error: Story = {
 export const CustomStyle: Story = {
   args: {
     name: "ic_gift",
-    style: { width: 120, height: 120, marginTop: 50 }
-  }
+    style: { width: 120, height: 120, marginTop: 50 },
+  },
 };

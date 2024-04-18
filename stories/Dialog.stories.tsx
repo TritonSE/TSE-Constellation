@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Button, Dialog } from "../lib/main";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Organisms/Dialog",
   component: Dialog,
-  args: {}
+  args: {},
 } satisfies Meta<typeof Dialog>;
 
 export default meta;
@@ -24,6 +24,6 @@ export const Default: Story = {
     isOpen: true,
     variant: "success",
     styleVersion: "styled",
-    actionComponent: <Button>Done</Button>
-  }
+    actionComponent: <Button>Done</Button>,
+  },
 };

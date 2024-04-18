@@ -1,11 +1,13 @@
 import { ReactNode } from "react";
+
 import { useTheme } from "../../assets/ThemeProvider";
 import { IconName } from "../../atoms/Icon";
 import { BaseModal } from "../../internal/components/BaseModal";
 import { Icon } from "../../main";
+
 import styles from "./styles.module.css";
 
-export interface DialogProps {
+export type DialogProps = {
   /**
    * The variant of dialog (determines color theme & icon)
    */
@@ -46,7 +48,7 @@ export interface DialogProps {
    * Component to display as cancel action (only for error and info dialogs)
    */
   cancelComponent?: ReactNode;
-}
+};
 
 /**
  * A dialog modal that displays a pop-up message to the user. Can be used for
@@ -61,7 +63,7 @@ export function Dialog(props: DialogProps) {
     isOpen,
     onClose,
     actionComponent,
-    cancelComponent
+    cancelComponent,
   } = props;
 
   const { colors } = useTheme();
@@ -70,15 +72,11 @@ export function Dialog(props: DialogProps) {
     variant === "success"
       ? colors.success
       : variant === "error"
-      ? colors.error
-      : colors.primary_dark;
+        ? colors.error
+        : colors.primary_dark;
 
   const iconName: IconName =
-    variant === "success"
-      ? "ic_success"
-      : variant === "error"
-      ? "ic_error"
-      : "ic_info";
+    variant === "success" ? "ic_success" : variant === "error" ? "ic_error" : "ic_info";
 
   const iconSize = styleVersion === "dramatic" ? 80 : 32;
 
@@ -96,7 +94,7 @@ export function Dialog(props: DialogProps) {
     <h2
       className={styles.title}
       style={{
-        color: styleVersion === "styled" ? colors.white : mainColor
+        color: styleVersion === "styled" ? colors.white : mainColor,
       }}
     >
       {title}
@@ -109,7 +107,7 @@ export function Dialog(props: DialogProps) {
       style={
         styleVersion === "inline"
           ? {
-              padding: "24px 0"
+              padding: "24px 0",
             }
           : {}
       }
@@ -135,9 +133,7 @@ export function Dialog(props: DialogProps) {
         <>
           <div
             className={styles.header}
-            style={
-              styleVersion === "styled" ? { backgroundColor: mainColor } : {}
-            }
+            style={styleVersion === "styled" ? { backgroundColor: mainColor } : {}}
           >
             {renderIcon()}
             {renderTitle()}

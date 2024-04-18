@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef } from "react";
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
+
 import { useTheme } from "../../assets/ThemeProvider";
+
 import styles from "./styles.module.css";
 
 // Names of all available icons
@@ -61,13 +62,13 @@ export const IconNames = [
   "ic_maximize",
   "ic_hide",
   "ic_show",
-  "ic_gift"
+  "ic_gift",
 ] as const;
 
 // Extract type representing one of the available icon names
 export type IconName = (typeof IconNames)[number];
 
-export interface IconProps {
+export type IconProps = {
   /**
    * Name of the icon to use, should be one of the available strings in IconName
    */
@@ -99,27 +100,28 @@ export interface IconProps {
    * Optional CSS styles to apply to SVG element
    */
   style?: CSSProperties;
-}
+};
+
+type DynamicSvgModule = { default: React.ComponentType<Partial<IconProps>> };
 
 /**
  * An icon component used to display one of the standard TSE icons.
  * Renders the icon as an SVG React component.
  */
 export function Icon(props: IconProps) {
-  const { name, size, className, style, foregroundColor, backgroundColor } =
-    props;
+  const { name, size, className, style, foregroundColor, backgroundColor } = props;
   const { colors } = useTheme();
 
   // Ref to icon SVG imported as a React component
   // https://medium.com/@erickhoury/react-dynamically-importing-svgs-and-render-as-react-component-b764b6475896
-  const importedIconRef = useRef<React.ComponentType<
-    Partial<IconProps>
-  > | null>(null);
+  const importedIconRef = useRef<React.ComponentType<Partial<IconProps>> | null>(null);
 
   // Use a meaningless state to force component to update
   // https://blog.logrocket.com/how-when-to-force-react-component-re-render/
-  const [, updateState] = useState<{}>({});
-  const forceUpdate = useCallback(() => updateState({}), []);
+  const [, updateState] = useState({});
+  const forceUpdate = useCallback(() => {
+    updateState({});
+  }, []);
 
   // Whether we have loaded the SVG component yet
   const [loading, setLoading] = useState(true);
@@ -127,12 +129,12 @@ export function Icon(props: IconProps) {
   useEffect(() => {
     document.documentElement.style.setProperty(
       `--tse-constellation-icon-foreground-${name}`,
-      foregroundColor ?? colors.primary_dark
+      foregroundColor ?? colors.primary_dark,
     );
 
     document.documentElement.style.setProperty(
       `--tse-constellation-icon-background-${name}`,
-      backgroundColor ?? colors.primary_dark
+      backgroundColor ?? colors.primary_dark,
     );
   }, [foregroundColor, backgroundColor]);
 
@@ -141,14 +143,16 @@ export function Icon(props: IconProps) {
 
     // Import icon from dynamic path based on provided icon name. We need
     // to do this here instead of at the top of file because path is dynamic.
-    import(`../../assets/icons/${name}.svg?react`)
-      .then((moduleObj) => {
+    void import(`../../assets/icons/${name}.svg?react`)
+      .then((moduleObj: DynamicSvgModule) => {
         importedIconRef.current = moduleObj.default;
         // Force component to re-render after icon changes
         forceUpdate();
       })
       // Allow import errors to propogate rather than catching them
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+      });
   }, [name]);
 
   if (loading) {

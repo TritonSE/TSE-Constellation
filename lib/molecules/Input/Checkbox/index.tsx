@@ -1,12 +1,13 @@
-import { CommonInputProps } from "../common";
-import styles from "./styles.module.css";
 import { useTheme } from "../../../assets/ThemeProvider";
 import CheckboxCheckedIcon from "../../../assets/icons/checkbox_checked.svg?react";
 import CheckboxIndeterminateIcon from "../../../assets/icons/checkbox_indeterminant.svg?react";
-import { RowInput } from "../common/RowInput";
 import { useInputControls } from "../../../internal/hooks/useInputControls";
+import { CommonInputProps } from "../common";
+import { RowInput } from "../common/RowInput";
 
-export interface CheckboxProps extends CommonInputProps {
+import styles from "./styles.module.css";
+
+export type CheckboxProps = {
   /**
    * ID for the checkbox input element. Must be unique in the document.
    * Required in order to match the label with the input element.
@@ -30,24 +31,14 @@ export interface CheckboxProps extends CommonInputProps {
    * @param newChecked whether the checkbox is checked after the change.
    */
   onChange?: (newChecked: boolean) => unknown;
-}
+} & CommonInputProps;
 
 /**
  * A checkbox input element, displays a single checkbox with a label. Can be
  * either controlled (via the checked prop) or uncontrolled.
  */
 export function Checkbox(props: CheckboxProps) {
-  const {
-    id,
-    label,
-    checked,
-    errorText,
-    caption,
-    disabled,
-    name,
-    indeterminate,
-    onChange,
-  } = props;
+  const { id, label, checked, errorText, caption, disabled, name, indeterminate, onChange } = props;
 
   const theme = useTheme();
 
@@ -61,8 +52,8 @@ export function Checkbox(props: CheckboxProps) {
   const checkboxColor = disabled
     ? theme.colors.disabled
     : errorText
-    ? theme.colors.error
-    : theme.colors.primary_dark;
+      ? theme.colors.error
+      : theme.colors.primary_dark;
 
   return (
     <RowInput
@@ -83,7 +74,9 @@ export function Checkbox(props: CheckboxProps) {
             style={{
               border: `3px solid ${checkboxColor}`,
             }}
-            onChange={(e) => handleChange(e.target.checked)}
+            onChange={(e) => {
+              handleChange(e.target.checked);
+            }}
             disabled={disabled}
           />
           <label
@@ -92,17 +85,9 @@ export function Checkbox(props: CheckboxProps) {
             style={internalChecked ? {} : { display: "none" }}
           >
             {indeterminate ? (
-              <CheckboxIndeterminateIcon
-                width={24}
-                height={24}
-                style={{ fill: checkboxColor }}
-              />
+              <CheckboxIndeterminateIcon width={24} height={24} style={{ fill: checkboxColor }} />
             ) : (
-              <CheckboxCheckedIcon
-                width={24}
-                height={24}
-                style={{ fill: checkboxColor }}
-              />
+              <CheckboxCheckedIcon width={24} height={24} style={{ fill: checkboxColor }} />
             )}
           </label>
         </div>

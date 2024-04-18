@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { Button, Modal } from "../lib/main";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: "Organisms/Modal",
   component: Modal,
-  args: {}
+  args: {},
 } satisfies Meta<typeof Modal>;
 
 export default meta;
@@ -23,9 +23,7 @@ export const Default: Story = {
     content: "content placeholder",
     isOpen: true,
     primaryActionComponent: <Button>Primary Action</Button>,
-    secondaryActionComponent: (
-      <Button variant="secondary">Secondary Action</Button>
-    ),
-    withDividers: true
-  }
+    secondaryActionComponent: <Button variant="secondary">Secondary Action</Button>,
+    withDividers: true,
+  },
 };

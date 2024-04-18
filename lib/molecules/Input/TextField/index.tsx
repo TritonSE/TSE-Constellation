@@ -1,11 +1,13 @@
-import { useTheme } from "../../../assets/ThemeProvider";
-import { CommonInputProps } from "../common";
-import styles from "./styles.module.css";
-import { ColumnInput } from "../common/ColumnInput";
-import { useInputControls } from "../../../internal/hooks/useInputControls";
 import { HTMLInputTypeAttribute } from "react";
 
-export interface TextFieldProps extends CommonInputProps {
+import { useTheme } from "../../../assets/ThemeProvider";
+import { useInputControls } from "../../../internal/hooks/useInputControls";
+import { CommonInputProps } from "../common";
+import { ColumnInput } from "../common/ColumnInput";
+
+import styles from "./styles.module.css";
+
+export type TextFieldProps = {
   /**
    * Placeholder text to display inside the text field if nothing has been typed.
    */
@@ -27,7 +29,7 @@ export interface TextFieldProps extends CommonInputProps {
    * The type of the input (e.g. "text", "password", "email", etc.)
    */
   type?: HTMLInputTypeAttribute;
-}
+} & CommonInputProps;
 
 /**
  * A text input element. Can be either controlled (via the value prop) or uncontrolled.
@@ -66,7 +68,9 @@ export function TextField(props: TextFieldProps) {
             border: `1px solid ${theme.colors.gray_2}`,
           }}
           value={internalValue}
-          onChange={(e) => handleChange(e.target.value)}
+          onChange={(e) => {
+            handleChange(e.target.value);
+          }}
         />
       }
       label={label}

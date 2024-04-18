@@ -1,10 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
-import { Button, Table, TextField } from "../lib/main";
-import { CONSTELLATIONS, Constellation } from "./constellation-data";
-import { TableProps } from "../lib/organisms/Table";
 import { RowSelectionState } from "@tanstack/react-table";
 import React from "react";
+
+import { Button, Table, TextField } from "../lib/main";
+import { TableProps } from "../lib/organisms/Table";
+
+import { CONSTELLATIONS, Constellation } from "./constellation-data";
+
+import type { Meta, StoryObj } from "@storybook/react";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -75,9 +77,7 @@ export const CustomCellRendering: Story = {
       {
         header: "Name",
         accessorKey: "name",
-        cell: ({ cell: { getValue } }) => (
-          <TextField value={getValue() as string} />
-        ),
+        cell: ({ cell: { getValue } }) => <TextField value={getValue() as string} />,
       },
       {
         header: "Abbr.",
@@ -187,11 +187,7 @@ const RowSelectionStory = (args: TableProps<unknown>) => {
 
   return (
     <>
-      <Table
-        {...args}
-        rowSelection={rowSelection}
-        onRowSelectionChange={setRowSelection}
-      />
+      <Table {...args} rowSelection={rowSelection} onRowSelectionChange={setRowSelection} />
 
       <div>
         <h2>Selected Rows</h2>
