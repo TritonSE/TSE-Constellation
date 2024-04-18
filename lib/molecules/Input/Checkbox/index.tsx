@@ -1,10 +1,10 @@
-import { CommonInputProps } from '../common';
-import styles from './styles.module.css';
-import { useTheme } from '../../../assets/ThemeProvider';
-import CheckboxCheckedIcon from '../../../assets/icons/checkbox_checked.svg?react';
-import CheckboxIndeterminantIcon from '../../../assets/icons/checkbox_indeterminant.svg?react';
-import { RowInput } from '../common/RowInput';
-import { useInputControls } from '../../../internal/hooks/useInputControls';
+import { CommonInputProps } from "../common";
+import styles from "./styles.module.css";
+import { useTheme } from "../../../assets/ThemeProvider";
+import CheckboxCheckedIcon from "../../../assets/icons/checkbox_checked.svg?react";
+import CheckboxIndeterminateIcon from "../../../assets/icons/checkbox_indeterminant.svg?react";
+import { RowInput } from "../common/RowInput";
+import { useInputControls } from "../../../internal/hooks/useInputControls";
 
 export interface CheckboxProps extends CommonInputProps {
   /**
@@ -20,10 +20,10 @@ export interface CheckboxProps extends CommonInputProps {
   checked?: boolean;
 
   /**
-   * Whether to display an indeterminant icon when the checkbox is checked
+   * Whether to display an indeterminate icon when the checkbox is checked
    * (a minus sign instead of a checkmark).
    */
-  indeterminant?: boolean;
+  indeterminate?: boolean;
 
   /**
    * Callback that fires when the checkbox's checked state is changed.
@@ -45,8 +45,8 @@ export function Checkbox(props: CheckboxProps) {
     caption,
     disabled,
     name,
-    indeterminant,
-    onChange
+    indeterminate,
+    onChange,
   } = props;
 
   const theme = useTheme();
@@ -54,7 +54,7 @@ export function Checkbox(props: CheckboxProps) {
   const { internalValue: internalChecked, handleChange } = useInputControls({
     value: checked,
     disabled,
-    onChange
+    onChange,
   });
 
   // Color for main checkbox and border
@@ -71,7 +71,7 @@ export function Checkbox(props: CheckboxProps) {
         <div
           className={styles.checkboxContainer}
           style={{
-            border: `2px solid transparent`
+            border: `2px solid transparent`,
           }}
         >
           <input
@@ -81,7 +81,7 @@ export function Checkbox(props: CheckboxProps) {
             checked={internalChecked}
             className={styles.checkbox}
             style={{
-              border: `3px solid ${checkboxColor}`
+              border: `3px solid ${checkboxColor}`,
             }}
             onChange={(e) => handleChange(e.target.checked)}
             disabled={disabled}
@@ -89,10 +89,10 @@ export function Checkbox(props: CheckboxProps) {
           <label
             htmlFor={id}
             className={styles.checkmarkIcon}
-            style={internalChecked ? {} : { display: 'none' }}
+            style={internalChecked ? {} : { display: "none" }}
           >
-            {indeterminant ? (
-              <CheckboxIndeterminantIcon
+            {indeterminate ? (
+              <CheckboxIndeterminateIcon
                 width={24}
                 height={24}
                 style={{ fill: checkboxColor }}

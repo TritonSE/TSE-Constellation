@@ -1,8 +1,9 @@
-import { useTheme } from '../../../assets/ThemeProvider';
-import { CommonInputProps } from '../common';
-import styles from './styles.module.css';
-import { ColumnInput } from '../common/ColumnInput';
-import { useInputControls } from '../../../internal/hooks/useInputControls';
+import { useTheme } from "../../../assets/ThemeProvider";
+import { CommonInputProps } from "../common";
+import styles from "./styles.module.css";
+import { ColumnInput } from "../common/ColumnInput";
+import { useInputControls } from "../../../internal/hooks/useInputControls";
+import { HTMLInputTypeAttribute } from "react";
 
 export interface TextFieldProps extends CommonInputProps {
   /**
@@ -21,6 +22,11 @@ export interface TextFieldProps extends CommonInputProps {
    * @param newValue the new value of the entered text
    */
   onChange?: (newValue: string) => unknown;
+
+  /**
+   * The type of the input (e.g. "text", "password", "email", etc.)
+   */
+  type?: HTMLInputTypeAttribute;
 }
 
 /**
@@ -35,7 +41,8 @@ export function TextField(props: TextFieldProps) {
     name,
     placeholder,
     value,
-    onChange
+    onChange,
+    type = "text",
   } = props;
 
   const theme = useTheme();
@@ -43,19 +50,20 @@ export function TextField(props: TextFieldProps) {
   const { internalValue, handleChange } = useInputControls({
     value,
     disabled,
-    onChange
+    onChange,
   });
 
   return (
     <ColumnInput
       inputElement={
         <input
+          type={type}
           name={name}
           className={styles.input}
           placeholder={placeholder}
           disabled={disabled}
           style={{
-            border: `1px solid ${theme.colors.gray_2}`
+            border: `1px solid ${theme.colors.gray_2}`,
           }}
           value={internalValue}
           onChange={(e) => handleChange(e.target.value)}
