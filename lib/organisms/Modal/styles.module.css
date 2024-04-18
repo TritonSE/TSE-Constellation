@@ -1,4 +1,57 @@
-.button {
-  padding: 1rem;
+.titleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  color: black;
+  font-family: "Rubik";
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+  width: 100%;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  outline: none;
   cursor: pointer;
+}
+
+.content {
+  margin: 0 -24px;
+  color: black;
+  font-family: "Rubik";
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.actionsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 16px;
+}
+
+@media screen and (max-width: 650px) {
+  .root {
+    min-width: 275px !important;
+    padding: 16px !important;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .content {
+    margin: 0 -16px;
+    padding: 16px;
+  }
+
+  .actionsContainer {
+    flex-direction: column-reverse;
+  }
 }
