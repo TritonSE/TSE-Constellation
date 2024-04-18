@@ -20,3 +20,4 @@ export { Tooltip } from "./molecules/Tooltip";
 /** ORGANISMS */
 export { Dialog } from "./organisms/Dialog";
 export { Modal } from "./organisms/Modal";
+export { Table } from "./organisms/Table";

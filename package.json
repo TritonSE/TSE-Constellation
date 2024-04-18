@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.9",
+    "@tanstack/react-table": "^8.13.2",
     "classnames": "^2.5.1",
     "vite-plugin-svgr": "^4.2.0"
   },
