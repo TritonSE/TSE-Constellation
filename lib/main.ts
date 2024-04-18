@@ -3,7 +3,7 @@
  */
 
 /** THEMING */
-export { ThemeProvider } from "./assets/ThemeProvider";
+export { ThemeProvider, defaultTheme, useTheme } from "./assets/ThemeProvider";
 
 /** ATOMS */
 export { Button } from "./atoms/Button";
@@ -16,3 +16,8 @@ export { Radio } from "./molecules/Input/Radio";
 export { TextField } from "./molecules/Input/TextField";
 export { Toggle } from "./molecules/Input/Toggle";
 export { Tooltip } from "./molecules/Tooltip";
+
+/** ORGANISMS */
+export { Dialog } from "./organisms/Dialog";
+export { Modal } from "./organisms/Modal";
+export { Table } from "./organisms/Table";

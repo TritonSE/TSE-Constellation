@@ -5,23 +5,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 html {
-  font-family: var(--tse-constellation-font-secondary);
-  background-color: var(--tse-constellation-color-white);
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
   font-family: var(--tse-constellation-font-primary);
-}
-span,
-p,
-a,
-button,
-input {
-  font-family: var(--tse-constellation-font-secondary);
+  background-color: var(--tse-constellation-color-white);
 }
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */

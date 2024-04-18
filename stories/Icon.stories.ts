@@ -9,8 +9,8 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     size: { control: "number" },
-    stroke: { control: "color" },
-    fill: { control: "color" },
+    foregroundColor: { control: "color" },
+    backgroundColor: { control: "color" },
   },
 } satisfies Meta<typeof Icon>;
 
@@ -39,22 +39,24 @@ export const Size: Story = {
 };
 
 /**
- * Icon with custom stroke color
+ * Success icon
  */
-export const Stroke: Story = {
+export const Success: Story = {
   args: {
-    name: "ic_return",
-    stroke: "red",
+    name: "ic_success",
+    foregroundColor: "green",
+    backgroundColor: "black",
   },
 };
 
 /**
  * Icon with custom fill color
  */
-export const Fill: Story = {
+export const Error: Story = {
   args: {
-    name: "ic_pending",
-    fill: "green",
+    name: "ic_error",
+    foregroundColor: "white",
+    backgroundColor: "red",
   },
 };
 

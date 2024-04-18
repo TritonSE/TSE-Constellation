@@ -1,6 +1,6 @@
 import { useTheme } from "../../../assets/ThemeProvider";
 import CheckboxCheckedIcon from "../../../assets/icons/checkbox_checked.svg?react";
-import CheckboxIndeterminantIcon from "../../../assets/icons/checkbox_indeterminant.svg?react";
+import CheckboxIndeterminateIcon from "../../../assets/icons/checkbox_indeterminant.svg?react";
 import { useInputControls } from "../../../internal/hooks/useInputControls";
 import { CommonInputProps } from "../common";
 import { RowInput } from "../common/RowInput";
@@ -21,10 +21,10 @@ export type CheckboxProps = {
   checked?: boolean;
 
   /**
-   * Whether to display an indeterminant icon when the checkbox is checked
+   * Whether to display an indeterminate icon when the checkbox is checked
    * (a minus sign instead of a checkmark).
    */
-  indeterminant?: boolean;
+  indeterminate?: boolean;
 
   /**
    * Callback that fires when the checkbox's checked state is changed.
@@ -38,7 +38,7 @@ export type CheckboxProps = {
  * either controlled (via the checked prop) or uncontrolled.
  */
 export function Checkbox(props: CheckboxProps) {
-  const { id, label, checked, errorText, caption, disabled, name, indeterminant, onChange } = props;
+  const { id, label, checked, errorText, caption, disabled, name, indeterminate, onChange } = props;
 
   const theme = useTheme();
 
@@ -84,8 +84,8 @@ export function Checkbox(props: CheckboxProps) {
             className={styles.checkmarkIcon}
             style={internalChecked ? {} : { display: "none" }}
           >
-            {indeterminant ? (
-              <CheckboxIndeterminantIcon width={24} height={24} style={{ fill: checkboxColor }} />
+            {indeterminate ? (
+              <CheckboxIndeterminateIcon width={24} height={24} style={{ fill: checkboxColor }} />
             ) : (
               <CheckboxCheckedIcon width={24} height={24} style={{ fill: checkboxColor }} />
             )}

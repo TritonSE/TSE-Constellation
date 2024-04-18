@@ -80,16 +80,16 @@ export type IconProps = {
   size?: number;
 
   /**
-   * Stroke color, i.e. color of lines/paths within the SVG.
+   * Foreground color, for elements like checkmarks and locks within the SVG.
    * Defaults to theme primary dark color
    */
-  stroke?: string;
+  foregroundColor?: string;
 
   /**
-   * Fill color, i.e. color of shapes like rectangles or circles within the SVG.
+   * Background color, for filling in the background circle/other shapes in the SVG.
    * Defaults to theme primary light color
    */
-  fill?: string;
+  backgroundColor?: string;
 
   /**
    * Optional className to apply to SVG element
@@ -109,7 +109,7 @@ type DynamicSvgModule = { default: React.ComponentType<Partial<IconProps>> };
  * Renders the icon as an SVG React component.
  */
 export function Icon(props: IconProps) {
-  const { name, size, stroke, fill, className, style } = props;
+  const { name, size, className, style, foregroundColor, backgroundColor } = props;
   const { colors } = useTheme();
 
   // Ref to icon SVG imported as a React component
@@ -125,6 +125,18 @@ export function Icon(props: IconProps) {
 
   // Whether we have loaded the SVG component yet
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      `--tse-constellation-icon-foreground-${name}`,
+      foregroundColor ?? colors.primary_dark,
+    );
+
+    document.documentElement.style.setProperty(
+      `--tse-constellation-icon-background-${name}`,
+      backgroundColor ?? colors.primary_dark,
+    );
+  }, [foregroundColor, backgroundColor]);
 
   useEffect(() => {
     setLoading(true);
@@ -154,8 +166,6 @@ export function Icon(props: IconProps) {
   return (
     <ImportedIcon
       className={`${className ?? ""} ${styles.icon}`}
-      stroke={stroke ?? colors.primary_dark}
-      fill={fill ?? colors.primary_light}
       {...(size === undefined ? {} : { width: size, height: size })}
       style={style}
     />

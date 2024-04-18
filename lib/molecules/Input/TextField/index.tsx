@@ -1,3 +1,5 @@
+import { HTMLInputTypeAttribute } from "react";
+
 import { useTheme } from "../../../assets/ThemeProvider";
 import { useInputControls } from "../../../internal/hooks/useInputControls";
 import { CommonInputProps } from "../common";
@@ -22,13 +24,28 @@ export type TextFieldProps = {
    * @param newValue the new value of the entered text
    */
   onChange?: (newValue: string) => unknown;
+
+  /**
+   * The type of the input (e.g. "text", "password", "email", etc.)
+   */
+  type?: HTMLInputTypeAttribute;
 } & CommonInputProps;
 
 /**
  * A text input element. Can be either controlled (via the value prop) or uncontrolled.
  */
 export function TextField(props: TextFieldProps) {
-  const { label, errorText, caption, disabled, name, placeholder, value, onChange } = props;
+  const {
+    label,
+    errorText,
+    caption,
+    disabled,
+    name,
+    placeholder,
+    value,
+    onChange,
+    type = "text",
+  } = props;
 
   const theme = useTheme();
 
@@ -42,6 +59,7 @@ export function TextField(props: TextFieldProps) {
     <ColumnInput
       inputElement={
         <input
+          type={type}
           name={name}
           className={styles.input}
           placeholder={placeholder}
