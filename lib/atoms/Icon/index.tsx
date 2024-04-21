@@ -63,6 +63,8 @@ export const IconNames = [
   "ic_hide",
   "ic_show",
   "ic_gift",
+  "ic_tse_lightbulb_dark",
+  "ic_tse_lightbulb_light",
 ] as const;
 
 // Extract type representing one of the available icon names
