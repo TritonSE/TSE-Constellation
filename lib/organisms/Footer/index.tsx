@@ -13,9 +13,6 @@ export type FooterProps = {
    * Background color for the footer
    */
   backgroundColor?: string;
-
-  // Whether to display a dark icon (defaults to true)
-  dark?: boolean;
 };
 
 /**
@@ -28,12 +25,7 @@ export function Footer(props: FooterProps) {
 
   return (
     <div className={styles.root} style={{ backgroundColor }}>
-      <Icon
-        name={props.dark === false ? "ic_tse_lightbulb_light" : "ic_tse_lightbulb_dark"}
-        size={32}
-        foregroundColor={"red"}
-        backgroundColor={"red"}
-      />
+      <Icon name="ic_tse_lightbulb" size={32} foregroundColor={mainColor} />
       <p
         className={styles.text}
         style={{

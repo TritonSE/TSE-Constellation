@@ -20,15 +20,15 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 
 /**
- * A light background footer
- */
-export const Light: Story = {
-  args: { mainColor: "#0C2B35", backgroundColor: "white", dark: false },
-};
-
-/**
  * A dark background footer
  */
 export const Dark: Story = {
-  args: { mainColor: "#FCF6E5", backgroundColor: "rgba(0, 0, 0, 0.50)", dark: true },
+  args: { mainColor: "#FCF6E5", backgroundColor: "rgba(0, 0, 0, 0.50)" },
+};
+
+/**
+ * A light background footer
+ */
+export const Light: Story = {
+  args: { mainColor: "#0C2B35", backgroundColor: "white" },
 };
