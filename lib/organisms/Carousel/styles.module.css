@@ -1,4 +1,41 @@
-.button {
-  padding: 1rem;
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrowButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  padding: 4px;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+}
+
+.dotsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
   cursor: pointer;
 }
