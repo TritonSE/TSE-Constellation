@@ -80,6 +80,18 @@ export type IconProps = {
   size?: number;
 
   /**
+   * SVG fill color, for shading within specific icon elements.
+   * Defaults to the theme primary dark color
+   */
+  fill?: string;
+
+  /**
+   * SVG stroke color, for shading the outside edge of specific icon elements.
+   * Defaults to the theme primary light color
+   */
+  stroke?: string;
+
+  /**
    * Foreground color, for elements like checkmarks and locks within the SVG.
    * Defaults to theme primary dark color
    */
