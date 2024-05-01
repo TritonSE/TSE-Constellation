@@ -21,3 +21,4 @@ export { Tooltip } from "./molecules/Tooltip";
 export { Dialog } from "./organisms/Dialog";
 export { Modal } from "./organisms/Modal";
 export { Table } from "./organisms/Table";
+export { Card, SectionCard, ProfileCard, RatingCard, ImageCard } from "./organisms/Card";

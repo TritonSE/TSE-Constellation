@@ -1,4 +1,69 @@
-.button {
-  padding: 1rem;
-  cursor: pointer;
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5px;
+  gap: 16px;
+}
+
+.title {
+  font-family: Rubik;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--tse-constellation-color-black);
+  margin: 0;
+}
+
+.content {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--tse-constellation-color-gray-4);
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+.sectionColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sectionTitle {
+  font-size: 16px;
+}
+
+.profileTitle {
+  font-size: 18px;
+}
+
+.profileColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ratingRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2px;
+}
+
+.starsContainer {
+  gap: 0;
+}
+
+.ratingText {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--tse-constellation-color-gray-4);
+  margin: 0;
 }
