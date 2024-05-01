@@ -43,6 +43,40 @@ export const Default: Story = {
         imageComponent={
           <svg
             xmlns="http://www.w3.org/2000/svg"
+            width="98"
+            height="98"
+            viewBox="0 0 98 98"
+            fill="none"
+          >
+            <circle cx="49" cy="49" r="49" fill="#D9D9D9" />
+          </svg>
+        }
+        title="Image Title"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        backgroundStyle={{ height: 244 }}
+      />,
+      <CarouselCard
+        key={2}
+        imageComponent={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="104"
+            height="90"
+            viewBox="0 0 104 90"
+            fill="none"
+          >
+            <path d="M52 0L103.962 90H0.038475L52 0Z" fill="#D9D9D9" />
+          </svg>
+        }
+        title="Image Title"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        backgroundStyle={{ height: 244 }}
+      />,
+      <CarouselCard
+        key={3}
+        imageComponent={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
             width="109"
             height="103"
             viewBox="0 0 109 103"
@@ -59,7 +93,27 @@ export const Default: Story = {
         backgroundStyle={{ height: 244 }}
       />,
       <CarouselCard
-        key={2}
+        key={4}
+        imageComponent={
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="106"
+            height="100"
+            viewBox="0 0 106 100"
+            fill="none"
+          >
+            <path
+              d="M53 0L105.308 38.0041L85.3282 99.4959H20.6718L0.691891 38.0041L53 0Z"
+              fill="#D9D9D9"
+            />
+          </svg>
+        }
+        title="Image Title"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        backgroundStyle={{ height: 244 }}
+      />,
+      <CarouselCard
+        key={5}
         imageComponent={
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -78,24 +132,10 @@ export const Default: Story = {
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
         backgroundStyle={{ height: 244 }}
       />,
-      <CarouselCard
-        key={3}
-        imageComponent={
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="104"
-            height="90"
-            viewBox="0 0 104 90"
-            fill="none"
-          >
-            <path d="M52 0L103.962 90H0.038475L52 0Z" fill="#D9D9D9" />
-          </svg>
-        }
-        title="Image Title"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        backgroundStyle={{ height: 244 }}
-      />,
     ],
+    style: {
+      maxWidth: 980,
+    },
   },
 };
 

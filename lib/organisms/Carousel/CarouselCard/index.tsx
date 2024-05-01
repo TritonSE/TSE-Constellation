@@ -5,22 +5,34 @@ import { useTheme } from "../../../main";
 import styles from "./styles.module.css";
 
 type CarouselCardProps = {
-  // The background color of the upper part of the card. Defaults to the theme primary dark color.
+  /**
+   * The background color of the upper part of the card. Defaults to the theme primary dark color.
+   */
   backgroundColor?: string;
 
-  // An optional image to display inside the upper part of the card.
+  /**
+   * An optional image to display inside the upper part of the card.
+   */
   imageComponent?: ReactNode;
 
-  // The title text to display on the lower part of the card.
+  /**
+   * The title text to display on the lower part of the card.
+   */
   title: string;
 
-  // The description text to display on the lower part of the card.
+  /**
+   * The description text to display on the lower part of the card.
+   */
   description: string;
 
-  // Optional styles to apply to the background of the upper part of the card.
+  /**
+   * Optional styles to apply to the background of the upper part of the card.
+   */
   backgroundStyle?: CSSProperties;
 
-  // Optional styles to apply to the root of the card.
+  /**
+   * Optional styles to apply to the root of the card.
+   */
   style?: CSSProperties;
 };
 
