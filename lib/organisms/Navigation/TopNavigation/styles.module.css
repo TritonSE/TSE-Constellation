@@ -1,0 +1,60 @@
+.container {
+  box-sizing: border-box;
+  padding: 30px 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 100%;
+  @media only screen and (max-width: 800px) {
+    padding: 8px 7.5%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+  }
+}
+
+.logo {
+  max-height: 48px;
+  margin-right: 18px;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.items {
+  display: flex;
+  flex-direction: row;
+  gap: 56px;
+  @media only screen and (max-width: 800px) {
+    width: 100%;
+    gap: unset;
+    justify-content: space-between;
+  }
+}
+
+.itemRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  @media only screen and (max-width: 800px) {
+    font-size: 14px;
+  }
+}
+
+.underline {
+  width: 100%;
+  height: 3px;
+  border-radius: 4px;
+  background: var(--tse-constellation-color-gray-3);
+}
+
+.actionElement {
+  margin-left: 56px;    
+}
