@@ -1,5 +1,5 @@
+import { TopNavigation } from "../lib/main";
 import { TextField } from "../lib/molecules/Input/TextField";
-import { TopNavigation } from "../lib/organisms/Navigation/TopNavigation";
 
 import type { Meta, StoryObj } from "@storybook/react";
 

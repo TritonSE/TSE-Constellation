@@ -1,4 +1,4 @@
-import { SideNavigation } from "../lib/organisms/Navigation/SideNavigation";
+import { SideNavigation } from "../lib/main";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
