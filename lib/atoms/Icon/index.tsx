@@ -2,8 +2,6 @@ import { CSSProperties, useCallback, useEffect, useRef, useState } from "react";
 
 import { useTheme } from "../../assets/ThemeProvider";
 
-import styles from "./styles.module.css";
-
 // Names of all available icons
 export const IconNames = [
   "ic_arrowback",
@@ -81,13 +79,13 @@ export type IconProps = {
 
   /**
    * SVG fill color, for shading within specific icon elements.
-   * Defaults to the theme primary dark color
+   * Defaults to the theme gray 2 color
    */
   fill?: string;
 
   /**
    * SVG stroke color, for shading the outside edge of specific icon elements.
-   * Defaults to the theme primary light color
+   * Defaults to transparent. If an icon seems to be invisible, try setting this to a color.
    */
   stroke?: string;
 
@@ -121,8 +119,17 @@ type DynamicSvgModule = { default: React.ComponentType<Partial<IconProps>> };
  * Renders the icon as an SVG React component.
  */
 export function Icon(props: IconProps) {
-  const { name, size, className, style, foregroundColor, backgroundColor } = props;
   const { colors } = useTheme();
+  const {
+    name,
+    size,
+    className,
+    style,
+    foregroundColor,
+    backgroundColor,
+    stroke = "transparent",
+    fill = colors.gray_2,
+  } = props;
 
   // Ref to icon SVG imported as a React component
   // https://medium.com/@erickhoury/react-dynamically-importing-svgs-and-render-as-react-component-b764b6475896
@@ -177,8 +184,10 @@ export function Icon(props: IconProps) {
 
   return (
     <ImportedIcon
-      className={`${className ?? ""} ${styles.icon}`}
+      className={className ?? ""}
       {...(size === undefined ? {} : { width: size, height: size })}
+      fill={fill}
+      stroke={stroke}
       style={style}
     />
   );
