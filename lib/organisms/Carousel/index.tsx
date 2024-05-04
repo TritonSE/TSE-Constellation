@@ -96,7 +96,7 @@ export function Carousel(props: CarouselProps) {
               key={index}
               style={{
                 // Set the width on each card to take up an appropriate fraction of the scroll container
-                minWidth: `calc(${100 / numCardsOnScreen}% - ${(CARD_GAP * (numCardsOnScreen - 1)) / numCardsOnScreen}px)`,
+                minWidth: `calc(${100 / numCardsOnScreen}% - ${Math.ceil((CARD_GAP * (numCardsOnScreen - 1)) / numCardsOnScreen)}px)`,
               }}
             >
               {card}

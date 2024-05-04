@@ -53,4 +53,5 @@
   height: 14px;
   border-radius: 7px;
   cursor: pointer;
+  transition: background-color 0.75s ease;
 }
