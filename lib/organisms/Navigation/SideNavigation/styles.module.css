@@ -1,0 +1,98 @@
+/* Desktop Side Navigation */
+.navContainer {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+  background-color: white;
+  height: 100vh;
+}
+
+.hat {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 48px;
+}
+
+.toggle {
+  cursor: pointer;
+}
+
+.logo {
+  max-height: 48px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.sectionHeader {
+  font-size: 16px;
+}
+
+.itemRow {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  font-size: 14px;
+  align-items: center;
+  cursor: pointer;
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.itemRow.centered {
+  justify-content: center;
+}
+
+/* Mobile Side Navigation */
+.mobile .topNav {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mobile .topNav > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile .toggle {
+  justify-content: flex-start !important;
+}
+
+.mobile .hat {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.mobile .navContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 32px;
+  justify-content: flex-start;
+}
+
+.mobile .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+}
