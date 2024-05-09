@@ -1,4 +1,57 @@
-.button {
-  padding: 1rem;
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+
+.row {
+  position: relative;
+  max-width: calc(100% - 144px);
+  overflow: hidden;
+  padding: 0 72px;
+}
+
+.arrowButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  padding: 4px;
+}
+
+.leftArrowButton {
+  left: 20px;
+}
+
+.rightArrowButton {
+  right: 20px;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 70px;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.dotsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
   cursor: pointer;
+  transition: background-color 0.75s ease;
 }
