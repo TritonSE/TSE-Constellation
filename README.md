@@ -4,9 +4,39 @@ TSE Constellation is a unified set of components aiming to give TSE projects a c
 
 It is implemented as a [React](https://react.dev) component library written using [TypeScript](https://typescriptlang.org) and built using [Vite](https://vitejs.dev).
 
+## Documentation and Demo
+
+For easy-to-navigate and fully interactive documentation, please visit the [Constellation Storybook](https://tritonse.github.io/TSE-Constellation/?path=/docs/welcome--documentation).
+
+Examples and prop configurations are provided for each component exported by Constellation.
+
 ## Using in a Project
 
-This section is still a TODO until we publish our first version of the library.
+To add Constellation to a new or existing React project, first install it via:
+
+```sh
+$ npm install --save-dev @tritonse/tse-constellation
+```
+
+Then in a top-level component (e.g. `App.tsx`), wrap the entire app in a `ThemeProvider` via:
+
+```tsx
+// ...
+
+import { ThemeProvider } from "@tritonse/tse-constellation";
+
+// ...
+
+function App() {
+  return (
+    <ThemeProvider>
+      <MyReactApp />
+    </ThemeProvider>
+  );
+}
+```
+
+At this point, any components displayed on the [Constellation Storybook](https://tritonse.github.io/TSE-Constellation/?path=/docs/welcome--documentation) can be imported and used.
 
 ## Development
 
@@ -80,4 +110,8 @@ import myImage from "./assets/myImage.svg";
 
 ### Publishing
 
-This section is still a TODO until we publish our first version of the library.
+For those with write access to the `@tritonse` NPM account, a new version can be published via:
+
+```sh
+$ npm publish --access public
+```

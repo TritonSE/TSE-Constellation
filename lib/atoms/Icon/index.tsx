@@ -63,6 +63,7 @@ export const IconNames = [
   "ic_hide",
   "ic_show",
   "ic_gift",
+  "ic_tse_lightbulb",
 ] as const;
 
 // Extract type representing one of the available icon names
@@ -78,6 +79,18 @@ export type IconProps = {
    * Size of the icon (both width and height), in pixels. Defaults to 24
    */
   size?: number;
+
+  /**
+   * SVG fill color, for shading within specific icon elements.
+   * Defaults to the theme primary dark color
+   */
+  fill?: string;
+
+  /**
+   * SVG stroke color, for shading the outside edge of specific icon elements.
+   * Defaults to the theme primary light color
+   */
+  stroke?: string;
 
   /**
    * Foreground color, for elements like checkmarks and locks within the SVG.
