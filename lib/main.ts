@@ -23,3 +23,4 @@ export { Modal } from "./organisms/Modal";
 export { Table } from "./organisms/Table";
 export { TopNavigation } from "./organisms/Navigation/TopNavigation";
 export { SideNavigation } from "./organisms/Navigation/SideNavigation";
+export { Accordion } from "./organisms/Accordion";
