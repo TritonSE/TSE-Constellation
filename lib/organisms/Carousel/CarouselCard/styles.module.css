@@ -1,0 +1,32 @@
+.root {
+  border-radius: 10px;
+  border: 0.5px solid #000;
+}
+
+.image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+}
+
+.textContainer {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.description {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+}
