@@ -1,34 +1,23 @@
 import classNames from "classnames/bind";
+import { ReactNode } from "react";
 
 import { Icon } from "../../../atoms/Icon";
 import useDevice from "../../../internal/hooks/useDevice";
-import { Page } from "../common";
+import { NavigationProps, Page } from "../common";
 
 import styles from "./styles.module.css";
 
 export type TopNavigationProps = {
   /**
-   * The source URI for the logo image to display at the top of the navigation.
-   */
-  logoSrc: string;
-  /**
    * The list of navigation items to display in the top navigation, represented
-   * as an object with keys: label, onClick, and icon.
+   * as an object with keys: label, path, and icon.
    */
   navItems: Page[];
   /**
    * Optional action element to display at the right-most end of the navigation.
    */
-  actionElement?: React.ReactNode;
-  /**
-   * Optional class name to apply to the container element.
-   */
-  className?: string;
-  /**
-   * Optional CSS styles to apply to the container element.
-   */
-  style?: React.CSSProperties;
-};
+  actionElement?: ReactNode;
+} & NavigationProps;
 
 // See https://github.com/JedWatson/classnames for usage
 const cx = classNames.bind(styles);
@@ -38,7 +27,7 @@ const cx = classNames.bind(styles);
  * and as a bottom tab bar on mobile viewports.
  */
 export function TopNavigation(props: TopNavigationProps) {
-  const { logoSrc, navItems, actionElement, className, style } = props;
+  const { logoSrc, navItems, actionElement, renderLink, className, style } = props;
   const { isDesktop, isMobile } = useDevice();
 
   return (
@@ -46,17 +35,17 @@ export function TopNavigation(props: TopNavigationProps) {
       {isDesktop && logoSrc && <img src={logoSrc} alt="logo" className={styles.logo} />}
       {isDesktop && actionElement === undefined && <div className={styles.spacer}></div>}
       <div className={styles.items}>
-        {navItems.map((item, index) => (
-          <div
-            key={index}
-            className={cx(styles.itemRow, { [styles.centered]: !open })}
-            onClick={item.onClick}
-          >
-            {isMobile && <Icon name={item.icon} />}
-            <span>{item.label}</span>
-            {isDesktop && <div className={styles.underline}></div>}
-          </div>
-        ))}
+        {navItems.map((item) =>
+          renderLink(
+            item.path,
+            cx(styles.itemRow, { [styles.centered]: !open }),
+            <>
+              {isMobile && <Icon name={item.icon} />}
+              <span>{item.label}</span>
+              {isDesktop && <div className={styles.underline}></div>}
+            </>,
+          ),
+        )}
       </div>
       {isDesktop && actionElement !== undefined && <div className={styles.spacer}></div>}
       {isDesktop && actionElement && <div className={styles.actionElement}>{actionElement} </div>}

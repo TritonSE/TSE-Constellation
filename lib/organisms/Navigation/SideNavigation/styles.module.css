@@ -41,8 +41,8 @@
   font-size: 14px;
   align-items: center;
   cursor: pointer;
-  color: black;
-  text-decoration: none;
+  color: black !important;
+  text-decoration: none !important;
 }
 
 .itemRow.centered {

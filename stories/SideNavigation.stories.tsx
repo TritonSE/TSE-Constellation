@@ -18,27 +18,28 @@ const meta = {
       "Section header",
       {
         label: "Dashboard",
-        onClick: () => [],
+        path: "",
         icon: "ic_cart",
       },
       {
         label: "Search",
-        onClick: () => [],
+        path: "",
         icon: "ic_search",
       },
       "Section header",
       {
         label: "Settings",
-        onClick: () => [],
+        path: "",
         icon: "ic_settings",
       },
       "Section header",
       {
         label: "Help",
-        onClick: () => [],
+        path: "",
         icon: "ic_help",
       },
     ],
+    renderLink: (_, className, children) => <a className={className}>{children}</a>,
   },
 } satisfies Meta<typeof SideNavigation>;
 

@@ -1,36 +1,32 @@
 import classNames from "classnames/bind";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 import { Icon } from "../../../atoms/Icon";
 import useDevice from "../../../internal/hooks/useDevice";
-import { Page } from "../common";
+import { NavigationProps, Page } from "../common";
 
 import styles from "./styles.module.css";
 
 export type SideNavigationProps = {
   /**
-   * The source URI for the logo image to display at the top of the navigation.
-   */
-  logoSrc: string;
-  /**
    * The list of navigation items to display in the side navigation. A string
    * represents a section header, while a Page object represents a link.
    */
   navItems: (Page | string)[];
-  /**
-   * Optional class name to apply to the container element.
-   */
-  className?: string;
-  /**
-   * Optional CSS styles to apply to the container element.
-   */
-  style?: React.CSSProperties;
-};
+} & NavigationProps;
 
 // See https://github.com/JedWatson/classnames for usage
 const cx = classNames.bind(styles);
 
-const NavItems = ({ items, open }: { items: (Page | string)[]; open: boolean }) => (
+const NavItems = ({
+  renderLink,
+  items,
+  open,
+}: {
+  renderLink: (path: string | undefined, className: string, children: ReactNode) => ReactNode;
+  items: (Page | string)[];
+  open: boolean;
+}) => (
   <div className={styles.items}>
     {items.map((item, index) => {
       if (typeof item === "string") {
@@ -41,22 +37,20 @@ const NavItems = ({ items, open }: { items: (Page | string)[]; open: boolean }) 
         );
       }
 
-      return (
-        <div
-          key={index}
-          className={cx(styles.itemRow, { [styles.centered]: !open })}
-          onClick={item.onClick}
-        >
+      return renderLink(
+        item.path,
+        cx(styles.itemRow, { [styles.centered]: !open }),
+        <>
           <Icon name={item.icon} />
           {open && <span>{item.label}</span>}
-        </div>
+        </>,
       );
     })}
   </div>
 );
 
 const DesktopSideNavigation = (props: SideNavigationProps) => {
-  const { logoSrc, navItems, className, style } = props;
+  const { logoSrc, navItems, renderLink, className, style } = props;
   const [open, setOpen] = useState(true);
 
   const toggle = () => {
@@ -76,13 +70,13 @@ const DesktopSideNavigation = (props: SideNavigationProps) => {
         </div>
         {open && <img src={logoSrc} alt="logo" className={styles.logo} />}
       </div>
-      <NavItems items={navItems} open={open} />
+      <NavItems renderLink={renderLink} items={navItems} open={open} />
     </div>
   );
 };
 
 const MobileSideNavigation = (props: SideNavigationProps) => {
-  const { logoSrc, navItems, className, style } = props;
+  const { logoSrc, navItems, renderLink, className, style } = props;
   const [open, setOpen] = useState(false);
 
   return (
@@ -116,7 +110,7 @@ const MobileSideNavigation = (props: SideNavigationProps) => {
                 <Icon name="ic_menu_expanded_left" size={32} fill="black" stroke="black" />
               </div>
             </div>
-            <NavItems items={navItems} open={open} />
+            <NavItems renderLink={renderLink} items={navItems} open={open} />
           </div>
         </>
       )}
