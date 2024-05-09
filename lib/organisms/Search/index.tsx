@@ -64,7 +64,7 @@ export function Search(props: SearchProps) {
       <Icon
         name="ic_search"
         size={20}
-        foregroundColor={disabled ? colors.disabled : focused ? colors.gray_6 : colors.gray_4}
+        fill={disabled ? colors.disabled : focused ? colors.gray_6 : colors.gray_4}
       />
     ) : (
       props.searchIcon
