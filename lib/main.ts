@@ -21,4 +21,6 @@ export { Tooltip } from "./molecules/Tooltip";
 export { Dialog } from "./organisms/Dialog";
 export { Modal } from "./organisms/Modal";
 export { Table } from "./organisms/Table";
+export { Carousel } from "./organisms/Carousel";
+export { CarouselCard } from "./organisms/Carousel/CarouselCard";
 export { Footer } from "./organisms/Footer";
