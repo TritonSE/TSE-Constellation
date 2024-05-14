@@ -23,6 +23,7 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@cubedoodl/react-simple-scheduler": "^1.2.9",
     "@floating-ui/react": "^0.26.9",
     "@tanstack/react-table": "^8.16.0",
     "classnames": "^2.5.1",
