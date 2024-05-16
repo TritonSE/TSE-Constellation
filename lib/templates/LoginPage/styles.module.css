@@ -1,0 +1,131 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 128px;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.backLink {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+.backText {
+  color: var(--tse-constellation-color-primary-dark);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.nonprofitName {
+  color: var(--tse-constellation-color-primary-dark);
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 16px 0;
+}
+
+.title {
+  color: var(--tse-constellation-color-black);
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.captionRow {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  margin-bottom: 32px;
+}
+
+.caption {
+  color: var(--tse-constellation-color-gray-5);
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.captionAction {
+  color: var(--tse-constellation-color-primary-dark);
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  cursor: pointer;
+}
+
+.textFieldsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.forgotPassword {
+  color: var(--tse-constellation-color-black);
+  text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  margin: 16px 0 0 0;
+}
+
+.submitButton {
+  margin-top: 32px;
+}
+
+@media screen and (max-width: 850px) {
+  .root {
+    gap: 50px;
+  }
+
+  .backLink {
+    gap: 3px;
+  }
+
+  .backText {
+    font-size: 10px;
+  }
+
+  .nonprofitName {
+    font-size: 12px;
+    margin: 0 0 8px 0;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .captionRow {
+    margin-bottom: 14px;
+  }
+
+  .caption {
+    font-size: 10px;
+  }
+
+  .captionAction {
+    font-size: 10px;
+  }
+
+  .textFieldsContainer {
+    gap: 12px;
+  }
+
+  .forgotPassword {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .root {
+    flex-direction: column;
+  }
+}
