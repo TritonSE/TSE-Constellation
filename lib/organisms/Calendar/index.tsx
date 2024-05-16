@@ -2,13 +2,13 @@ import { Calendar as SimpleCalendar } from "@cubedoodl/react-simple-scheduler";
 
 import "./styles.css";
 
-type CalendarStyles = {
+export type CalendarStyles = {
   container: React.CSSProperties;
   head: React.CSSProperties;
   body: React.CSSProperties;
 };
 
-type CalendarProps = {
+export type CalendarProps = {
   /**
    * The currently-selected date (as a Date object)
    */
@@ -26,7 +26,7 @@ type CalendarProps = {
 };
 
 /**
- * A calendar component that allows users to select a date.
+ * A calendar (monthly view) component that allows users to select a date.
  *
  * This component is essentially a wrapper around the `Calendar` component from
  * Andrew's amazing `react-simple-scheduler` package. For complete usage information,
