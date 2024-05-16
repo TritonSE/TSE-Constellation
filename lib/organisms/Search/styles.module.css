@@ -1,0 +1,25 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.root:focus-within {
+  /* Change border color when input is focused */
+  border: 1px solid var(--tse-constellation-color-secondary-accent-1) !important;
+}
+
+.input {
+  border: none !important;
+  outline: none !important;
+  color: rgba(0, 0, 0, 0.5);
+  background-color: var(--tse-constellation-color-white) !important;
+}
+
+.input:focus {
+  color: var(--tse-constellation-color-gray-6);
+}

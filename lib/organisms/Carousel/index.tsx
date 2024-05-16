@@ -112,7 +112,7 @@ export function Carousel(props: CarouselProps) {
           }}
           disabled={!canScrollBack}
         >
-          <Icon name="ic_caretleft" foregroundColor={colors.white} />
+          <Icon name="ic_caretleft" fill={colors.white} />
         </Button>
         <Button
           className={`${styles.arrowButton} ${styles.rightArrowButton}`}
@@ -122,7 +122,7 @@ export function Carousel(props: CarouselProps) {
           }}
           disabled={!canScrollForward}
         >
-          <Icon name="ic_caretright" foregroundColor={colors.white} />
+          <Icon name="ic_caretright" fill={colors.white} />
         </Button>
       </div>
       <div className={styles.dotsContainer}>
