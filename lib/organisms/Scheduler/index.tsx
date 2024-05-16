@@ -78,7 +78,7 @@ export type SchedulerProps = {
 /**
  * A calendar component (weekly view) that allows users view, add, and edit events.
  * This component is great for scheduling and planning events. This can be used with
- * the `Calendar` component to provide a full scheduling experience.
+ * the `Calendar` and `CalendarLabels` component to provide a full scheduling experience.
  *
  * This component is essentially a wrapper around the `Scheduler` component from
  * Andrew's amazing `react-simple-scheduler` package. For complete usage information,
