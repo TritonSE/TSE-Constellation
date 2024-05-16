@@ -93,18 +93,18 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 
 /**
- * A default Scheduler with no initial events.
+ * Display initial events on the Scheduler using the `events` prop.
  */
-export const Default: Story = {
+export const DisplayingEvents: Story = {};
+
+/**
+ * An empty Scheduler with no events.
+ */
+export const EmptyScheduler: Story = {
   args: {
     events: [],
   },
 };
-
-/**
- * Display initial events on the Scheduler using the `events` prop.
- */
-export const DisplayingEvents: Story = {};
 
 // Debug view that shows the `SchedulerEvent` object that is passed to the `onRequestAdd` callback.
 const DebugAddedEvent = ({ addedEvent }: { addedEvent?: SchedulerEvent }) => {
