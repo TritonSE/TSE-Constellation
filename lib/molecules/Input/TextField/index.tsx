@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute } from "react";
+import { HTMLInputTypeAttribute, useEffect, useRef } from "react";
 
 import { useTheme } from "../../../assets/ThemeProvider";
 import { useInputControls } from "../../../internal/hooks/useInputControls";
@@ -54,6 +54,15 @@ export function TextField(props: TextFieldProps) {
     disabled,
     onChange,
   });
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    // Set the border color to highlight normally, or red if there is an error
+    inputRef.current?.style.setProperty(
+      "--tse-constellation-text-field-border-color",
+      errorText ? theme.colors.error : theme.colors.secondary_highlight_1,
+    );
+  }, [inputRef.current, errorText]);
 
   return (
     <ColumnInput
@@ -71,6 +80,7 @@ export function TextField(props: TextFieldProps) {
           onChange={(e) => {
             handleChange(e.target.value);
           }}
+          ref={inputRef}
         />
       }
       label={label}

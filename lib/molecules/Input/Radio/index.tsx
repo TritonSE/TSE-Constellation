@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { useTheme } from "../../../assets/ThemeProvider";
 import { useInputControls } from "../../../internal/hooks/useInputControls";
@@ -41,6 +41,7 @@ export function Radio(props: RadioProps) {
     disabled,
     onChange,
   });
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   // Color for main checkbox and border
   const checkboxColor = disabled
@@ -51,8 +52,8 @@ export function Radio(props: RadioProps) {
 
   // Update CSS var when checkbox color changes
   useEffect(() => {
-    document.documentElement.style.setProperty("--tse-constellation-checkbox-color", checkboxColor);
-  }, [checkboxColor]);
+    inputRef.current?.style.setProperty("--tse-constellation-checkbox-color", checkboxColor);
+  }, [inputRef.current, checkboxColor]);
 
   return (
     <RowInput
@@ -77,6 +78,7 @@ export function Radio(props: RadioProps) {
               handleChange(e.target.checked);
             }}
             disabled={disabled}
+            ref={inputRef}
           />
         </div>
       }

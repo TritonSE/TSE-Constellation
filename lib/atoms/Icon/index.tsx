@@ -145,18 +145,21 @@ export function Icon(props: IconProps) {
 
   // Whether we have loaded the SVG component yet
   const [loading, setLoading] = useState(true);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    document.documentElement.style.setProperty(
+    if (loading) {
+      return;
+    }
+    wrapperRef.current?.style.setProperty(
       `--tse-constellation-icon-foreground-${name}`,
       foregroundColor ?? colors.primary_dark,
     );
-
-    document.documentElement.style.setProperty(
+    wrapperRef.current?.style.setProperty(
       `--tse-constellation-icon-background-${name}`,
       backgroundColor ?? colors.primary_dark,
     );
-  }, [foregroundColor, backgroundColor]);
+  }, [loading, wrapperRef.current, foregroundColor, backgroundColor]);
 
   useEffect(() => {
     setLoading(true);
@@ -184,12 +187,15 @@ export function Icon(props: IconProps) {
   const ImportedIcon = current!;
 
   return (
-    <ImportedIcon
-      className={className ?? ""}
-      {...(size === undefined ? {} : { width: size, height: size })}
-      fill={fill}
-      stroke={stroke}
-      style={style}
-    />
+    // Add a div wrapper to have a ref to dynamically inject styles
+    <div ref={wrapperRef}>
+      <ImportedIcon
+        className={className ?? ""}
+        {...(size === undefined ? {} : { width: size, height: size })}
+        fill={fill}
+        stroke={stroke}
+        style={style}
+      />
+    </div>
   );
 }
