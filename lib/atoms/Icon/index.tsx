@@ -188,7 +188,7 @@ export function Icon(props: IconProps) {
 
   return (
     // Add a div wrapper to have a ref to dynamically inject styles
-    <div ref={wrapperRef}>
+    <div style={{ display: "flex" }} ref={wrapperRef}>
       <ImportedIcon
         className={className ?? ""}
         {...(size === undefined ? {} : { width: size, height: size })}

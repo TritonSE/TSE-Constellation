@@ -1,10 +1,33 @@
-.input {
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
   padding: 6px 12px;
   border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
 }
 
-.input:focus {
+.root:focus-within {
   /* Apply our highlight-colored border on text field when focused */
   border: 1px solid var(--tse-constellation-text-field-border-color) !important;
+}
+
+.input {
+  width: 100%;
+  border: none !important;
   outline: none !important;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 850px) {
+  .input {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .input {
+    font-size: 12px;
+  }
 }

@@ -1,5 +1,6 @@
 import { ReactNode, useState } from "react";
 
+import useDevice from "../../internal/hooks/useDevice";
 import { Button, Icon, TextField, useTheme } from "../../main";
 
 import styles from "./styles.module.css";
@@ -97,6 +98,12 @@ export function LoginPage(props: LoginPageProps) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [showingPassword, setShowingPassword] = useState(false);
+  const [showingConfirmPassword, setShowingConfirmPassword] = useState(false);
+
+  const { width } = useDevice();
+  const isMobile = width <= 550;
+
   const [errors, setErrors] = useState({
     name: null,
     email: null,
@@ -111,6 +118,18 @@ export function LoginPage(props: LoginPageProps) {
     }));
   };
 
+  const renderCaptionRow = () => (
+    <div className={styles.captionRow}>
+      <p className={styles.caption}>{caption}</p>
+      <p
+        className={styles.captionAction}
+        onClick={() => onVariantChanged(variant === "signin" ? "signup" : "signin")}
+      >
+        {captionActionText}
+      </p>
+    </div>
+  );
+
   return (
     <div className={styles.root}>
       {nonprofitLogo}
@@ -124,15 +143,7 @@ export function LoginPage(props: LoginPageProps) {
           <p className={styles.nonprofitName}>{nonprofitName}</p>
         )}
         <p className={styles.title}>{title}</p>
-        <div className={styles.captionRow}>
-          <p className={styles.caption}>{caption}</p>
-          <p
-            className={styles.captionAction}
-            onClick={() => onVariantChanged(variant === "signin" ? "signup" : "signin")}
-          >
-            {captionActionText}
-          </p>
-        </div>
+        {isMobile ? null : renderCaptionRow()}
         <div className={styles.textFieldsContainer}>
           {variant === "signup" ? (
             <TextField
@@ -158,6 +169,7 @@ export function LoginPage(props: LoginPageProps) {
           />
           {variant === "signin" || variant === "signup" ? (
             <TextField
+              type={showingPassword ? "text" : "password"}
               label="Password"
               errorText={errors.password ?? ""}
               placeholder="Enter password"
@@ -170,10 +182,26 @@ export function LoginPage(props: LoginPageProps) {
                 );
                 setPassword(newPassword);
               }}
+              endIcon={
+                <Button
+                  className={styles.passwordButton}
+                  onClick={() => {
+                    setShowingPassword(!showingPassword);
+                  }}
+                  variant="secondary"
+                >
+                  <Icon
+                    name={showingPassword ? "ic_show" : "ic_hide"}
+                    size={isMobile ? 18 : 24}
+                    fill={colors.gray_5}
+                  />
+                </Button>
+              }
             />
           ) : null}
           {variant === "signup" ? (
             <TextField
+              type={showingConfirmPassword ? "text" : "password"}
               label="Confirm Password"
               errorText={errors.confirmPassword ?? ""}
               placeholder="Re-enter password"
@@ -185,6 +213,21 @@ export function LoginPage(props: LoginPageProps) {
                 );
                 setConfirmPassword(newConfirmPassword);
               }}
+              endIcon={
+                <Button
+                  className={styles.passwordButton}
+                  onClick={() => {
+                    setShowingConfirmPassword(!showingConfirmPassword);
+                  }}
+                  variant="secondary"
+                >
+                  <Icon
+                    name={showingConfirmPassword ? "ic_show" : "ic_hide"}
+                    size={isMobile ? 18 : 24}
+                    fill={colors.gray_5}
+                  />
+                </Button>
+              }
             />
           ) : null}
         </div>
@@ -204,6 +247,7 @@ export function LoginPage(props: LoginPageProps) {
         >
           Continue
         </Button>
+        {isMobile ? renderCaptionRow() : null}
       </div>
     </div>
   );

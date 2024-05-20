@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import useDevice from "../lib/internal/hooks/useDevice";
 import { LoginPage } from "../lib/main";
 import { LoginPageProps, LoginPageVariant } from "../lib/templates/LoginPage";
 
@@ -81,7 +82,23 @@ export const ResetPassword: Story = {
 const VariantControllableStory = (args: LoginPageProps) => {
   const [variant, setVariant] = useState<LoginPageVariant>("signin");
 
-  return <LoginPage {...args} variant={variant} onVariantChanged={setVariant} />;
+  const { width } = useDevice();
+
+  return (
+    <LoginPage
+      {...args}
+      variant={variant}
+      onVariantChanged={setVariant}
+      nonprofitLogo={
+        <img
+          src="/nonprofit_checkered.svg"
+          alt="Checkered image"
+          width={width < 550 ? 100 : 360}
+          height={width < 550 ? 100 : 450}
+        />
+      }
+    />
+  );
 };
 
 /**
@@ -90,9 +107,7 @@ const VariantControllableStory = (args: LoginPageProps) => {
 export const VariantControllable: Story = {
   render: VariantControllableStory,
   args: {
-    nonprofitLogo: (
-      <img src="/nonprofit_checkered.svg" alt="Checkered image" width={360} height={450} />
-    ),
+    nonprofitLogo: null,
     nonprofitName: "Nonprofit Name",
     variant: "resetpassword",
     onVariantChanged: dummyMethod,

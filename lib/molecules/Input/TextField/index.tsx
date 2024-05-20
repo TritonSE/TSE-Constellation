@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, useEffect, useRef } from "react";
+import { HTMLInputTypeAttribute, ReactNode, useEffect, useRef } from "react";
 
 import { useTheme } from "../../../assets/ThemeProvider";
 import { useInputControls } from "../../../internal/hooks/useInputControls";
@@ -29,6 +29,11 @@ export type TextFieldProps = {
    * The type of the input (e.g. "text", "password", "email", etc.)
    */
   type?: HTMLInputTypeAttribute;
+
+  /**
+   * Optional icon to show at the end (right) of the text field
+   */
+  endIcon?: ReactNode;
 } & CommonInputProps;
 
 /**
@@ -45,6 +50,7 @@ export function TextField(props: TextFieldProps) {
     value,
     onChange,
     type = "text",
+    endIcon,
   } = props;
 
   const theme = useTheme();
@@ -54,7 +60,7 @@ export function TextField(props: TextFieldProps) {
     disabled,
     onChange,
   });
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     // Set the border color to highlight normally, or red if there is an error
@@ -67,21 +73,23 @@ export function TextField(props: TextFieldProps) {
   return (
     <ColumnInput
       inputElement={
-        <input
-          type={type}
-          name={name}
-          className={styles.input}
-          placeholder={placeholder}
-          disabled={disabled}
-          style={{
-            border: `1px solid ${theme.colors.gray_2}`,
-          }}
-          value={internalValue}
-          onChange={(e) => {
-            handleChange(e.target.value);
-          }}
-          ref={inputRef}
-        />
+        <div className={styles.root} ref={inputRef}>
+          <input
+            type={type}
+            name={name}
+            className={styles.input}
+            placeholder={placeholder}
+            disabled={disabled}
+            style={{
+              border: `1px solid ${theme.colors.gray_2}`,
+            }}
+            value={internalValue}
+            onChange={(e) => {
+              handleChange(e.target.value);
+            }}
+          />
+          {endIcon}
+        </div>
       }
       label={label}
       errorText={errorText}

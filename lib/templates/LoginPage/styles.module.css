@@ -3,11 +3,15 @@
   flex-direction: row;
   width: 100%;
   gap: 128px;
+  padding-right: 128px;
+  align-items: start;
 }
 
 .rightColumn {
   display: flex;
   flex-direction: column;
+  min-width: 464px;
+  height: 100%;
 }
 
 .backLink {
@@ -37,14 +41,14 @@
   color: var(--tse-constellation-color-black);
   font-size: 32px;
   font-weight: 700;
-  margin: 0 0 6px 0;
+  margin: 0;
 }
 
 .captionRow {
   display: flex;
   flex-direction: row;
   gap: 6px;
-  margin-bottom: 32px;
+  margin: 6px 0 32px 0;
 }
 
 .caption {
@@ -77,13 +81,31 @@
   margin: 16px 0 0 0;
 }
 
+.passwordButton {
+  width: 24px;
+  height: 24px;
+  background-color: transparent !important;
+  padding: 0;
+  border: none;
+
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+
 .submitButton {
   margin-top: 32px;
+  width: 100%;
 }
 
 @media screen and (max-width: 850px) {
   .root {
     gap: 50px;
+    padding-right: 50px;
+  }
+
+  .rightColumn {
+    min-width: 206px;
   }
 
   .backLink {
@@ -104,7 +126,7 @@
   }
 
   .captionRow {
-    margin-bottom: 14px;
+    margin: 6px 0 14px 0;
   }
 
   .caption {
@@ -127,5 +149,37 @@
 @media screen and (max-width: 550px) {
   .root {
     flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rightColumn {
+    align-items: center;
+  }
+
+  .nonprofitName {
+    font-size: 18px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .captionRow {
+    margin: 14px 0;
+  }
+
+  .passwordButton {
+    width: 18px;
+    height: 18px;
+  }
+
+  .submitButton {
+    margin-top: 16px;
+  }
+
+  .textFieldsContainer {
+    gap: 8px;
   }
 }
