@@ -29,3 +29,6 @@ export { Card, SectionCard, ProfileCard, RatingCard, ImageCard } from "./organis
 export { Carousel } from "./organisms/Carousel";
 export { CarouselCard } from "./organisms/Carousel/CarouselCard";
 export { Footer } from "./organisms/Footer";
+export { Calendar } from "./organisms/Calendar";
+export { CalendarLabels } from "./organisms/CalendarLabels";
+export { Scheduler } from "./organisms/Scheduler";

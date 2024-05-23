@@ -1,0 +1,38 @@
+.react-simple-scheduler {
+  font-family: Rubik !important;
+}
+
+.react-simple-scheduler .body .schedule th.today {
+  color: var(--tse-constellation-color-primary-dark) !important;
+}
+
+.react-simple-scheduler .body .schedule th.today div:last-child {
+  background: var(--tse-constellation-color-primary-dark) !important;
+}
+
+.react-simple-scheduler .body .ticker .ball,
+.react-simple-scheduler .body .ticker .line {
+  background: var(--tse-constellation-color-primary-dark) !important;
+}
+
+.react-simple-scheduler .head h1 {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.react-simple-scheduler .head line {
+  stroke-width: 3px;
+}
+
+.react-simple-scheduler .head button.today {
+  width: unset !important;
+  height: unset !important;
+  font-size: 16px;
+  border-radius: 4px !important;
+  border: 1px solid black !important;
+  padding: 12px 24px !important;
+}
+
+.react-simple-scheduler .body {
+  font-size: 14px !important;
+}

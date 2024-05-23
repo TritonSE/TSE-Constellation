@@ -19,6 +19,11 @@ const preview: Preview = {
       theme: previewTheme,
       page: DocumentationTemplate,
     },
+    options: {
+      storySort: {
+        order: ["Atoms", "Molecules", "Organisms"],
+      },
+    },
   },
   decorators: [
     (Story) => (

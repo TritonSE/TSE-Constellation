@@ -1,0 +1,53 @@
+.react-simple-calendar {
+  font-family: Rubik !important;
+  width: unset !important;
+  height: unset !important;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+.react-simple-calendar .head .month {
+  font-size: 16px !important;
+}
+
+.react-simple-calendar .head line {
+  stroke-width: 2px !important;
+}
+
+.react-simple-calendar .head div {
+  /* prev/next month chevron button container */
+  display: flex;
+  gap: 8px;
+}
+
+.react-simple-calendar .body th {
+  color: black !important;
+  font-weight: 400 !important;
+}
+
+.react-simple-calendar .body {
+  color: var(--tse-constellation-color-gray-5) !important;
+  font-size: 14px !important;
+  border-spacing: 2px;
+}
+
+.react-simple-calendar .body th,
+.react-simple-calendar .body td {
+  padding: 6px 8px;
+}
+
+.react-simple-calendar .body td.today {
+  background: var(--tse-constellation-color-primary-dark) !important;
+  border-radius: 50% !important;
+}
+
+.react-simple-calendar .body td.selected:not(.today) {
+  background: color-mix(
+    in srgb,
+    var(--tse-constellation-color-primary-dark) 27%,
+    transparent
+  ) !important;
+  color: var(--tse-constellation-color-primary-dark) !important;
+  border-radius: 50% !important;
+}
