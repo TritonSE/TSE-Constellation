@@ -5,14 +5,21 @@ import { useState } from "react";
 
 import { Scheduler } from "../lib/main";
 
-import type {
-  EventRepetition,
-  SchedulerEvent,
-  SchedulerProps,
-} from "@cubedoodl/react-simple-scheduler";
+import type { SchedulerEvent, SchedulerProps } from "@cubedoodl/react-simple-scheduler";
 import type { Meta, StoryObj } from "@storybook/react";
 
 // STORY HELPERS
+
+// Storybook bug: Enum exports are broken in stories
+enum EventRepetition {
+  None = 0,
+  Daily = 1,
+  Weekly = 2,
+  Biweekly = 3,
+  Monthly = 4,
+  Annually = 5,
+  Weekday = 6,
+}
 
 const CALENDAR = {
   name: "Calendar",
