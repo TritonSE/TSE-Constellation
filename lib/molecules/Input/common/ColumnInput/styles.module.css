@@ -13,7 +13,7 @@
   font-size: 12px;
   font-weight: 400;
   height: 18px;
-  margin: 0px;
+  margin: 8px 0px 0px;
 }
 
 @media screen and (max-width: 850px) {
@@ -25,5 +25,9 @@
 @media screen and (max-width: 550px) {
   .label {
     font-size: 12px;
+  }
+
+  .caption {
+    margin: 4px 0px 0px;
   }
 }
