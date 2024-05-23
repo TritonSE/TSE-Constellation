@@ -1,20 +1,17 @@
-import { useTheme } from "../../assets/ThemeProvider";
+import { Calendar as SimpleCalendar } from "@cubedoodl/react-simple-scheduler";
 
-import styles from "./styles.module.css";
+import "./styles.css";
 
-export function Button(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  const { style, className, ...restProps } = props;
-  const { colors } = useTheme();
+import type { CalendarProps } from "@cubedoodl/react-simple-scheduler";
 
-  return (
-    <button
-      style={{
-        backgroundColor: colors.primary_dark,
-        color: colors.primary_light,
-        ...style,
-      }}
-      className={`${className} ${styles.button}`}
-      {...restProps}
-    />
-  );
+/**
+ * A calendar (monthly view) component that allows users to select a date.
+ *
+ * This component is essentially a wrapper around the `Calendar` component from
+ * Andrew's amazing `react-simple-scheduler` package. For complete usage information,
+ * see the full documentation [here](https://github.com/Cubified/react-simple-scheduler).
+ */
+export function Calendar(props: CalendarProps) {
+  // Wrapping inside a function needed for storybook to recognize this as a component
+  return <SimpleCalendar {...props} />;
 }

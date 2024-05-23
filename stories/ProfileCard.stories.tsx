@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const WithAction: Story = {
   args: {
-    images: [<img key={0} src="/bulb.png" alt="TSE Lightbulb" width={80} height={80} />],
+    images: [<img key={0} src="./bulb.png" alt="TSE Lightbulb" width={80} height={80} />],
     name: "Name",
     content: "@id, title, etc",
     action: <Button>Action</Button>,
@@ -33,7 +33,7 @@ export const WithAction: Story = {
  */
 export const WithContent: Story = {
   args: {
-    images: [<img key={0} src="/bulb.png" alt="TSE Lightbulb" width={40} height={40} />],
+    images: [<img key={0} src="./bulb.png" alt="TSE Lightbulb" width={40} height={40} />],
     name: "Name",
     content: "@id, title, etc",
   },
@@ -44,7 +44,7 @@ export const WithContent: Story = {
  */
 export const WithName: Story = {
   args: {
-    images: [<img key={0} src="/bulb.png" alt="TSE Lightbulb" width={40} height={40} />],
+    images: [<img key={0} src="./bulb.png" alt="TSE Lightbulb" width={40} height={40} />],
     name: "Name",
   },
 };
@@ -55,9 +55,9 @@ export const WithName: Story = {
 export const MultipleImages: Story = {
   args: {
     images: [
-      <img key={0} src="/bulb.png" alt="TSE Lightbulb" width={40} height={40} />,
-      <img key={1} src="/bulb.png" alt="TSE Lightbulb" width={40} height={40} />,
-      <img key={2} src="/bulb.png" alt="TSE Lightbulb" width={40} height={40} />,
+      <img key={0} src="./bulb.png" alt="TSE Lightbulb" width={40} height={40} />,
+      <img key={1} src="./bulb.png" alt="TSE Lightbulb" width={40} height={40} />,
+      <img key={2} src="./bulb.png" alt="TSE Lightbulb" width={40} height={40} />,
     ],
   },
 };
