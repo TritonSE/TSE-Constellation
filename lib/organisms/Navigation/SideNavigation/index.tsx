@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import { ReactNode, useState } from "react";
 
 import { Icon } from "../../../atoms/Icon";
-import useDevice from "../../../internal/hooks/useDevice";
+import { useDevice } from "../../../main";
 import { NavigationProps, Page } from "../common";
 
 import styles from "./styles.module.css";
