@@ -44,7 +44,7 @@ const cx = classNames.bind(styles);
  * An error page template that displays an error icon, header, message, and optional error code.
  *
  * This template models common error situations that a user may encounter during their interaction with an application.
- * 
+ *
  */
 export function ErrorPage({
   navbar,
