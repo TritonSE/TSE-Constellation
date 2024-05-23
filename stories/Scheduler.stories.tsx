@@ -4,8 +4,12 @@ import { useArrayState } from "@cubedoodl/react-simple-scheduler";
 import { useState } from "react";
 
 import { Scheduler } from "../lib/main";
-import { EventRepetition, SchedulerEvent, SchedulerProps } from "../lib/organisms/Scheduler";
 
+import type {
+  EventRepetition,
+  SchedulerEvent,
+  SchedulerProps,
+} from "@cubedoodl/react-simple-scheduler";
 import type { Meta, StoryObj } from "@storybook/react";
 
 // STORY HELPERS

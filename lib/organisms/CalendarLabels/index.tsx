@@ -2,9 +2,10 @@ import classNames from "classnames";
 import { CSSProperties } from "react";
 
 import { Checkbox } from "../../main";
-import { SchedulerCalendar } from "../Scheduler";
 
 import styles from "./styles.module.css";
+
+import type { SchedulerCalendar } from "@cubedoodl/react-simple-scheduler";
 
 export type CalendarLabelProps = {
   /**

@@ -1,44 +1,12 @@
 import { Scheduler as SimpleScheduler } from "@cubedoodl/react-simple-scheduler";
 
+import type {
+  SchedulerEvent,
+  SchedulerExistingEvent,
+  SchedulerStyles,
+} from "@cubedoodl/react-simple-scheduler";
+
 import "./styles.css";
-
-export enum EventRepetition {
-  None = 0,
-  Daily = 1,
-  Weekly = 2,
-  Biweekly = 3,
-  Monthly = 4,
-  Annually = 5,
-  Weekday = 6,
-}
-
-export type DateRange = {
-  from: Date;
-  to: Date;
-};
-
-export type SchedulerCalendar = {
-  name: string;
-  enabled: boolean | (() => boolean);
-};
-
-export type SchedulerEvent = {
-  calendar: SchedulerCalendar | SchedulerCalendar[];
-  is_current: boolean;
-  style?: React.CSSProperties | ((evt: SchedulerEvent) => React.CSSProperties);
-} & DateRange;
-
-export type SchedulerExistingEvent = {
-  name: string;
-  repeat: EventRepetition;
-  original?: SchedulerEvent;
-} & SchedulerEvent;
-
-export type SchedulerStyles = {
-  container: React.CSSProperties;
-  head: React.CSSProperties;
-  body: React.CSSProperties;
-};
 
 export type SchedulerProps = {
   /**
