@@ -5,6 +5,9 @@
 /** THEMING */
 export { ThemeProvider, defaultTheme, useTheme } from "./assets/ThemeProvider";
 
+/** HOOKS */
+export { useDevice } from "./hooks/useDevice";
+
 /** ATOMS */
 export { Button } from "./atoms/Button";
 export { Icon } from "./atoms/Icon";
@@ -29,3 +32,6 @@ export { Card, SectionCard, ProfileCard, RatingCard, ImageCard } from "./organis
 export { Carousel } from "./organisms/Carousel";
 export { CarouselCard } from "./organisms/Carousel/CarouselCard";
 export { Footer } from "./organisms/Footer";
+
+/** TEMPLATES */
+export { ErrorPage } from "./templates/ErrorPage";
