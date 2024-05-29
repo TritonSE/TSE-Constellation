@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import { useTheme } from "../../../assets/ThemeProvider";
 import { useInputControls } from "../../../internal/hooks/useInputControls";
@@ -35,22 +35,23 @@ export function Toggle(props: ToggleProps) {
 
   const theme = useTheme();
 
-  useEffect(() => {
-    document.documentElement.style.setProperty(
-      "--tse-constellation-slider-color",
-      disabled ? theme.colors.disabled : theme.colors.primary_dark,
-    );
-    document.documentElement.style.setProperty(
-      "--tse-constellation-slider-circle-size",
-      compact ? "16px" : "24px",
-    );
-  }, [compact, theme, disabled]);
-
   const { internalValue: internalChecked, handleChange } = useInputControls({
     value: checked,
     disabled,
     onChange,
   });
+  const labelRef = useRef<HTMLLabelElement | null>(null);
+
+  useEffect(() => {
+    labelRef.current?.style.setProperty(
+      "--tse-constellation-slider-color",
+      disabled ? theme.colors.disabled : theme.colors.primary_dark,
+    );
+    labelRef.current?.style.setProperty(
+      "--tse-constellation-slider-circle-size",
+      compact ? "16px" : "24px",
+    );
+  }, [labelRef.current, compact, theme, disabled]);
 
   return (
     <RowInput
@@ -58,10 +59,12 @@ export function Toggle(props: ToggleProps) {
       inputElement={
         <label
           className={`${styles.switch} ${compact ? styles.compactSwitch : styles.defaultSwitch}`}
+          ref={labelRef}
         >
           <input
             name={name}
             type="checkbox"
+            className={styles.input}
             checked={internalChecked}
             onChange={(e) => {
               handleChange(e.target.checked);

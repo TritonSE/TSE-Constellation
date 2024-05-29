@@ -1,7 +1,3 @@
-.root {
-  --tse-constellation-checkbox-color: var(--tse-constellation-color-primary-dark);
-}
-
 .checkboxContainer {
   position: relative;
   width: 24px;

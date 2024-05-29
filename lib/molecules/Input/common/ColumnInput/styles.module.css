@@ -12,6 +12,22 @@
 .caption {
   font-size: 12px;
   font-weight: 400;
-  line-height: 18px;
-  margin: 0px;
+  height: 18px;
+  margin: 8px 0px 0px;
+}
+
+@media screen and (max-width: 850px) {
+  .label {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .label {
+    font-size: 12px;
+  }
+
+  .caption {
+    margin: 4px 0px 0px;
+  }
 }

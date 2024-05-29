@@ -1,8 +1,3 @@
-:root {
-  --tse-constellation-slider-color: black;
-  --tse-constellation-slider-circle-size: 24px;
-}
-
 /* Credit to https://www.w3schools.com/howto/howto_css_switch.asp for all the CSS */
 
 .switch {
@@ -60,20 +55,20 @@
   transition: 0.4s;
 }
 
-input:focus + .slider:before {
+.input:focus + .slider:before {
   /* Apply our highlight-colored border on toggle when focused */
   outline: 2px solid var(--tse-constellation-color-secondary-highlight-1) !important;
 }
 
-input:checked + .slider {
+.input:checked + .slider {
   background-color: var(--tse-constellation-slider-color);
 }
 
-input:focus + .slider {
+.input:focus + .slider {
   box-shadow: 0 0 1px var(--tse-constellation-slider-color);
 }
 
-input:checked + .slider:before {
+.input:checked + .slider:before {
   /* CSS math: should be 44 - 24 = 20px for non-compact, 32 - 16 = 16px for compact */
   --translation-amount: calc(8px + (var(--tse-constellation-slider-circle-size)) / 2);
   -webkit-transform: translateX(var(--translation-amount));

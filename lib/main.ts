@@ -32,3 +32,6 @@ export { Footer } from "./organisms/Footer";
 export { Calendar } from "./organisms/Calendar";
 export { CalendarLabels } from "./organisms/CalendarLabels";
 export { Scheduler } from "./organisms/Scheduler";
+
+/** TEMPLATES */
+export { LoginPage } from "./templates/LoginPage";
