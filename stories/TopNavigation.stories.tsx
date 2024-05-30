@@ -8,9 +8,7 @@ const meta = {
   title: "Organisms/TopNavigation",
   component: TopNavigation,
   parameters: {
-    backgrounds: {
-      default: "dark",
-    },
+    layout: "fullscreen",
   },
   args: {
     logoSrc:

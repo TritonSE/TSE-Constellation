@@ -5,6 +5,9 @@
 /** THEMING */
 export { ThemeProvider, defaultTheme, useTheme } from "./assets/ThemeProvider";
 
+/** HOOKS */
+export { useDevice } from "./hooks/useDevice";
+
 /** ATOMS */
 export { Button } from "./atoms/Button";
 export { Icon } from "./atoms/Icon";
@@ -35,3 +38,4 @@ export { Scheduler } from "./organisms/Scheduler";
 
 /** TEMPLATES */
 export { LoginPage } from "./templates/LoginPage";
+export { ErrorPage } from "./templates/ErrorPage";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import useDevice from "../lib/internal/hooks/useDevice";
+import { useDevice } from "../lib/hooks/useDevice";
 import { LoginPage } from "../lib/main";
 import { LoginPageProps, LoginPageVariant } from "../lib/templates/LoginPage";
 

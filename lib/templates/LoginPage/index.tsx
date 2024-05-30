@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 
-import useDevice from "../../internal/hooks/useDevice";
+import { useDevice } from "../../hooks/useDevice";
 import { Button, Icon, TextField, useTheme } from "../../main";
 
 import styles from "./styles.module.css";
