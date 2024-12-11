@@ -28,7 +28,11 @@ const navbar = (
       },
     ]}
     logoSrc="https://raw.githubusercontent.com/TritonSE/TSE-Constellation/main/public/constellation.png"
-    renderLink={(_, className, children) => <a className={className}>{children}</a>}
+    renderLink={(_, className, children, key) => (
+      <a key={key} className={className}>
+        {children}
+      </a>
+    )}
   />
 );
 

@@ -42,9 +42,11 @@ export function ColumnInput(props: ColumnInputProps) {
     <div className={styles.root}>
       <label className={styles.label}>{label}</label>
       {inputElement}
-      <p className={styles.caption} style={errorText ? { color: theme.colors.error } : {}}>
-        {errorText ?? caption}
-      </p>
+      {(errorText ?? caption) === undefined ? null : (
+        <p className={styles.caption} style={errorText ? { color: theme.colors.error } : {}}>
+          {errorText ?? caption}
+        </p>
+      )}
     </div>
   );
 }

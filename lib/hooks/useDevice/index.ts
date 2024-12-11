@@ -17,7 +17,7 @@ export type UseDevice = () => ViewportProperties;
  * Media query hook to determine the current device type based on the viewport width.
  */
 export const useDevice: UseDevice = () => {
-  const [width, setWidth] = React.useState(window.innerWidth);
+  const [width, setWidth] = React.useState(1000);
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
   };
@@ -32,6 +32,7 @@ export const useDevice: UseDevice = () => {
   const isDesktop = React.useMemo(() => width > DESKTOP_WIDTH_BREAKPOINT, [width]);
 
   React.useEffect(() => {
+    handleWindowSizeChange();
     window.addEventListener("resize", handleWindowSizeChange);
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);

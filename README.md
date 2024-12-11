@@ -105,3 +105,19 @@ For those with write access to the `@tritonse` NPM account, a new version can be
 ```sh
 $ npm publish --access public
 ```
+
+### Local Use In Projects
+
+In order to use a local version of Constellation in a project (to test changes without having to re-publish), first run:
+
+```sh
+npm link
+```
+
+from within this repository. Then, run:
+
+```sh
+npm link @tritonse/tse-constellation
+```
+
+from the project within which you want to use Constellation. You should then be able to import and use Constellation. Note that whenever you make changes to the Constellation source code, you will need to rebuild via `npm run build` in order for those changes to take effect in the project.

@@ -36,8 +36,11 @@
   height: 14px;
   border-radius: 100%;
   position: absolute;
-  top: 10%;
   background-color: var(--tse-constellation-checkbox-color);
-  left: 10%;
   font-size: 32px;
+
+  /* Center the radio circle inside the larger circle */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

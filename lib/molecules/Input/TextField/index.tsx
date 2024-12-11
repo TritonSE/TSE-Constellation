@@ -57,6 +57,7 @@ export function TextField(props: TextFieldProps) {
 
   const { internalValue, handleChange } = useInputControls({
     value,
+    defaultValue: "",
     disabled,
     onChange,
   });

@@ -53,8 +53,12 @@ export function Dropdown<T>(props: DropdownProps<T>) {
 
   const theme = useTheme();
 
+  // Gets the value for the given option, using its value attribute if exists, else label
+  const getOptionValue = (option: DropdownOption<T>) => option.value ?? option.label;
+
   const { internalValue: selectedOption, handleChange } = useInputControls({
     value,
+    defaultValue: getOptionValue(options[0]) as T,
     disabled,
     onChange,
   });
@@ -62,9 +66,6 @@ export function Dropdown<T>(props: DropdownProps<T>) {
   const [expanded, setExpanded] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-
-  // Gets the value for the given option, using its value attribute if exists, else label
-  const getOptionValue = (option: DropdownOption<T>) => option.value ?? option.label;
 
   /**
    * The label to be displayed inside the input. Use the label of the selected

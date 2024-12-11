@@ -72,6 +72,7 @@ export function Search(props: SearchProps) {
 
   const { internalValue, handleChange } = useInputControls({
     value,
+    defaultValue: "",
     disabled,
     onChange,
   });

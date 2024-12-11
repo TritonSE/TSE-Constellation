@@ -38,12 +38,13 @@ export function TopNavigation(props: TopNavigationProps) {
         {navItems.map((item) =>
           renderLink(
             item.path,
-            cx(styles.itemRow, { [styles.centered]: !open }),
+            styles.itemRow,
             <>
               {isMobile && <Icon name={item.icon} />}
               <span>{item.label}</span>
               {isDesktop && <div className={styles.underline}></div>}
             </>,
+            item.label,
           ),
         )}
       </div>

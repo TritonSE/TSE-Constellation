@@ -37,6 +37,7 @@ export function Toggle(props: ToggleProps) {
 
   const { internalValue: internalChecked, handleChange } = useInputControls({
     value: checked,
+    defaultValue: false,
     disabled,
     onChange,
   });

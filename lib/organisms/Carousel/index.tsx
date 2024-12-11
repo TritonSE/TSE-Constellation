@@ -34,12 +34,13 @@ export function Carousel(props: CarouselProps) {
 
   // Subscribe to screen width changes
   // https://www.altcademy.com/blog/how-to-check-screen-width-in-reactjs/#:~:text=Here's%20how%20we%20can%20do,innerWidth)%3B%20%7D%3B%20window.
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(1000);
 
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 

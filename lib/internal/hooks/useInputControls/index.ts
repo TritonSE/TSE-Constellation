@@ -7,6 +7,12 @@ export type UseInputControlsProps<T> = {
   value?: T;
 
   /**
+   * The default value to be used if no value is provided. This is necessary to
+   * avoid warnings about a component changing from uncontrolled to controlled.
+   */
+  defaultValue: T;
+
+  /**
    * Whether the input is disabled; values will not be changed when disabled.
    */
   disabled?: boolean;
@@ -23,10 +29,10 @@ export type UseInputControlsProps<T> = {
  * props to this hook, and it does the internal value state management.
  */
 export function useInputControls<T>(props: UseInputControlsProps<T>) {
-  const { value, disabled, onChange } = props;
+  const { value, defaultValue, disabled, onChange } = props;
 
   // Maintain our internal state for the input's value
-  const [internalValue, setInternalValue] = useState(value);
+  const [internalValue, setInternalValue] = useState(value ?? defaultValue);
 
   // Update our internal value when the provided value prop changes
   useEffect(() => {

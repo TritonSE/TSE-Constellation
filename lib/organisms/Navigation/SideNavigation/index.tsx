@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { ReactNode, useState } from "react";
+import { Key, ReactNode, useState } from "react";
 
 import { Icon } from "../../../atoms/Icon";
 import { useDevice } from "../../../main";
@@ -23,7 +23,12 @@ const NavItems = ({
   items,
   open,
 }: {
-  renderLink: (path: string | undefined, className: string, children: ReactNode) => ReactNode;
+  renderLink: (
+    path: string | undefined,
+    className: string,
+    children: ReactNode,
+    key: Key,
+  ) => ReactNode;
   items: (Page | string)[];
   open: boolean;
 }) => (
@@ -44,6 +49,7 @@ const NavItems = ({
           <Icon name={item.icon} />
           {open && <span>{item.label}</span>}
         </>,
+        item.label,
       );
     })}
   </div>

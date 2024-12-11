@@ -44,6 +44,7 @@ export function Checkbox(props: CheckboxProps) {
 
   const { internalValue: internalChecked, handleChange } = useInputControls({
     value: checked,
+    defaultValue: false,
     disabled,
     onChange,
   });

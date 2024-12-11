@@ -47,7 +47,7 @@ export function RowInput(props: RowInputProps) {
     <div className={styles.row}>
       {inputFirst ? inputElement : null}
       <div className={styles.textContainer}>
-        <p className={styles.label}>{label}</p>
+        {label === undefined ? null : <p className={styles.label}>{label}</p>}
         <p
           className={styles.caption}
           style={{

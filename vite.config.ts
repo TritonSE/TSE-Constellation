@@ -18,18 +18,6 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime"],
-      input: Object.fromEntries(
-        glob
-          .sync("lib/**/*.{ts,tsx}")
-          .map((file) => [
-            relative("lib", file.slice(0, file.length - extname(file).length)),
-            fileURLToPath(new URL(file, import.meta.url)),
-          ]),
-      ),
-      output: {
-        assetFileNames: "assets/[name][extname]",
-        entryFileNames: "[name].js",
-      },
     },
   },
 });

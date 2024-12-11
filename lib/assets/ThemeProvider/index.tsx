@@ -3,8 +3,8 @@
  * Provides a simplified wrapper around React context hooks.
  */
 
-import { PropsWithChildren } from "react";
-import "./styles.module.css";
+import { PropsWithChildren, useEffect } from "react";
+import "./globals.css";
 
 type RGB = `rgb(${number}, ${number}, ${number})`;
 type RGBA = `rgba(${number}, ${number}, ${number}, ${number})`;
@@ -110,40 +110,43 @@ export function useTheme(): Theme {
  * using the `defaultTheme` object.
  */
 export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
-  if (document.body.dataset.tseInitialized === "true") return props.children;
-
   const { fonts, fontInject, colors, children } = props;
-  activeTheme = {
-    colors: {
-      ...defaultTheme.colors,
-      ...colors,
-    },
-    fonts: {
-      ...defaultTheme.fonts,
-      ...fonts,
-    },
-  };
 
-  // Generate CSS variables from JS objects
-  const cssColors = Object.entries(activeTheme.colors)
-    .map(([type, value]) => `  --tse-constellation-color-${type.replace(/_/g, "-")}: ${value};`)
-    .join("\n");
-  const cssFonts = Object.entries(activeTheme.fonts)
-    .map(([type, value]) => `  --tse-constellation-font-${type.replace(/_/g, "-")}: ${value};`)
-    .join("\n");
+  useEffect(() => {
+    if (document.body.dataset.tseInitialized === "true") return;
 
-  document.head.innerHTML += `${
-    fontInject ??
-    '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">'
+    activeTheme = {
+      colors: {
+        ...defaultTheme.colors,
+        ...colors,
+      },
+      fonts: {
+        ...defaultTheme.fonts,
+        ...fonts,
+      },
+    };
+
+    // Generate CSS variables from JS objects
+    const cssColors = Object.entries(activeTheme.colors)
+      .map(([type, value]) => `  --tse-constellation-color-${type.replace(/_/g, "-")}: ${value};`)
+      .join("\n");
+    const cssFonts = Object.entries(activeTheme.fonts)
+      .map(([type, value]) => `  --tse-constellation-font-${type.replace(/_/g, "-")}: ${value};`)
+      .join("\n");
+
+    document.head.innerHTML += `${
+      fontInject ??
+      '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">'
+    }
+  <style>
+  :root {
+  ${cssColors}
+  ${cssFonts}
   }
-<style>
-:root {
-${cssColors}
-${cssFonts}
-}
-</style>`;
+  </style>`;
 
-  document.body.dataset.tseInitialized = "true";
+    document.body.dataset.tseInitialized = "true";
+  }, []);
 
   return children;
 }
