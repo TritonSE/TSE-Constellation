@@ -29,7 +29,7 @@ export function Card(props: CardProps) {
   const { contents, style, className } = props;
 
   return (
-    <div className={`${styles.root} ${className}`} style={style}>
+    <div className={`${styles.root} ${className ?? ""}`} style={style}>
       {contents}
     </div>
   );

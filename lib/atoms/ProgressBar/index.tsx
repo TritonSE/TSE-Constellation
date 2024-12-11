@@ -29,7 +29,7 @@ export function ProgressBar({ progress, width = "900px" }: ProgressBarProps) {
       <div
         className={styles.bar}
         style={{
-          width: `${clamp(progress, 0, 100)}%`,
+          width: `${clamp(progress, 0, 100).toString()}%`,
         }}
       />
     </div>

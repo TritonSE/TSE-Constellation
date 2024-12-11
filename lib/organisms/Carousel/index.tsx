@@ -88,7 +88,7 @@ export function Carousel(props: CarouselProps) {
   }, [carouselCards, scrollPosition, cardsContainerRef.current, numCardsOnScreen]);
 
   return (
-    <div className={`${styles.root} ${props.className}`} style={props.style}>
+    <div className={`${styles.root} ${props.className ?? ""}`} style={props.style}>
       <div className={styles.row}>
         <div className={styles.cardsContainer} ref={cardsContainerRef}>
           {props.carouselCards.map((card, index) => (
@@ -96,7 +96,7 @@ export function Carousel(props: CarouselProps) {
               key={index}
               style={{
                 // Set the width on each card to take up an appropriate fraction of the scroll container
-                minWidth: `calc(${100 / numCardsOnScreen}% - ${Math.ceil((CARD_GAP * (numCardsOnScreen - 1)) / numCardsOnScreen)}px)`,
+                minWidth: `calc(${(100 / numCardsOnScreen).toString()}% - ${Math.ceil((CARD_GAP * (numCardsOnScreen - 1)) / numCardsOnScreen).toString()}px)`,
               }}
             >
               {card}

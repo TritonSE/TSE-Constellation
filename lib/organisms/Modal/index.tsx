@@ -91,7 +91,7 @@ export function Modal(props: ModalProps) {
       >
         {content}
       </p>
-      {primaryActionComponent ?? secondaryActionComponent ? (
+      {(primaryActionComponent ?? secondaryActionComponent) ? (
         <div className={styles.actionsContainer}>
           {secondaryActionComponent ?? <div />}
           {primaryActionComponent ?? <div />}

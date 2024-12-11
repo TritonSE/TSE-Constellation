@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import { ReactNode } from "react";
 
 import { Icon, IconName } from "../../atoms/Icon";
 import { useDevice, useTheme } from "../../main";
@@ -9,7 +10,7 @@ export type ErrorPageProps = {
   /**
    * Optional navbar to display at the top of the page.
    */
-  navbar?: JSX.Element;
+  navbar?: ReactNode;
   /**
    * Optional icon to display on the error page.
    */
@@ -18,7 +19,7 @@ export type ErrorPageProps = {
    * Optional custom icon to display on the error page
    * (or if you want to use a different component entirely).
    */
-  customIcon?: JSX.Element;
+  customIcon?: ReactNode;
   /**
    * The header text to display on the error page.
    */
@@ -34,7 +35,7 @@ export type ErrorPageProps = {
   /**
    * Optional footer to display at the bottom of the page.
    */
-  footer?: JSX.Element;
+  footer?: ReactNode;
 };
 
 // See https://github.com/JedWatson/classnames for usage

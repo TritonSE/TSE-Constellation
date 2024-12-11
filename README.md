@@ -46,16 +46,6 @@ To develop components for TSE Constellation, first install development dependenc
 $ npm install
 ```
 
-Start the development server with:
-
-```sh
-$ npm run dev
-```
-
-This will automatically rebuild the library upon changes to the `lib/` directory.
-
-Open [localhost:5173](http://localhost:5173) to view the development site.
-
 Start Storybook with:
 
 ```sh
