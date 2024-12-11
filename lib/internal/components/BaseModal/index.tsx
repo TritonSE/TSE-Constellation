@@ -46,7 +46,7 @@ export function BaseModal(props: BaseModalProps) {
     ? createPortal(
         <div className={styles.wrapper} onClick={onClose}>
           <div
-            className={`${styles.root} ${rootClass}`}
+            className={`${styles.root} ${rootClass ?? ""}`}
             style={rootStyle}
             onClick={(e) => {
               e.stopPropagation();
