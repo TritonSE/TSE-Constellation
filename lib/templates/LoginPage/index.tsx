@@ -176,10 +176,12 @@ export function LoginPage(props: LoginPageProps) {
               value={password}
               onChange={(newPassword) => {
                 setError("password", validatePassword?.(newPassword) ?? null);
-                setError(
-                  "confirmPassword",
-                  confirmPassword === newPassword ? null : "Passwords don't match",
-                );
+                if (variant === "signup") {
+                  setError(
+                    "confirmPassword",
+                    confirmPassword === newPassword ? null : "Passwords don't match",
+                  );
+                }
                 setPassword(newPassword);
               }}
               endIcon={
@@ -242,6 +244,29 @@ export function LoginPage(props: LoginPageProps) {
             if (errors.name ?? errors.email ?? errors.password ?? errors.confirmPassword) {
               return;
             }
+            // Check for errors on fields that might not have been changed yet
+            let anyErrors = false;
+            if (variant === "signup" && validateName?.(name)) {
+              anyErrors = true;
+              setError("name", validateName(name));
+            }
+            if (validateEmail?.(email)) {
+              anyErrors = true;
+              setError("email", validateEmail(email));
+            }
+            if (validatePassword?.(password)) {
+              anyErrors = true;
+              setError("password", validatePassword(password));
+            }
+            if (variant === "signup" && password !== confirmPassword) {
+              anyErrors = true;
+              setError("confirmPassword", "Passwords don't match");
+            }
+
+            if (anyErrors) {
+              return;
+            }
+
             onSubmit({ name, email, password });
           }}
         >
