@@ -54,8 +54,8 @@ export type Theme = {
   fonts: ThemeFonts;
 };
 export type ThemeProviderProps = {
-  colors?: ThemeColors;
-  fonts?: ThemeFonts;
+  colors?: Partial<ThemeColors>;
+  fonts?: Partial<ThemeFonts>;
   fontInject?: string;
 };
 
