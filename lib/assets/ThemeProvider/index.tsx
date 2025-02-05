@@ -134,16 +134,19 @@ export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
       .map(([type, value]) => `  --tse-constellation-font-${type.replace(/_/g, "-")}: ${value};`)
       .join("\n");
 
-    document.head.innerHTML += `${
-      fontInject ??
-      '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">'
-    }
+    document.head.insertAdjacentHTML(
+      "beforebegin",
+      `${
+        fontInject ??
+        '<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">'
+      }
   <style>
   :root {
   ${cssColors}
   ${cssFonts}
   }
-  </style>`;
+  </style>`,
+    );
 
     document.body.dataset.tseInitialized = "true";
   }, []);
