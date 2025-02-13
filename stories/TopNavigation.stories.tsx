@@ -1,5 +1,7 @@
-import { TopNavigation } from "../lib/main";
+import { Button, TopNavigation } from "../lib/main";
 import { TextField } from "../lib/molecules/Input/TextField";
+
+import styles from "./TopNavigation.stories.module.css";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -64,4 +66,28 @@ export const ActionElement: Story = {
  */
 export const MobileNavbar: Story = {
   parameters: { viewport: { defaultViewport: "mobile2" } },
+};
+
+/**
+ * A top navigation with a custom logo component. You can use this to
+ * customize the logo size or other styles, or make the logo clickable
+ * and link to a certain page.
+ */
+export const CustomLogoNavbar: Story = {
+  args: {
+    logoComponent: <Button>Button logo!</Button>,
+  },
+};
+
+/**
+ * A top navigation with a custom class name applied to the underline on
+ * the nav items. This can be used to customize the underline color and visibility,
+ * and pseudo-selectors :hover and :focus can be used to customize styles
+ * when hovered and clicked. This example customizes the underline color to red, and changes it to blue
+ * when the item is hovered over.
+ */
+export const CustomUnderlineStylesNavbar: Story = {
+  args: {
+    underlineClassName: styles.underline,
+  },
 };

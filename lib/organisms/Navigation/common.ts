@@ -23,6 +23,11 @@ export type NavigationProps = {
    */
   logoSrc: string;
   /**
+   * A React component to display as the logo. If this is provided, it will replace
+   * the default logo (an <img> with a src of logoSrc).
+   */
+  logoComponent?: ReactNode;
+  /**
    * Function to render a link component. This is useful if you
    * are using a routing library (e.g. react-router-dom or NextJS) or you want
    * to render a custom link component.
@@ -69,4 +74,8 @@ export type NavigationProps = {
    * Optional CSS styles to apply to the container element.
    */
   style?: CSSProperties;
+  /**
+   * Optional class name to apply to the underline element (only shown on desktop).
+   */
+  underlineClassName?: string;
 };

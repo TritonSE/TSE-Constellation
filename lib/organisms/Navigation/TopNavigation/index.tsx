@@ -27,12 +27,22 @@ const cx = classNames.bind(styles);
  * and as a bottom tab bar on mobile viewports.
  */
 export function TopNavigation(props: TopNavigationProps) {
-  const { logoSrc, navItems, actionElement, renderLink, className, style } = props;
+  const {
+    logoSrc,
+    logoComponent,
+    navItems,
+    actionElement,
+    renderLink,
+    className,
+    style,
+    underlineClassName,
+  } = props;
   const { isDesktop, isMobile } = useDevice();
 
   return (
     <div className={cx(className, styles.container)} style={style}>
-      {isDesktop && logoSrc && <img src={logoSrc} alt="logo" className={styles.logo} />}
+      {isDesktop &&
+        (logoComponent ?? (logoSrc && <img src={logoSrc} alt="logo" className={styles.logo} />))}
       {isDesktop && actionElement === undefined && <div className={styles.spacer}></div>}
       <div className={styles.items}>
         {navItems.map((item) =>
@@ -42,7 +52,9 @@ export function TopNavigation(props: TopNavigationProps) {
             <>
               {isMobile && <Icon name={item.icon} />}
               <span>{item.label}</span>
-              {isDesktop && <div className={styles.underline}></div>}
+              {isDesktop && (
+                <div className={`${styles.underline} ${underlineClassName ?? ""}`}></div>
+              )}
             </>,
             item.label,
           ),

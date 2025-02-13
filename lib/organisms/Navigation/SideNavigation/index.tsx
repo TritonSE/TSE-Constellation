@@ -56,7 +56,7 @@ const NavItems = ({
 );
 
 const DesktopSideNavigation = (props: SideNavigationProps) => {
-  const { logoSrc, navItems, renderLink, className, style } = props;
+  const { logoSrc, logoComponent, navItems, renderLink, className, style } = props;
   const [open, setOpen] = useState(true);
 
   const toggle = () => {
@@ -74,7 +74,7 @@ const DesktopSideNavigation = (props: SideNavigationProps) => {
             stroke="black"
           />
         </div>
-        {open && <img src={logoSrc} alt="logo" className={styles.logo} />}
+        {open && (logoComponent ?? <img src={logoSrc} alt="logo" className={styles.logo} />)}
       </div>
       <NavItems renderLink={renderLink} items={navItems} open={open} />
     </div>
@@ -82,16 +82,14 @@ const DesktopSideNavigation = (props: SideNavigationProps) => {
 };
 
 const MobileSideNavigation = (props: SideNavigationProps) => {
-  const { logoSrc, navItems, renderLink, className, style } = props;
+  const { logoSrc, logoComponent, navItems, renderLink, className, style } = props;
   const [open, setOpen] = useState(false);
 
   return (
     <div className={styles.mobile}>
       <div className={styles.topNav}>
         <div></div>
-        <div>
-          <img src={logoSrc} alt="logo" className={styles.logo} />
-        </div>
+        <div>{logoComponent ?? <img src={logoSrc} alt="logo" className={styles.logo} />}</div>
         <div
           className={styles.toggle}
           onClick={() => {

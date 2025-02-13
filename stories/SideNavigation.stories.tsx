@@ -1,4 +1,4 @@
-import { SideNavigation } from "../lib/main";
+import { Button, SideNavigation } from "../lib/main";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -60,4 +60,15 @@ export const Default: Story = {};
  */
 export const MobileNavbar: Story = {
   parameters: { viewport: { defaultViewport: "mobile2" } },
+};
+
+/**
+ * A side navigation with a custom logo component. You can use this to
+ * customize the logo size or other styles, or make the logo clickable
+ * and link to a certain page.
+ */
+export const CustomLogoNavbar: Story = {
+  args: {
+    logoComponent: <Button>Button logo!</Button>,
+  },
 };

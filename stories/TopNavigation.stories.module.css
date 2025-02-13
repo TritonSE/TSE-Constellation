@@ -1,0 +1,7 @@
+.underline {
+  background: red;
+}
+
+a:hover .underline {
+  background: blue;
+}
