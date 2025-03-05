@@ -55,3 +55,11 @@ export const Destructive: Story = {
 export const Tag: Story = {
   args: { variant: "tag" },
 };
+
+export const LeadingIcon: Story = {
+  args: { leadingIcon: "ic_upload" },
+};
+
+export const TrailingIcon: Story = {
+  args: { trailingIcon: "ic_upload" },
+};

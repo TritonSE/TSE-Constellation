@@ -1,5 +1,8 @@
 import classNames from "classnames/bind";
 
+import { useTheme } from "../../main";
+import { Icon, IconName } from "../Icon";
+
 import styles from "./styles.module.css";
 
 export type ButtonProps = {
@@ -23,6 +26,14 @@ export type ButtonProps = {
    * Button label text/content
    */
   children?: React.ReactNode;
+  /**
+   * Icon to display at the left of the button
+   */
+  leadingIcon?: IconName;
+  /**
+   * Icon to display at the right of the button
+   */
+  trailingIcon?: IconName;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 // See https://github.com/JedWatson/classnames for usage
@@ -32,7 +43,19 @@ const cx = classNames.bind(styles);
  * A Button component with different variants.
  */
 export function Button(props: ButtonProps) {
-  const { className, variant, disabled, small, destructive, ...restProps } = props;
+  const {
+    className,
+    variant,
+    disabled,
+    small,
+    destructive,
+    children,
+    leadingIcon,
+    trailingIcon,
+    ...restProps
+  } = props;
+
+  const theme = useTheme();
 
   return (
     <button
@@ -42,6 +65,12 @@ export function Button(props: ButtonProps) {
         small,
       })}
       {...restProps}
-    />
+    >
+      <div className={styles.row}>
+        {leadingIcon ? <Icon name={leadingIcon} fill={theme.colors.white} /> : null}
+        {children}
+        {trailingIcon ? <Icon name={trailingIcon} fill={theme.colors.white} /> : null}
+      </div>
+    </button>
   );
 }

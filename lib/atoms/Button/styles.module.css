@@ -1,3 +1,9 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+
 /* Default button styles */
 .button {
   /* Opacity variables */
