@@ -23,6 +23,10 @@ export type AccordionProps = {
    */
   hideControls?: boolean;
   /**
+   * Whether to disable the hover color-changing effects.
+   */
+  disableHoverEffect?: boolean;
+  /**
    * Optional class name to apply to the container element.
    */
   className?: string;
@@ -30,6 +34,10 @@ export type AccordionProps = {
    * Optional CSS styles to apply to the container element.
    */
   style?: CSSProperties;
+  /**
+   * Optional color for the borders around the elements.
+   */
+  borderColor?: string;
 };
 
 // See https://github.com/JedWatson/classnames for usage
@@ -39,7 +47,14 @@ const cx = classNames.bind(styles);
  * An accordion component. Accordions are great ways to include a lot of information in a condensed way (e.g. FAQ sections).
  */
 export function Accordion(props: AccordionProps) {
-  const { items, hideControls, className, style } = props;
+  const {
+    items,
+    hideControls,
+    disableHoverEffect,
+    className,
+    style,
+    borderColor = "black",
+  } = props;
   const [open, setOpen] = useState<boolean[]>(Array(items.length).fill(false));
 
   const toggleItem = useCallback(
@@ -62,8 +77,16 @@ export function Accordion(props: AccordionProps) {
   return (
     <div className={cx(styles.accordionContainer, className)} style={style}>
       {!hideControls && (
-        <div className={cx(styles.accordionControls)}>
-          <button className={cx(styles.toggle)} onClick={expandAll}>
+        <div
+          className={cx(styles.accordionControls, {
+            [styles.accordionControlsHover]: !disableHoverEffect,
+          })}
+        >
+          <button
+            className={cx(styles.toggle)}
+            style={{ borderRight: `1px solid ${borderColor}` }}
+            onClick={expandAll}
+          >
             Expand All
           </button>
           <button className={cx(styles.toggle)} onClick={collapseAll}>
@@ -76,11 +99,17 @@ export function Accordion(props: AccordionProps) {
           <div
             key={index}
             className={cx(styles.accordionRow)}
+            style={{ borderBottom: `2px solid ${borderColor}` }}
             onClick={() => {
               toggleItem(index);
             }}
           >
-            <div className={cx(styles.accordionHeader, { [styles.closed]: !open[index] })}>
+            <div
+              className={cx(styles.accordionHeader, {
+                [styles.closed]: !open[index],
+                [styles.accordionHeaderHover]: !disableHoverEffect,
+              })}
+            >
               {item.header}
               <Icon
                 name="ic_caretdown"

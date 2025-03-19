@@ -19,12 +19,8 @@
   background: none;
 }
 
-.accordionControls .toggle:hover {
+.accordionControlsHover .toggle:hover {
   background-color: var(--tse-constellation-color-gray-1);
-}
-
-.accordionControls .toggle:first-child {
-  border-right: 1px solid black;
 }
 
 .accordionItems {
@@ -34,7 +30,6 @@
 }
 
 .accordionRow {
-  border-bottom: 2px solid black;
   cursor: pointer;
   overflow: hidden;
 }
@@ -47,7 +42,7 @@
   justify-content: space-between;
 }
 
-.accordionHeader.closed:hover {
+.accordionHeaderHover.closed:hover {
   background-color: var(--tse-constellation-color-gray-1);
 }
 
