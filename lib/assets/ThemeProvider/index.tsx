@@ -151,5 +151,5 @@ export function ThemeProvider(props: PropsWithChildren<ThemeProviderProps>) {
     document.body.dataset.tseInitialized = "true";
   }, []);
 
-  return children;
+  return <>{children}</>;
 }
