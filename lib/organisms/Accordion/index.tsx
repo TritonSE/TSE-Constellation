@@ -100,15 +100,15 @@ export function Accordion(props: AccordionProps) {
             key={index}
             className={cx(styles.accordionRow)}
             style={{ borderBottom: `2px solid ${borderColor}` }}
-            onClick={() => {
-              toggleItem(index);
-            }}
           >
             <div
               className={cx(styles.accordionHeader, {
                 [styles.closed]: !open[index],
                 [styles.accordionHeaderHover]: !disableHoverEffect,
               })}
+              onClick={() => {
+                toggleItem(index);
+              }}
             >
               {item.header}
               <Icon
