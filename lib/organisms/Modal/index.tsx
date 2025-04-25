@@ -75,7 +75,7 @@ export function Modal(props: ModalProps) {
           <Icon name="ic_close_large" fill={colors.gray_3} stroke={colors.gray_3} />
         </button>
       </div>
-      <p
+      <div
         className={styles.content}
         style={
           withDividers
@@ -90,7 +90,7 @@ export function Modal(props: ModalProps) {
         }
       >
         {content}
-      </p>
+      </div>
       {(primaryActionComponent ?? secondaryActionComponent) ? (
         <div className={styles.actionsContainer}>
           {secondaryActionComponent ?? <div />}
