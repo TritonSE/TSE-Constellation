@@ -226,3 +226,13 @@ export const SingleRowSelection: Story = {
     enableMultiRowSelection: false,
   },
 };
+
+/**
+ * You can enable selection for certain rows only by providing a function to `enableRowSelection` that takes a row and returns a boolean
+ */
+export const ConditionalRowSelection: Story = {
+  render: RowSelectionStory,
+  args: {
+    enableRowSelection: (row) => (row.original as Constellation).stars > 6,
+  },
+};

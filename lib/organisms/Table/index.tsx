@@ -9,6 +9,7 @@
 
 import {
   ColumnDef,
+  Row,
   RowSelectionState,
   Table as TTable,
   TableOptions,
@@ -54,7 +55,7 @@ export type TableProps<TData> = {
   /**
    * Whether to enable row selection for the table.
    */
-  enableRowSelection?: boolean;
+  enableRowSelection?: boolean | ((row: Row<TData>) => boolean);
   /**
    * Whether to enable multi-row selection for the table.
    */
@@ -206,16 +207,18 @@ export function Table<T>({
   return (
     <div className={cx(styles.container, className)} style={style}>
       {/* Table Hat - holds search field and user-defined action element */}
-      <div className={styles.hat}>
-        {enableGlobalFiltering && (
-          <TextField
-            value={table.getState().globalFilter as string}
-            onChange={table.setGlobalFilter}
-            {...searchFieldProps}
-          />
-        )}
-        {actionElement}
-      </div>
+      {enableGlobalFiltering || actionElement ? (
+        <div className={styles.hat}>
+          {enableGlobalFiltering && (
+            <TextField
+              value={table.getState().globalFilter as string}
+              onChange={table.setGlobalFilter}
+              {...searchFieldProps}
+            />
+          )}
+          {actionElement}
+        </div>
+      ) : null}
       {/* Table */}
       <table className={styles.table}>
         <thead>
