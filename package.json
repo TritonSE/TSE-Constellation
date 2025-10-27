@@ -1,7 +1,7 @@
 {
   "name": "@tritonse/tse-constellation",
   "private": false,
-  "version": "0.0.19",
+  "version": "0.0.20",
   "type": "module",
   "main": "dist/tse-constellation.js",
   "types": "dist/main.d.ts",
@@ -23,7 +23,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@cubedoodl/react-simple-scheduler": "^1.3.3",
+    "@tritonse/react-simple-scheduler": "^1.4.1",
     "@floating-ui/react": "^0.27.0",
     "@tanstack/react-table": "^8.20.5",
     "classnames": "^2.5.1",

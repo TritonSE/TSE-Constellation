@@ -1,8 +1,8 @@
-import { Calendar as SimpleCalendar } from "@cubedoodl/react-simple-scheduler";
+import { Calendar as SimpleCalendar } from "@tritonse/react-simple-scheduler";
 
 import "./styles.css";
 
-import type { CalendarProps } from "@cubedoodl/react-simple-scheduler";
+import type { CalendarProps } from "@tritonse/react-simple-scheduler";
 
 /**
  * A calendar (monthly view) component that allows users to select a date.

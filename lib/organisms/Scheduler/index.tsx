@@ -1,10 +1,10 @@
-import { Scheduler as SimpleScheduler } from "@cubedoodl/react-simple-scheduler";
+import { Scheduler as SimpleScheduler } from "@tritonse/react-simple-scheduler";
 
 import type {
   SchedulerEvent,
   SchedulerExistingEvent,
   SchedulerStyles,
-} from "@cubedoodl/react-simple-scheduler";
+} from "@tritonse/react-simple-scheduler";
 
 import "./styles.css";
 

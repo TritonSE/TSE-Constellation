@@ -1,12 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useArrayState } from "@cubedoodl/react-simple-scheduler";
 import { useState } from "react";
 
 import { Scheduler } from "../lib/main";
 
-import type { SchedulerEvent, SchedulerProps } from "@cubedoodl/react-simple-scheduler";
 import type { Meta, StoryObj } from "@storybook/react";
+import type {
+  SchedulerEvent,
+  SchedulerProps,
+  useArrayState,
+} from "@tritonse/react-simple-scheduler";
 
 // STORY HELPERS
 

@@ -59,11 +59,16 @@ export function Button(props: ButtonProps) {
 
   return (
     <button
-      className={cx(className, "button", variant, {
-        disabled,
-        destructive,
-        small,
-      })}
+      className={cx(
+        "button",
+        variant,
+        {
+          disabled,
+          destructive,
+          small,
+        },
+        className,
+      )}
       {...restProps}
     >
       <div className={styles.row}>

@@ -5,7 +5,7 @@ import { Checkbox } from "../../main";
 
 import styles from "./styles.module.css";
 
-import type { SchedulerCalendar } from "@cubedoodl/react-simple-scheduler";
+import type { SchedulerCalendar } from "@tritonse/react-simple-scheduler";
 
 export type CalendarLabelProps = {
   /**
