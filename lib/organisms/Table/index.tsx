@@ -272,7 +272,7 @@ export function Table<T>({
         {/* Table Body */}
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className={styles.dataRow}>
+            <tr key={row.id} className={styles.dataRow} data-selected={row.getIsSelected()}>
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
               ))}
